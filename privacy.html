@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy | Crete Family Holiday 2026</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <style>
+    .privacy-hero {
+      background: linear-gradient(135deg, rgba(2,62,138,.94), rgba(0,119,182,.78));
+    }
+    .section-label {
+      letter-spacing: 1.6px;
+      font-size: .78rem;
+      text-transform: uppercase;
+      color: #0077b6;
+      font-weight: 800;
+    }
+    .privacy-card {
+      border-left: 6px solid #f4b942;
+      border-radius: 18px;
+    }
+    .blue-card { border-left-color: #0077b6; }
+    .green-card { border-left-color: #6b8e23; }
+    .grey-card { border-left-color: #545857; }
+    .red-card { border-left-color: #c76f43; }
+    .privacy-pill {
+      display:inline-block;
+      padding:.35rem .75rem;
+      border-radius:999px;
+      background:rgba(0,119,182,.1);
+      color:#023e8a;
+      font-size:.8rem;
+      font-weight:800;
+      margin:.15rem;
+    }
+    .safe-pill { background:#eaf6ea; color:#355f12; }
+    .warning-pill { background:#fff3cd; color:#5c4000; }
+    .local-note {
+      background:#fffaf0;
+      border-left:6px solid #f4b942;
+      border-radius:14px;
+      padding:1rem;
+      height:100%;
+    }
+    .privacy-row {
+      border-bottom:1px solid rgba(0,0,0,.07);
+      padding:.85rem 0;
+    }
+    .privacy-row:last-child { border-bottom:0; }
+    .small-note { font-size:.9rem; color:#6c757d; }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">🇬🇷 Crete 2026</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="itinerary.html">Daily Planner</a></li>
+          <li class="nav-item"><a class="nav-link" href="activities.html">Activities</a></li>
+          <li class="nav-item"><a class="nav-link" href="restaurants.html">Restaurants</a></li>
+          <li class="nav-item"><a class="nav-link" href="beaches.html">Beaches</a></li>
+          <li class="nav-item"><a class="nav-link" href="budget.html">Budget</a></li>
+          <li class="nav-item"><a class="nav-link" href="packing.html">Packing</a></li>
+          <li class="nav-item"><a class="nav-link" href="maps.html">Maps</a></li>
+          <li class="nav-item"><a class="nav-link" href="traveltips.html">Travel Tips</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contacts</a></li>
+          <li class="nav-item"><a class="nav-link active" href="privacy.html">Privacy</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><button id="darkModeToggle" class="btn btn-sm btn-outline-light ms-lg-3" type="button">🌙</button></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="privacy-hero text-white py-5" style="margin-top:56px;">
+    <div class="container py-5">
+      <p class="text-uppercase fw-bold mb-2">Privacy and Data Use</p>
+      <h1 class="display-4 fw-bold">Privacy Notice</h1>
+      <p class="lead">A clear explanation of what this family travel website stores, where information stays, and how to remove locally saved trip data.</p>
+      <div class="row g-3 mt-4">
+        <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>Website type</strong><br>Static travel planner</div></div>
+        <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>Storage</strong><br>Browser local storage</div></div>
+        <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>No account</strong><br>No login required</div></div>
+        <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>Control</strong><br>Delete browser data anytime</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="py-5 bg-light">
+      <div class="container">
+        <div class="alert alert-warning shadow-sm border-0 mb-5">
+          <h2 class="h5 fw-bold mb-2">Important note</h2>
+          <p class="mb-0">This is a practical privacy notice for a personal family travel planner. It is not legal advice and should be reviewed before publishing the website publicly.</p>
+        </div>
+
+        <section class="mb-5">
+          <p class="section-label mb-1">Summary</p>
+          <h2 class="fw-bold mb-4">Short version</h2>
+          <div class="row g-4">
+            <div class="col-lg-3"><div class="local-note"><strong>No user account</strong><br>This website does not require registration, login or a personal profile.</div></div>
+            <div class="col-lg-3"><div class="local-note"><strong>Local browser storage</strong><br>Visited places, checklist ticks and spending entries are saved in the browser used by the family.</div></div>
+            <div class="col-lg-3"><div class="local-note"><strong>No intentional server database</strong><br>This static site is designed without a backend database.</div></div>
+            <div class="col-lg-3"><div class="local-note"><strong>You control deletion</strong><br>Clear browser site data to remove locally saved trip information.</div></div>
+          </div>
+        </section>
+
+        <section class="mb-5">
+          <p class="section-label mb-1">Information used by the website</p>
+          <h2 class="fw-bold mb-4">What may be stored locally</h2>
+          <div class="card privacy-card shadow-sm">
+            <div class="card-body">
+              <div class="privacy-row"><strong>Visited places and activities:</strong> when a place, beach, restaurant or activity is marked as visited, the website stores that status locally in the browser.</div>
+              <div class="privacy-row"><strong>Packing checklist progress:</strong> checked packing items may be saved locally so the checklist remains useful after refreshing the page.</div>
+              <div class="privacy-row"><strong>Actual expense entries:</strong> spending tracker entries such as amount, category, day and description may be saved locally for budget comparison.</div>
+              <div class="privacy-row"><strong>Restaurant meal cost entries:</strong> restaurant visit status and actual meal costs may be saved locally and used by the budget dashboard.</div>
+              <div class="privacy-row"><strong>Receipt OCR text:</strong> if receipt scanning is used, OCR may process the image in the browser and prefill fields for manual confirmation. Do not rely on OCR without checking the values.</div>
+              <div class="privacy-row"><strong>Theme preference:</strong> dark mode or light mode preference may be stored locally.</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="mb-5">
+          <p class="section-label mb-1">Where data is stored</p>
+          <h2 class="fw-bold mb-4">LocalStorage and browser data</h2>
+          <div class="row g-4">
+            <div class="col-lg-6">
+              <div class="card privacy-card green-card h-100 shadow-sm">
+                <div class="card-body">
+                  <h3 class="fw-bold">Local-first design</h3>
+                  <p>The website is designed as a static planner. Trip interaction data is intended to stay on the device and browser where the website is used.</p>
+                  <span class="privacy-pill safe-pill">Local browser storage</span>
+                  <span class="privacy-pill safe-pill">No login</span>
+                  <span class="privacy-pill safe-pill">No backend database</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="card privacy-card blue-card h-100 shadow-sm">
+                <div class="card-body">
+                  <h3 class="fw-bold">Device-specific information</h3>
+                  <p>Information saved on one phone or computer may not automatically appear on another device, because the website uses browser storage rather than a shared account.</p>
+                  <span class="privacy-pill warning-pill">Per browser</span>
+                  <span class="privacy-pill warning-pill">Per device</span>
+                  <span class="privacy-pill warning-pill">Not synchronized automatically</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="mb-5">
+          <p class="section-label mb-1">Third-party services</p>
+          <h2 class="fw-bold mb-4">External tools and links used</h2>
+          <div class="card privacy-card grey-card shadow-sm">
+            <div class="card-body">
+              <div class="privacy-row"><strong>Bootstrap CDN:</strong> used to load visual layout components when internet access is available.</div>
+              <div class="privacy-row"><strong>Google Fonts:</strong> used for website typography.</div>
+              <div class="privacy-row"><strong>Google Maps links:</strong> direction buttons open Google Maps in a new tab/app. Google Maps is outside this website.</div>
+              <div class="privacy-row"><strong>OpenStreetMap / Leaflet:</strong> the maps page may load map tiles from external map providers.</div>
+              <div class="privacy-row"><strong>Chart.js / OCR libraries if used:</strong> budget charts and receipt scanning may use external JavaScript libraries depending on the page version.</div>
+              <div class="privacy-row"><strong>Tripadvisor or restaurant links:</strong> external restaurant/review/photo pages may have their own privacy/cookie policies.</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="mb-5">
+          <p class="section-label mb-1">Receipt scanning</p>
+          <h2 class="fw-bold mb-4">Receipt OCR privacy notes</h2>
+          <div class="row g-4">
+            <div class="col-lg-4"><div class="card privacy-card green-card h-100 shadow-sm"><div class="card-body"><h3 class="fw-bold">Manual confirmation</h3><p>OCR is used only to help prefill fields. The family should check restaurant name, date, amount and category before saving.</p></div></div></div>
+            <div class="col-lg-4"><div class="card privacy-card h-100 shadow-sm"><div class="card-body"><h3 class="fw-bold">Avoid sensitive receipts</h3><p>Do not upload or scan documents containing unnecessary personal, banking, medical or passport information.</p></div></div></div>
+            <div class="col-lg-4"><div class="card privacy-card red-card h-100 shadow-sm"><div class="card-body"><h3 class="fw-bold">Delete if needed</h3><p>If an incorrect or sensitive expense is added, delete the entry or clear browser data for the website.</p></div></div></div>
+          </div>
+        </section>
+
+        <section class="mb-5">
+          <p class="section-label mb-1">Deleting data</p>
+          <h2 class="fw-bold mb-4">How to remove locally saved data</h2>
+          <div class="card privacy-card shadow-sm">
+            <div class="card-body">
+              <ol class="mb-0">
+                <li>Open the browser settings on the phone or computer.</li>
+                <li>Search for site data, cookies or local storage settings.</li>
+                <li>Find the website domain or local file entry used for the Crete planner.</li>
+                <li>Clear site data for this website.</li>
+                <li>Refresh the website. Locally saved visited places, packing ticks and expenses should be reset.</li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <section class="mb-5">
+          <p class="section-label mb-1">Good practice</p>
+          <h2 class="fw-bold mb-4">Recommended privacy rules for this trip site</h2>
+          <div class="row g-4">
+            <div class="col-md-6 col-lg-3"><div class="local-note"><strong>Do not store passports</strong><br>Keep passport copies in a secure phone folder, not inside this HTML website.</div></div>
+            <div class="col-md-6 col-lg-3"><div class="local-note"><strong>Keep insurance separate</strong><br>Use the contact page as a note reference, not a secure document vault.</div></div>
+            <div class="col-md-6 col-lg-3"><div class="local-note"><strong>Check expense entries</strong><br>OCR can be wrong. Always confirm before saving actual costs.</div></div>
+            <div class="col-md-6 col-lg-3"><div class="local-note"><strong>Use trusted devices</strong><br>Avoid entering trip information on public/shared computers.</div></div>
+          </div>
+        </section>
+
+        <section class="mb-5">
+          <p class="section-label mb-1">Contact</p>
+          <h2 class="fw-bold mb-4">Questions or corrections</h2>
+          <div class="card privacy-card blue-card shadow-sm">
+            <div class="card-body">
+              <p class="mb-2">For this personal travel website, privacy questions or corrections should be handled by the family member maintaining the website files.</p>
+              <p class="mb-0 small-note">Recommended action before publishing publicly: review this page and remove any personal contact details that should not be visible online.</p>
+            </div>
+          </div>
+        </section>
+
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-warning" href="contact.html">Open contacts</a>
+          <a class="btn btn-outline-primary" href="traveltips.html">Open travel tips</a>
+          <a class="btn btn-outline-secondary" href="budget.html">Open budget</a>
+          <a class="btn btn-outline-dark" href="index.html">Back to homepage</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-dark text-white py-4">
+    <div class="container"><div class="row"><div class="col-md-6"><h5>Crete Family Holiday 2026</h5><p class="mb-0">Personal travel planner for Kamilari, South Crete.</p></div><div class="col-md-6 text-md-end"><p class="mb-0">Last updated: July 2026</p><p class="mb-0">Built for GitHub Pages</p></div></div></div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

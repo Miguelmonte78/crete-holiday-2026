@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0077b6">
+  <meta name="description" content="Crete Family Holiday 2026 - a personal family travel planner for itinerary, maps, restaurants, beaches, budget, packing and travel tips.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Crete 2026">
+  <title>Home | Crete Family Holiday 2026</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="images/icon-192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="images/icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="images/icon-512.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <style>
+    .home-hero {
+      background:
+        linear-gradient(135deg, rgba(2,62,138,.92), rgba(0,119,182,.74)),
+        url('images/hero.jpg') center/cover no-repeat;
+      min-height: 560px;
+      display: flex;
+      align-items: center;
+    }
+    .section-label { letter-spacing: 1.6px; font-size: .78rem; text-transform: uppercase; color: #0077b6; font-weight: 800; }
+    .hero-glass { background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25); backdrop-filter: blur(10px); border-radius: 24px; padding: 1.25rem; }
+    .dashboard-card { border: 0; border-radius: 20px; box-shadow: 0 12px 30px rgba(0,0,0,.09); height: 100%; transition: transform .2s ease, box-shadow .2s ease; }
+    .dashboard-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(0,0,0,.14); }
+    .kpi-value { font-size: 2rem; font-weight: 900; color: #023e8a; }
+    .action-card { border-left: 6px solid #f4b942; }
+    .blue-card { border-left-color: #0077b6; }
+    .green-card { border-left-color: #6b8e23; }
+    .grey-card { border-left-color: #545857; }
+    .red-card { border-left-color: #c76f43; }
+    .quick-pill { display:inline-block; padding:.35rem .75rem; border-radius:999px; background:rgba(0,119,182,.1); color:#023e8a; font-size:.8rem; font-weight:800; margin:.15rem; }
+    .recommended-pill { background:#f4b942; color:#222831; }
+    .status-row { border-bottom:1px solid rgba(0,0,0,.07); padding:.85rem 0; }
+    .status-row:last-child { border-bottom:0; }
+    .decision-box { background:#fffaf0; border-left:6px solid #f4b942; border-radius:14px; padding:1rem; height:100%; }
+    .mini-link { font-weight: 800; text-decoration:none; color: inherit; }
+    .pwa-status { border-left: 6px solid #0077b6; background: #f1f9ff; border-radius: 14px; padding: 1rem; }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">🇬🇷 Crete 2026</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="itinerary.html">Daily Planner</a></li>
+          <li class="nav-item"><a class="nav-link" href="activities.html">Activities</a></li>
+          <li class="nav-item"><a class="nav-link" href="restaurants.html">Restaurants</a></li>
+          <li class="nav-item"><a class="nav-link" href="beaches.html">Beaches</a></li>
+          <li class="nav-item"><a class="nav-link" href="budget.html">Budget</a></li>
+          <li class="nav-item"><a class="nav-link" href="packing.html">Packing</a></li>
+          <li class="nav-item"><a class="nav-link" href="maps.html">Maps</a></li>
+          <li class="nav-item"><a class="nav-link" href="traveltips.html">Travel Tips</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contacts</a></li>
+          <li class="nav-item"><a class="nav-link" href="privacy.html">Privacy</a></li>
+          <li class="nav-item"><a class="nav-link" href="terms.html">Terms</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><button id="darkModeToggle" class="btn btn-sm btn-outline-light ms-lg-3" type="button">🌙</button></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="home-hero text-white" style="margin-top:56px;">
+    <div class="container py-5">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-8">
+          <p class="text-uppercase fw-bold mb-2">Family Travel Control Tower</p>
+          <h1 class="display-3 fw-bold">Crete Family Holiday 2026</h1>
+          <p class="lead">A practical, premium travel planner for 16 nights in South Crete, based in Kamilari, with itinerary, restaurants, beaches, activities, maps, budget tracking, packing and travel tips.</p>
+          <div class="d-flex flex-wrap gap-2 mt-4">
+            <a class="btn btn-warning btn-lg" href="itinerary.html">Open Daily Planner</a>
+            <a class="btn btn-outline-light btn-lg" href="maps.html">Open Trip Map</a>
+            <a class="btn btn-outline-light btn-lg" href="budget.html">Open Budget Tracker</a>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="hero-glass">
+            <h2 class="h4 fw-bold text-white">Trip snapshot</h2>
+            <div class="row g-3 mt-2">
+              <div class="col-6"><div><strong>Base</strong><br>Kamilari</div></div>
+              <div class="col-6"><div><strong>Dates</strong><br>21 Jul – 6 Aug</div></div>
+              <div class="col-6"><div><strong>Family</strong><br>4 people</div></div>
+              <div class="col-6"><div><strong>Budget</strong><br>€2,500</div></div>
+            </div>
+            <hr class="border-light opacity-50">
+            <p class="mb-0">Best rhythm: early activity, lunch, apartment rest, evening outing after 17:00.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="py-5 bg-light">
+      <div class="container">
+        <div class="row g-4 mb-5">
+          <div class="col-md-3"><div class="card dashboard-card"><div class="card-body"><h3>📅 Countdown</h3><div id="countdown" class="kpi-value">--</div><p class="text-muted mb-0">Until departure</p></div></div></div>
+          <div class="col-md-3"><div class="card dashboard-card"><div class="card-body"><h3>🏡 Base</h3><div class="kpi-value">Kamilari</div><p class="text-muted mb-0">South Crete</p></div></div></div>
+          <div class="col-md-3"><div class="card dashboard-card"><div class="card-body"><h3>📱 PWA</h3><div id="pwaStatus" class="kpi-value">Ready</div><p class="text-muted mb-0">Installable setup</p></div></div></div>
+          <div class="col-md-3"><div class="card dashboard-card"><div class="card-body"><h3>💶 Budget</h3><div class="kpi-value">€2,500</div><p class="text-muted mb-0">Excl. flight/home/car</p></div></div></div>
+        </div>
+
+        <div class="pwa-status shadow-sm mb-5">
+          <h2 class="h5 fw-bold mb-2">App-style setup enabled</h2>
+          <p class="mb-0">This homepage is now connected to <strong>manifest.json</strong>, the app icons and <strong>service-worker.js</strong>. Once uploaded to GitHub Pages, the site can be installed on a phone and can keep key pages available after they have loaded.</p>
+        </div>
+
+        <div class="alert alert-info shadow-sm border-0 mb-5">
+          <h2 class="h5 fw-bold mb-2">Recommended daily approach</h2>
+          <p class="mb-0">Use the itinerary as the recommended plan, then use activities, restaurants and beaches as optional choices. Mark places visited and enter actual spending as the trip progresses.</p>
+        </div>
+
+        <section class="mb-5">
+          <p class="section-label mb-1">Quick launch</p>
+          <h2 class="fw-bold mb-4">Open the part you need</h2>
+          <div class="row g-4">
+            <div class="col-md-6 col-lg-3"><a class="mini-link" href="itinerary.html"><div class="card dashboard-card action-card"><div class="card-body"><h3>📅 Daily Planner</h3><p>Read the recommended plan, why it works, alternatives and restaurant options.</p><span class="quick-pill recommended-pill">Start here</span></div></div></a></div>
+            <div class="col-md-6 col-lg-3"><a class="mini-link" href="activities.html"><div class="card dashboard-card action-card green-card"><div class="card-body"><h3>🌿 Activities</h3><p>Recommended activities, alternatives, costs, directions and visited tracking.</p><span class="quick-pill">Explore choices</span></div></div></a></div>
+            <div class="col-md-6 col-lg-3"><a class="mini-link" href="restaurants.html"><div class="card dashboard-card action-card grey-card"><div class="card-body"><h3>🍽️ Restaurants</h3><p>Recommended restaurants, alternatives, direction buttons and meal cost tracking.</p><span class="quick-pill">Track meals</span></div></div></a></div>
+            <div class="col-md-6 col-lg-3"><a class="mini-link" href="beaches.html"><div class="card dashboard-card action-card blue-card"><div class="card-body"><h3>🏖️ Beaches</h3><p>Beach recommendations, snorkeling notes, wind logic and directions.</p><span class="quick-pill">Check wind</span></div></div></a></div>
+            <div class="col-md-6 col-lg-3"><a class="mini-link" href="budget.html"><div class="card dashboard-card action-card red-card"><div class="card-body"><h3>💶 Budget</h3><p>Estimate vs actual spend, receipt OCR, manual expense entry and charts.</p><span class="quick-pill recommended-pill">Use daily</span></div></div></a></div>
+            <div class="col-md-6 col-lg-3"><a class="mini-link" href="maps.html"><div class="card dashboard-card action-card blue-card"><div class="card-body"><h3>🗺️ Maps</h3><p>Colour-coded pins, directions from Kamilari/current location and visited places.</p><span class="quick-pill">Navigate</span></div></div></a></div>
+            <div class="col-md-6 col-lg-3"><a class="mini-link" href="packing.html"><div class="card dashboard-card action-card"><div class="card-body"><h3>🧳 Packing</h3><p>Checklist with local saving, print option and categories for beach/nature/travel.</p><span class="quick-pill">Prepare</span></div></div></a></div>
+            <div class="col-md-6 col-lg-3"><a class="mini-link" href="traveltips.html"><div class="card dashboard-card action-card green-card"><div class="card-body"><h3>ℹ️ Travel Tips</h3><p>Emergency numbers, markets, events, driving, heat, food and practical advice.</p><span class="quick-pill">Reference</span></div></div></a></div>
+          </div>
+        </section>
+
+        <section class="mb-5">
+          <p class="section-label mb-1">Today-style dashboard</p>
+          <h2 class="fw-bold mb-4">Useful before leaving the apartment</h2>
+          <div class="row g-4">
+            <div class="col-lg-4"><div class="decision-box"><strong>1. Check the day plan</strong><br>Open Daily Planner and read the quick summary + recommended option first.</div></div>
+            <div class="col-lg-4"><div class="decision-box"><strong>2. Check weather/wind</strong><br>If beach or snorkeling is planned, use the Beaches page and adapt if windy.</div></div>
+            <div class="col-lg-4"><div class="decision-box"><strong>3. Check cost impact</strong><br>If choosing a special restaurant or paid attraction, keep the actual budget in mind.</div></div>
+          </div>
+        </section>
+
+        <section class="mb-5">
+          <div class="row g-4">
+            <div class="col-lg-6">
+              <div class="card dashboard-card">
+                <div class="card-body">
+                  <p class="section-label mb-1">Emergency quick access</p>
+                  <h2 class="fw-bold">Essential numbers</h2>
+                  <div class="status-row"><strong>112</strong> — European emergency number</div>
+                  <div class="status-row"><strong>100</strong> — Police</div>
+                  <div class="status-row"><strong>166</strong> — Ambulance / EKAV</div>
+                  <div class="status-row"><strong>199</strong> — Fire brigade</div>
+                  <div class="status-row"><strong>108</strong> — Port authority / sea emergency</div>
+                  <a class="btn btn-outline-primary mt-3" href="traveltips.html">Open full emergency guide</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="card dashboard-card">
+                <div class="card-body">
+                  <p class="section-label mb-1">Local opportunities</p>
+                  <h2 class="fw-bold">Markets and events</h2>
+                  <div class="status-row"><strong>Moires market</strong> — Saturday morning, practical local choice.</div>
+                  <div class="status-row"><strong>Timbaki market</strong> — Friday, nearby alternative.</div>
+                  <div class="status-row"><strong>Panigiria</strong> — ask locally for village celebrations during the exact dates.</div>
+                  <div class="status-row"><strong>6 August</strong> — possible local religious celebrations, verify locally near departure.</div>
+                  <a class="btn btn-outline-primary mt-3" href="traveltips.html">Open markets/events tips</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="mb-5">
+          <p class="section-label mb-1">Website status</p>
+          <h2 class="fw-bold mb-4">Current build status</h2>
+          <div class="card dashboard-card">
+            <div class="card-body">
+              <div class="status-row"><strong>✅ Daily Planner:</strong> enriched itinerary, recommendations, alternatives, directions and visited tracking.</div>
+              <div class="status-row"><strong>✅ Activities:</strong> recommended vs optional logic, detail modal, visited tracking and directions.</div>
+              <div class="status-row"><strong>✅ Restaurants:</strong> day-based choices, meal cost tracking, directions and review-style summaries.</div>
+              <div class="status-row"><strong>✅ Beaches:</strong> snorkeling/wind logic, recommendations, directions and visited tracking.</div>
+              <div class="status-row"><strong>✅ Budget:</strong> estimate vs actual, OCR/manual expense flow and charts.</div>
+              <div class="status-row"><strong>✅ Maps:</strong> colour-coded map pins and direction buttons.</div>
+              <div class="status-row"><strong>✅ PWA setup:</strong> manifest, icons and service-worker registration added.</div>
+              <div class="status-row"><strong>Next improvements:</strong> final ZIP/GitHub Pages package and folder validation.</div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-dark text-white py-4">
+    <div class="container"><div class="row"><div class="col-md-6"><h5>Crete Family Holiday 2026</h5><p class="mb-0">Personal travel planner for Kamilari, South Crete.</p></div><div class="col-md-6 text-md-end"><p class="mb-0">Last updated: July 2026</p><p class="mb-0">Built for GitHub Pages</p></div></div></div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/script.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("service-worker.js")
+          .then(function () {
+            var pwaStatus = document.getElementById("pwaStatus");
+            if (pwaStatus) pwaStatus.textContent = "On";
+            console.log("Crete 2026 service worker registered.");
+          })
+          .catch(function (error) {
+            var pwaStatus = document.getElementById("pwaStatus");
+            if (pwaStatus) pwaStatus.textContent = "Check";
+            console.warn("Crete 2026 service worker registration failed:", error);
+          });
+      });
+    }
+  </script>
+</body>
+</html>

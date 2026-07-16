@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Packing | Crete Family Holiday 2026</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        .packing-hero { background: linear-gradient(135deg, rgba(2,62,138,.92), rgba(0,119,182,.78)); }
+        .section-label { letter-spacing: 1.6px; font-size: .78rem; text-transform: uppercase; color: #0077b6; font-weight: 800; }
+        .packing-item { border-bottom: 1px solid rgba(0,0,0,.07); padding: .75rem 0; }
+        .packing-item:last-child { border-bottom: 0; }
+        .packing-item input:checked + label { text-decoration: line-through; color: #6c757d; }
+        .category-card { border-left: 6px solid #f4b942; }
+        .kpi-value { font-size: 2rem; font-weight: 900; color: #023e8a; }
+        .tip-box { border-left: 6px solid #6b8e23; background: #f7fbef; border-radius: 14px; padding: 1rem; height: 100%; }
+        .print-only { display: none; }
+        @media print {
+            nav, header, footer, .no-print, .btn, .alert { display: none !important; }
+            body { background: #fff !important; }
+            .card { box-shadow: none !important; border: 1px solid #ddd !important; break-inside: avoid; }
+            .print-only { display: block; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">🇬🇷 Crete 2026</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="itinerary.html">Daily Planner</a></li>
+                    <li class="nav-item"><a class="nav-link" href="activities.html">Activities</a></li>
+                    <li class="nav-item"><a class="nav-link" href="restaurants.html">Restaurants</a></li>
+                    <li class="nav-item"><a class="nav-link" href="beaches.html">Beaches</a></li>
+                    <li class="nav-item"><a class="nav-link" href="budget.html">Budget</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="packing.html">Packing</a></li>
+                    <li class="nav-item"><a class="nav-link" href="maps.html">Maps</a></li>
+                    <li class="nav-item"><a class="nav-link" href="traveltips.html">Travel Tips</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><button id="darkModeToggle" class="btn btn-sm btn-outline-light ms-lg-3" type="button">🌙</button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="packing-hero text-white py-5" style="margin-top:56px;">
+        <div class="container py-5">
+            <p class="text-uppercase fw-bold mb-2">Packing 2.0</p>
+            <h1 class="display-4 fw-bold">Family Packing Checklist</h1>
+            <p class="lead">A practical Crete packing list focused on heat, beaches, snorkeling, short walks, car days and avoiding unnecessary purchases.</p>
+            <div class="row g-3 mt-4">
+                <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>Heat ready</strong><br>Sun, hats, water</div></div>
+                <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>Beach ready</strong><br>Snorkel, shoes, towels</div></div>
+                <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>Car ready</strong><br>Chargers, offline maps</div></div>
+                <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>Budget smart</strong><br>Avoid buying twice</div></div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="alert alert-info shadow-sm border-0 mb-5 no-print">
+                    <h2 class="h5 fw-bold mb-2">How to use this page</h2>
+                    <p class="mb-0">Tick items as you pack. Your checklist is saved on this device using browser storage. Use the print button for a paper copy before departure.</p>
+                </div>
+
+                <div class="row g-4 mb-5 no-print">
+                    <div class="col-md-3"><div class="card h-100 shadow-sm"><div class="card-body"><h3>✅ Packed</h3><div id="packedCount" class="kpi-value">0</div><p class="text-muted mb-0">Items completed</p></div></div></div>
+                    <div class="col-md-3"><div class="card h-100 shadow-sm"><div class="card-body"><h3>📦 Total</h3><div id="totalCount" class="kpi-value">0</div><p class="text-muted mb-0">Checklist items</p></div></div></div>
+                    <div class="col-md-3"><div class="card h-100 shadow-sm"><div class="card-body"><h3>🏖️ Beach</h3><div id="beachCount" class="kpi-value">0</div><p class="text-muted mb-0">Beach/snorkel items</p></div></div></div>
+                    <div class="col-md-3"><div class="card h-100 shadow-sm"><div class="card-body"><h3>🧾 Docs</h3><div id="docsCount" class="kpi-value">0</div><p class="text-muted mb-0">Document items</p></div></div></div>
+                </div>
+
+                <div class="row g-3 mb-5 no-print">
+                    <div class="col-md-4"><label for="packingSearch" class="form-label fw-bold">Search</label><input id="packingSearch" class="form-control form-control-lg" type="search" placeholder="Search sunscreen, snorkel, charger..."></div>
+                    <div class="col-md-4"><label for="categoryFilter" class="form-label fw-bold">Category</label><select id="categoryFilter" class="form-select form-select-lg"><option value="all">All categories</option></select></div>
+                    <div class="col-md-4"><label class="form-label fw-bold">Actions</label><div class="d-flex flex-wrap gap-2"><button id="printPacking" class="btn btn-warning" type="button">Print checklist</button><button id="resetPacking" class="btn btn-outline-danger" type="button">Reset ticks</button></div></div>
+                </div>
+
+                <div class="print-only mb-4"><h1>Crete Family Holiday 2026 — Packing Checklist</h1><p>Print version</p></div>
+                <div id="packingContainer" class="row g-4"></div>
+
+                <div class="row g-4 mt-5 no-print">
+                    <div class="col-md-4"><div class="tip-box"><strong>Best tip: water shoes</strong><br>Useful for pebbly beaches, rocky entries, Agiofarago and snorkeling areas.</div></div>
+                    <div class="col-md-4"><div class="tip-box"><strong>Best budget saver</strong><br>Bring reusable bottles, basic pharmacy items, sun cream and beach towels instead of buying everything locally.</div></div>
+                    <div class="col-md-4"><div class="tip-box"><strong>Best comfort item</strong><br>A small cooler bag makes car/beach days easier and reduces impulse food/drink spending.</div></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container"><div class="row"><div class="col-md-6"><h5>Crete Family Holiday 2026</h5><p class="mb-0">Personal travel planner for Kamilari, South Crete.</p></div><div class="col-md-6 text-md-end"><p class="mb-0">Last updated: July 2026</p><p class="mb-0">Built for GitHub Pages</p></div></div></div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        const packingKey = "cretePackingChecklist";
+        const packingData = [
+            { category: "Documents", items: ["Passports / IDs", "Driving licence", "Rental car booking", "Accommodation details", "Travel insurance", "Flight details", "Emergency contacts", "Bank cards and some cash"] },
+            { category: "Health & Pharmacy", items: ["Personal medication", "Painkillers", "Antihistamine", "Plasters / blister plasters", "After-sun lotion", "Mosquito repellent", "Rehydration salts", "Small first-aid kit"] },
+            { category: "Sun & Heat", items: ["High SPF sunscreen", "After-sun", "Caps / hats", "Sunglasses", "Reusable water bottles", "Light long-sleeve cover-ups", "Small cooler bag", "Electrolyte tablets"] },
+            { category: "Beach & Snorkeling", items: ["Swimwear", "Beach towels", "Water shoes", "Snorkel masks", "Dry bag", "Beach bag", "Light beach shade / umbrella if available", "Waterproof phone pouch"] },
+            { category: "Clothing", items: ["Light T-shirts", "Shorts", "Evening outfits", "Comfortable walking shoes", "Sandals", "Underwear and socks", "Sleepwear", "Light sweater for evenings"] },
+            { category: "Electronics", items: ["Phone chargers", "Power bank", "Car USB charger", "Headphones", "Camera / action camera", "Charging cables", "EU adapters if needed", "Downloaded offline maps"] },
+            { category: "Car & Day Trips", items: ["Offline Google Maps", "Printed / saved address of apartment", "Small rubbish bags", "Wet wipes", "Tissues", "Snacks for car", "Reusable shopping bag", "Parking coins / cash"] },
+            { category: "Apartment & Food", items: ["Coffee / tea basics if preferred", "Breakfast basics", "Dishwasher / laundry tablets if needed", "Reusable food containers", "Zip bags", "Shopping list", "Dish cloth", "Small laundry bag"] }
+        ];
+
+        function slugify(value) { return String(value).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""); }
+        function getPacked() { try { return JSON.parse(localStorage.getItem(packingKey)) || {}; } catch (e) { return {}; } }
+        function savePacked(data) { localStorage.setItem(packingKey, JSON.stringify(data)); }
+
+        function populateCategoryFilter() {
+            document.getElementById("categoryFilter").innerHTML = '<option value="all">All categories</option>' + packingData.map(group => `<option value="${group.category}">${group.category}</option>`).join("");
+        }
+
+        function renderPacking() {
+            const packed = getPacked();
+            const search = document.getElementById("packingSearch").value.toLowerCase().trim();
+            const category = document.getElementById("categoryFilter").value;
+            const groups = packingData.filter(group => category === "all" || group.category === category);
+
+            document.getElementById("packingContainer").innerHTML = groups.map(group => {
+                const items = group.items.filter(item => !search || item.toLowerCase().includes(search) || group.category.toLowerCase().includes(search));
+                if (!items.length) return "";
+                return `<div class="col-lg-6"><div class="card shadow-sm category-card h-100"><div class="card-body"><p class="section-label mb-1">${group.category}</p><h2 class="fw-bold mb-3">${group.category}</h2>${items.map(item => {
+                    const id = slugify(group.category + "-" + item);
+                    const checked = packed[id] ? "checked" : "";
+                    return `<div class="packing-item"><input class="form-check-input packing-checkbox me-2" type="checkbox" id="${id}" data-id="${id}" ${checked}><label class="form-check-label" for="${id}">${item}</label></div>`;
+                }).join("")}</div></div></div>`;
+            }).join("");
+            setupCheckboxes();
+            updateStats();
+        }
+
+        function setupCheckboxes() {
+            document.querySelectorAll(".packing-checkbox").forEach(cb => cb.addEventListener("change", function() {
+                const packed = getPacked();
+                packed[cb.dataset.id] = cb.checked;
+                savePacked(packed);
+                updateStats();
+            }));
+        }
+
+        function updateStats() {
+            const packed = getPacked();
+            const allItems = packingData.flatMap(group => group.items.map(item => ({ category: group.category, item })));
+            const packedCount = Object.values(packed).filter(Boolean).length;
+            const beachTotal = packingData.find(group => group.category === "Beach & Snorkeling").items.length;
+            const docsTotal = packingData.find(group => group.category === "Documents").items.length;
+            document.getElementById("packedCount").textContent = packedCount;
+            document.getElementById("totalCount").textContent = allItems.length;
+            document.getElementById("beachCount").textContent = beachTotal;
+            document.getElementById("docsCount").textContent = docsTotal;
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            populateCategoryFilter();
+            renderPacking();
+            document.getElementById("packingSearch").addEventListener("input", renderPacking);
+            document.getElementById("categoryFilter").addEventListener("change", renderPacking);
+            document.getElementById("printPacking").addEventListener("click", () => window.print());
+            document.getElementById("resetPacking").addEventListener("click", function() {
+                if (confirm("Reset all packed ticks?")) {
+                    localStorage.removeItem(packingKey);
+                    renderPacking();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

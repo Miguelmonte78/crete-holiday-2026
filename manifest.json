@@ -1,0 +1,82 @@
+{
+  "name": "Crete Family Holiday 2026",
+  "short_name": "Crete 2026",
+  "description": "A personal family travel planner for a 16-night Crete holiday based in Kamilari, with itinerary, maps, budget tracking, packing, restaurants, beaches and travel tips.",
+  "start_url": "index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f8f9fa",
+  "theme_color": "#0077b6",
+  "categories": [
+    "travel",
+    "lifestyle",
+    "navigation"
+  ],
+  "lang": "en",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Daily Planner",
+      "short_name": "Planner",
+      "description": "Open the 16-day Crete itinerary.",
+      "url": "itinerary.html",
+      "icons": [
+        {
+          "src": "images/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Trip Map",
+      "short_name": "Map",
+      "description": "Open the colour-coded Crete map.",
+      "url": "maps.html",
+      "icons": [
+        {
+          "src": "images/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Budget Tracker",
+      "short_name": "Budget",
+      "description": "Open the trip budget and expense tracker.",
+      "url": "budget.html",
+      "icons": [
+        {
+          "src": "images/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Emergency Contacts",
+      "short_name": "Contacts",
+      "description": "Open important emergency and trip contact details.",
+      "url": "contact.html",
+      "icons": [
+        {
+          "src": "images/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}

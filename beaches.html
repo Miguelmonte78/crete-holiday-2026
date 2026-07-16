@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beaches & Snorkeling | Crete Family Holiday 2026</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        .beaches-hero {
+            background: linear-gradient(135deg, rgba(2, 62, 138, 0.92), rgba(0, 119, 182, 0.78));
+        }
+
+        .beach-section-label {
+            letter-spacing: 1.6px;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            color: var(--aegean-blue, #0077b6);
+            font-weight: 800;
+        }
+
+        .beach-image {
+            width: 100%;
+            height: 235px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .beach-image-wrap {
+            position: relative;
+            overflow: hidden;
+            background: #d8e9ee;
+        }
+
+        .beach-ribbon {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            border-radius: 999px;
+            padding: 0.45rem 0.85rem;
+            font-size: 0.76rem;
+            font-weight: 900;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+        }
+
+        .beach-ribbon.recommended {
+            background: var(--gold, #f4b942);
+            color: var(--charcoal, #222831);
+        }
+
+        .beach-ribbon.alternative {
+            background: #6b8e23;
+            color: #fff;
+        }
+
+        .beach-ribbon.optional {
+            background: #545857;
+            color: #fff;
+        }
+
+        .beach-ribbon.backup {
+            background: #c76f43;
+            color: #fff;
+        }
+
+        .beach-image-label {
+            position: absolute;
+            left: 14px;
+            bottom: 14px;
+            background: rgba(34, 40, 49, 0.84);
+            color: #fff;
+            border-radius: 999px;
+            padding: 0.35rem 0.75rem;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+        }
+
+        .beach-pill {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            border-radius: 999px;
+            background: rgba(0, 119, 182, 0.1);
+            color: var(--deep-blue, #023e8a);
+            font-size: 0.8rem;
+            font-weight: 800;
+            margin: 0.15rem;
+        }
+
+        .beach-pill.recommended-pill {
+            background: var(--gold, #f4b942);
+            color: var(--charcoal, #222831);
+        }
+
+        .beach-meta-box {
+            background: linear-gradient(180deg, #ffffff, #fffaf0);
+            border: 1px solid #e8dfcf;
+            border-radius: 14px;
+            padding: 0.75rem;
+            height: 100%;
+        }
+
+        .beach-meta-box small {
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            font-size: 0.7rem;
+            color: #6c757d;
+            font-weight: 800;
+            margin-bottom: 0.2rem;
+        }
+
+        .beach-meta-box strong {
+            color: var(--deep-blue, #023e8a);
+        }
+
+        .summary-box {
+            border-left: 6px solid var(--gold, #f4b942);
+            background: #fffaf0;
+            border-radius: 14px;
+            padding: 1rem;
+        }
+
+        .condition-box {
+            border-left: 6px solid #0077b6;
+            background: #eef8fc;
+            border-radius: 14px;
+            padding: 1rem;
+            height: 100%;
+        }
+
+        .visited-indicator {
+            border-left: 6px solid #198754;
+        }
+
+        .modal-beach-image {
+            width: 100%;
+            height: 390px;
+            object-fit: cover;
+            border-radius: 18px;
+            background: #eef4f7;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">🇬🇷 Crete 2026</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="itinerary.html">Daily Planner</a></li>
+                    <li class="nav-item"><a class="nav-link" href="activities.html">Activities</a></li>
+                    <li class="nav-item"><a class="nav-link" href="restaurants.html">Restaurants</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="beaches.html">Beaches</a></li>
+                    <li class="nav-item"><a class="nav-link" href="budget.html">Budget</a></li>
+                    <li class="nav-item"><a class="nav-link" href="packing.html">Packing</a></li>
+                    <li class="nav-item"><a class="nav-link" href="traveltips.html">Travel Tips</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><button id="darkModeToggle" class="btn btn-sm btn-outline-light ms-lg-3" type="button">🌙</button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="beaches-hero text-white py-5" style="margin-top: 56px;">
+        <div class="container py-5">
+            <p class="text-uppercase fw-bold mb-2">Beaches Guide 2.0</p>
+            <h1 class="display-4 fw-bold">Recommended Beaches + Snorkeling Logic</h1>
+            <p class="lead">Choose the best beach for each itinerary day based on drive time, wind risk, snorkeling value, facilities, family comfort and budget.</p>
+            <div class="row g-3 mt-4">
+                <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>Recommended first</strong><br>Best match for the day</div></div>
+                <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>Wind logic</strong><br>Check before driving</div></div>
+                <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>Snorkeling</strong><br>Only when calm</div></div>
+                <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>Visited log</strong><br>Saved locally</div></div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="alert alert-info shadow-sm border-0 mb-5">
+                    <h2 class="h5 fw-bold mb-2">Beach decision rule</h2>
+                    <p class="mb-0">The best beach is not only the prettiest one. For this family itinerary, the best beach is the one that matches the day’s location, wind conditions, heat, driving effort, facilities and energy level. Always check wind and wave conditions before committing to open south-coast beaches, then use the direction buttons to open Google Maps from Kamilari or from your current location.</p>
+                </div>
+
+                <div class="row g-3 mb-5">
+                    <div class="col-lg-3">
+                        <label for="beachSearch" class="form-label fw-bold">Search</label>
+                        <input id="beachSearch" type="search" class="form-control form-control-lg" placeholder="Search snorkel, shade, wild, Matala...">
+                    </div>
+                    <div class="col-lg-2">
+                        <label for="dayFilter" class="form-label fw-bold">Day</label>
+                        <select id="dayFilter" class="form-select form-select-lg"><option value="all">All days</option></select>
+                    </div>
+                    <div class="col-lg-2">
+                        <label for="driveFilter" class="form-label fw-bold">Drive</label>
+                        <select id="driveFilter" class="form-select form-select-lg">
+                            <option value="all">All</option>
+                            <option value="short">Short</option>
+                            <option value="medium">Medium</option>
+                            <option value="long">Long</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2">
+                        <label for="snorkelFilter" class="form-label fw-bold">Snorkeling</label>
+                        <select id="snorkelFilter" class="form-select form-select-lg">
+                            <option value="all">All</option>
+                            <option value="good">Good</option>
+                            <option value="okay">Okay</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3">
+                        <label for="priorityFilter" class="form-label fw-bold">Priority</label>
+                        <select id="priorityFilter" class="form-select form-select-lg">
+                            <option value="all">All</option>
+                            <option value="recommended">Recommended</option>
+                            <option value="alternative">Alternatives</option>
+                            <option value="optional">Optional extras</option>
+                            <option value="visited">Visited</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="dailyBeachPanel" class="card shadow-sm mb-5"></div>
+                <div id="beachCards" class="row g-4"></div>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal fade" id="beachModal" tabindex="-1" aria-labelledby="beachModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <p class="beach-section-label mb-1">Beach details</p>
+                        <h2 id="beachModalTitle" class="modal-title fw-bold"></h2>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div id="beachModalBody" class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Crete Family Holiday 2026</h5>
+                    <p class="mb-0">Personal travel planner for Kamilari, South Crete.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Last updated: July 2026</p>
+                    <p class="mb-0">Built for GitHub Pages</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+
+    <script>
+        const visitedBeachesKey = "creteVisitedBeaches";
+
+        const beaches = [
+            {
+                id: "kommos",
+                name: "Kommos Beach",
+                area: "Near Pitsidia / Matala",
+                priority: "recommended",
+                days: [3, 13, 15],
+                image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+                driveCategory: "short",
+                snorkeling: "good",
+                facilitiesType: "basic",
+                distance: "Approx. 8–12 km",
+                drive: "10–15 min",
+                cost: "Free beach; umbrellas/food extra",
+                waterShoes: "Useful near pebbly/rocky stretches",
+                shade: "Some natural shade/tamarisk areas; bring own shade",
+                facilities: "Basic/limited; organized section in the south; food/water nearby depending exact area",
+                wind: "Exposed to north-west/westerly winds; can become wavy quickly",
+                bestTime: "Morning or sunset",
+                familyFit: "Excellent short-drive beach if the sea is calm.",
+                summary: "The strongest nearby low-cost beach choice for wide space, sunset atmosphere and snorkeling potential on calm days.",
+                whyRecommended: "Kommos is recommended because it fits the family plan extremely well: short drive from Kamilari, no mandatory admission cost, natural scenery and good snorkeling potential when the sea is calm. It is also flexible: if the wind is too strong, you can leave easily and switch to Kalamaki, Pitsidia or a village plan without losing the day.",
+                whatToExpect: "Expect a long, open south-coast beach with a natural feel rather than a resort setup. Some sections are more organized, while other stretches feel wild and spacious. The beach can be beautiful in the morning and especially around sunset, but it is exposed to changing wind and waves.",
+                snorkelingNote: "Best around rocky/submerged areas on calm days only. Do not force snorkeling if waves build.",
+                doNotMiss: ["Calm morning swim", "Sunset views", "Quiet beach walk", "Turtle nesting respect"],
+                funFact: "Kommos was an important ancient harbour area connected to Minoan Crete, so this beach has real archaeological significance behind the scenery.",
+                extraTimeSummary: "Worth repeating if the family likes it. Skip or shorten if wind makes the water rough.",
+                decisionRule: "Choose Kommos when wind is low and the family wants a natural beach close to base.",
+                mapUrl: "https://www.google.com/maps/search/?api=1&query=Kommos+Beach+Crete"
+            },
+            {
+                id: "kalamaki",
+                name: "Kalamaki Beach",
+                area: "Kalamaki",
+                priority: "alternative",
+                days: [3, 13],
+                image: "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1200&q=80",
+                driveCategory: "short",
+                snorkeling: "okay",
+                facilitiesType: "organized",
+                distance: "Approx. 10–14 km",
+                drive: "15–20 min",
+                cost: "Free beach; food/umbrella extra",
+                waterShoes: "Optional",
+                shade: "Umbrellas/tavernas nearby; bring backup shade",
+                facilities: "Village beach with tavernas and easier logistics",
+                wind: "Can be affected by Messara Bay winds; check conditions",
+                bestTime: "Morning or evening",
+                familyFit: "Very good when convenience matters.",
+                summary: "The easiest nearby beach option when you want tavernas, simple logistics and less planning effort.",
+                whyRecommended: "Kalamaki is a strong alternative because it is practical. If Kommos feels too exposed, too windy, or too low-facility for the day, Kalamaki gives the family easier food, shade and village logistics while staying close to Kamilari.",
+                whatToExpect: "Expect a relaxed village-beach setting with tavernas and easier access than wild beaches. It is more about comfort and practicality than dramatic scenery.",
+                snorkelingNote: "Usually better for easy swimming than serious snorkeling.",
+                doNotMiss: ["Simple swim", "Beach lunch", "Sunset walk", "Easy dinner nearby"],
+                funFact: "Kalamaki is useful as a practical base because it lets the family switch between beach, food and apartment rest without a long drive.",
+                extraTimeSummary: "Worth choosing when convenience is more important than adventure.",
+                decisionRule: "Choose Kalamaki when you want easy facilities, food nearby and a very low-stress beach day.",
+                mapUrl: "https://www.google.com/maps/search/?api=1&query=Kalamaki+Beach+Crete"
+            },
+            {
+                id: "matala",
+                name: "Matala Beach",
+                area: "Matala",
+                priority: "recommended",
+                days: [2, 6, 15],
+                image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
+                driveCategory: "short",
+                snorkeling: "okay",
+                facilitiesType: "organized",
+                distance: "Approx. 12–15 km",
+                drive: "15–20 min",
+                cost: "Free beach; cave visit/food/umbrellas extra",
+                waterShoes: "Useful but not mandatory",
+                shade: "Umbrellas/tavernas nearby; some natural shade depending timing",
+                facilities: "Tavernas, cafés, shops, sunbeds/umbrellas and parking nearby",
+                wind: "Bay can be calmer than fully open beaches but still check conditions",
+                bestTime: "Late afternoon / evening",
+                familyFit: "Great for mixed beach + village atmosphere, but can be crowded.",
+                summary: "Iconic beach/village stop with caves, restaurants and sunset atmosphere rather than pure snorkeling focus.",
+                whyRecommended: "Matala is recommended because it gives a classic South Crete experience without a long drive: beach, caves, village energy, dinner options and sunset atmosphere. It is ideal later in the day when the family can enjoy the place without the strongest heat.",
+                whatToExpect: "Expect a busier beach bay with the famous cave cliffs, cafés, restaurants and shops. This is not the quietest beach; the value is the combination of beach, history and atmosphere.",
+                snorkelingNote: "Possible near rocky edges when calm, but Matala is mainly about the village/caves setting.",
+                doNotMiss: ["Cave cliff view", "Beachfront walk", "Sunset atmosphere", "Dinner or ice cream"],
+                funFact: "Matala became famous in the 1960s and 1970s for travellers living in the caves above the beach.",
+                extraTimeSummary: "Worth it for atmosphere. If it feels crowded, switch to Kommos or Pitsidia for a calmer evening.",
+                decisionRule: "Choose Matala when you want beach plus atmosphere, restaurants and a village outing.",
+                mapUrl: "https://www.google.com/maps/search/?api=1&query=Matala+Beach+Crete"
+            },
+            {
+                id: "red-beach",
+                name: "Red Beach",
+                area: "Near Matala",
+                priority: "optional",
+                days: [6, 14],
+                image: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=80",
+                driveCategory: "short",
+                snorkeling: "okay",
+                facilitiesType: "wild",
+                distance: "Near Matala + walk",
+                drive: "15–20 min plus walk",
+                cost: "Free beach",
+                waterShoes: "Recommended",
+                shade: "Limited; bring protection",
+                facilities: "Limited/wild; bring water and snacks",
+                wind: "Check waves before committing",
+                bestTime: "Early morning only",
+                familyFit: "Only if everyone wants the walk and heat is manageable.",
+                summary: "A more adventurous Matala-area beach add-on, not a must-do with children in peak heat.",
+                whyRecommended: "Red Beach is optional because it adds effort and heat exposure. It can be interesting if the family wants a short adventure from Matala, but it should not replace the main plan if energy is low.",
+                whatToExpect: "Expect a less convenient beach that requires extra walking and has limited facilities. The appeal is the different setting and colour/landscape, not comfort.",
+                snorkelingNote: "Can be nice if calm, but logistics and heat matter more than snorkeling here.",
+                doNotMiss: ["Only go early", "Bring water", "Wear proper footwear", "Turn back if too hot"],
+                funFact: "The name comes from the reddish tones of the landscape and sand/rock environment around the beach.",
+                extraTimeSummary: "Worth it only if everyone is energetic and conditions are good. Skip without regret if hot or tired.",
+                decisionRule: "Choose Red Beach only as an extra, never as a pressure item.",
+                mapUrl: "https://www.google.com/maps/search/?api=1&query=Red+Beach+Matala+Crete"
+            },
+            {
+                id: "agiofarago",
+                name: "Agiofarago Beach",
+                area: "Asterousia / Kaloi Limenes area",
+                priority: "recommended",
+                days: [4, 14],
+                image: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=80",
+                driveCategory: "medium",
+                snorkeling: "good",
+                facilitiesType: "wild",
+                distance: "Approx. 45–55 km total day driving",
+                drive: "Drive + 25–50 min walk depending parking/route",
+                cost: "Free; possible parking/food truck costs if available",
+                waterShoes: "Recommended due to pebbles/rocks",
+                shade: "Very limited on beach; gorge gives some shade earlier",
+                facilities: "Wild beach; no sunbeds; bring everything",
+                wind: "Often calmer than open beaches but still weather-dependent",
+                bestTime: "Very early morning",
+                familyFit: "Memorable adventure if prepared; not lazy logistics.",
+                summary: "Wild beach reached through a gorge walk; best adventure beach option if the family wants nature and snorkeling.",
+                whyRecommended: "Agiofarago is recommended because it is more than a beach: it is a gorge walk, wild coast and clear-water swim in one memorable experience. It matches nature interests and short walks, but only if treated seriously with an early start, water and proper shoes.",
+                whatToExpect: "Expect rocky walking, limestone gorge walls, a remote-feeling beach, pebbles and very limited facilities. This is a prepared adventure, not a casual beach-bar day.",
+                snorkelingNote: "Good snorkeling potential near rock walls and clear water when conditions are calm.",
+                doNotMiss: ["Gorge walk", "Clear-water swim", "Proper shoes", "Plenty of water", "Avoid midday heat"],
+                funFact: "Agiofarago means ‘Gorge of the Saints’, linked with hermits and religious history in the area.",
+                extraTimeSummary: "Worth it if everyone wants adventure. Skip if the family is tired or the day is extremely hot.",
+                decisionRule: "Choose Agiofarago only with early start, good shoes, enough water and calm weather.",
+                mapUrl: "https://www.google.com/maps/search/?api=1&query=Agiofarago+Beach+Crete"
+            },
+            {
+                id: "agia-galini",
+                name: "Agia Galini Beach / Harbour",
+                area: "Agia Galini",
+                priority: "alternative",
+                days: [10],
+                image: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=1200&q=80",
+                driveCategory: "medium",
+                snorkeling: "low",
+                facilitiesType: "organized",
+                distance: "Approx. 30–35 km each way",
+                drive: "45–55 min each way",
+                cost: "Free beach; food/umbrellas extra",
+                waterShoes: "Optional",
+                shade: "Organized options nearby",
+                facilities: "Village, tavernas, harbour, beach facilities nearby",
+                wind: "Check conditions; more useful as village + meal day",
+                bestTime: "Morning or late afternoon",
+                familyFit: "Good mixed village/coast day, not snorkeling priority.",
+                summary: "Coastal village and harbour beach option that works best as a combined walk, food and beach outing.",
+                whyRecommended: "Agia Galini is recommended as a coastal-village alternative rather than a pure beach destination. Its value is the harbour, village walk, restaurants and relaxed south-coast atmosphere.",
+                whatToExpect: "Expect harbour views, tavernas, village streets and accessible beach time. It feels different from Matala and gives variety to the itinerary.",
+                snorkelingNote: "Not the main snorkeling choice. Treat it as a village/coast day.",
+                doNotMiss: ["Harbour walk", "Seafood lunch/dinner", "Village streets", "Scenic sea views"],
+                funFact: "Agia Galini means ‘Holy Peace’, matching the idea of a slower coastal village day.",
+                extraTimeSummary: "Worth it when you want a village outing with sea views. Do not add too many extra stops to the same day.",
+                decisionRule: "Choose Agia Galini when the goal is coastal village atmosphere more than snorkeling.",
+                mapUrl: "https://www.google.com/maps/search/?api=1&query=Agia+Galini+Beach+Crete"
+            },
+            {
+                id: "triopetra",
+                name: "Triopetra Beach",
+                area: "South Rethymno",
+                priority: "optional",
+                days: [11, 14],
+                image: "https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=1200&q=80",
+                driveCategory: "long",
+                snorkeling: "low",
+                facilitiesType: "organized",
+                distance: "Approx. 60–75 km each way",
+                drive: "1h 15m–1h 30m each way",
+                cost: "Free beach; food/fuel extra",
+                waterShoes: "Useful near rocks",
+                shade: "Sunbeds/tavernas in parts; bring backup shade",
+                facilities: "Tavernas, sunbeds/umbrellas and parking in parts",
+                wind: "Afternoon wind can create chop; mornings usually better",
+                bestTime: "Morning or late afternoon/sunset",
+                familyFit: "Beautiful but only if ready for a longer drive.",
+                summary: "Scenic longer-drive beach known for three rock formations; optional rather than required.",
+                whyRecommended: "Triopetra is optional because it is farther away and weather-dependent. It can be very beautiful, but it does not match the normal driving limit as well as Kommos, Kalamaki or Matala. It is best treated as a scenic bonus day if everyone has energy.",
+                whatToExpect: "Expect a wide south-coast landscape, dramatic rocks, space, tavernas in parts and a stronger sense of open scenery. Conditions can become windy.",
+                snorkelingNote: "Not the strongest snorkeling beach; choose it for scenery, space and photos.",
+                doNotMiss: ["Three rocks view", "Golden-hour photos", "Check wind first", "Avoid forcing the drive"],
+                funFact: "Triopetra means ‘three stones’, named after the three prominent rocks near the beach.",
+                extraTimeSummary: "Worth it only on a low-wind day with good family energy. Otherwise repeat a closer favourite.",
+                decisionRule: "Choose Triopetra only when the weather is good and the family actively wants a longer scenic drive.",
+                mapUrl: "https://www.google.com/maps/search/?api=1&query=Triopetra+Beach+Crete"
+            },
+            {
+                id: "ligres",
+                name: "Ligres Beach",
+                area: "South Rethymno",
+                priority: "optional",
+                days: [11, 14],
+                image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+                driveCategory: "long",
+                snorkeling: "low",
+                facilitiesType: "basic",
+                distance: "Approx. 60–75 km each way",
+                drive: "1h 15m–1h 30m each way",
+                cost: "Free beach; fuel/food extra",
+                waterShoes: "Useful",
+                shade: "Limited; bring shade",
+                facilities: "Basic/limited; check before going",
+                wind: "Exposed south coast; check wind before driving",
+                bestTime: "Morning only if conditions are good",
+                familyFit: "Quiet/wild option, not mandatory.",
+                summary: "Quieter scenic alternative near the Triopetra idea, but still a longer-drive optional beach.",
+                whyRecommended: "Ligres is not a first-choice beach for this itinerary because it adds drive time and has fewer easy logistics. It is useful only if the family wants a wilder alternative and conditions are excellent.",
+                whatToExpect: "Expect a quieter, more open beach environment with fewer facilities and a more remote feel than the close-to-base options.",
+                snorkelingNote: "More scenic/wild than snorkeling-focused.",
+                doNotMiss: ["Quiet beach atmosphere", "Bring water", "Check wind", "Use as Triopetra alternative"],
+                funFact: "South Rethymno beaches can feel much more remote than the busy north coast, but that also means planning matters more.",
+                extraTimeSummary: "Worth it only if you are already doing a scenic south-coast drive.",
+                decisionRule: "Choose Ligres only if you want a quiet optional beach and accept the drive/facility trade-off.",
+                mapUrl: "https://www.google.com/maps/search/?api=1&query=Ligres+Beach+Crete"
+            }
+        ];
+
+        const dailyBeachSuggestions = {
+            2: ["matala", "kommos", "kalamaki"],
+            3: ["kommos", "kalamaki", "matala"],
+            4: ["agiofarago", "kommos", "kalamaki"],
+            6: ["matala", "red-beach", "kommos", "kalamaki"],
+            10: ["agia-galini", "matala", "kalamaki"],
+            11: ["triopetra", "ligres", "kommos", "kalamaki"],
+            13: ["kommos", "kalamaki", "matala"],
+            14: ["kommos", "agiofarago", "triopetra", "matala"],
+            15: ["matala", "kommos", "kalamaki"]
+        };
+
+        const beachCoordinates = {
+            "kommos": [35.0044, 24.7609],
+            "kalamaki": [35.0280, 24.7592],
+            "matala": [34.9934, 24.7497],
+            "red-beach": [34.9867, 24.7475],
+            "agiofarago": [34.9288, 24.7791],
+            "agia-galini": [35.0968, 24.6889],
+            "triopetra": [35.1163, 24.5480],
+            "ligres": [35.1152, 24.5704]
+        };
+
+        function getBeachCoordinates(beach) {
+            return beachCoordinates[beach.id] || null;
+        }
+
+        function getDirectionsFromKamilariUrl(beach) {
+            const coordinates = getBeachCoordinates(beach);
+            const destination = coordinates ? coordinates[0] + "," + coordinates[1] : encodeURIComponent(beach.name + " " + beach.area + " Crete");
+            return "https://www.google.com/maps/dir/?api=1&origin=Kamilari%2C%20Crete&destination=" + destination + "&travelmode=driving";
+        }
+
+        function getDirectionsFromCurrentLocationUrl(beach) {
+            const coordinates = getBeachCoordinates(beach);
+            const destination = coordinates ? coordinates[0] + "," + coordinates[1] : encodeURIComponent(beach.name + " " + beach.area + " Crete");
+            return "https://www.google.com/maps/dir/?api=1&destination=" + destination + "&travelmode=driving";
+        }
+
+        function getVisitedBeaches() {
+            try { return JSON.parse(localStorage.getItem(visitedBeachesKey)) || {}; }
+            catch (error) { return {}; }
+        }
+
+        function saveVisitedBeaches(visited) {
+            localStorage.setItem(visitedBeachesKey, JSON.stringify(visited));
+        }
+
+        function getDataItinerary() {
+            return (window.creteTripData && Array.isArray(window.creteTripData.itinerary)) ? window.creteTripData.itinerary : [];
+        }
+
+        function populateFilters() {
+            const itinerary = getDataItinerary();
+            document.getElementById("dayFilter").innerHTML = '<option value="all">All days</option>' + itinerary.map(function(day) {
+                return `<option value="${day.day}">Day ${day.day} — ${day.title}</option>`;
+            }).join("");
+        }
+
+        function getSelectedDayIds() {
+            const selected = document.getElementById("dayFilter").value;
+            if (selected === "all") return [];
+            return dailyBeachSuggestions[selected] || [];
+        }
+
+        function getPriorityLabel(beach, selectedIds) {
+            if (selectedIds.length && selectedIds[0] === beach.id) return "Recommended for selected day";
+            if (beach.priority === "recommended") return "Recommended";
+            if (beach.priority === "alternative") return "Good alternative";
+            if (beach.priority === "backup") return "Backup plan";
+            return "Optional extra";
+        }
+
+        function getRibbonClass(beach, selectedIds) {
+            if (selectedIds.length && selectedIds[0] === beach.id) return "recommended";
+            return beach.priority === "recommended" ? "recommended" : beach.priority === "alternative" ? "alternative" : beach.priority === "backup" ? "backup" : "optional";
+        }
+
+        function renderDailyPanel() {
+            const selectedDay = document.getElementById("dayFilter").value;
+            const panel = document.getElementById("dailyBeachPanel");
+
+            if (selectedDay === "all") {
+                panel.innerHTML = `
+                    <div class="card-body">
+                        <p class="beach-section-label mb-1">Daily beach choices</p>
+                        <h2 class="fw-bold">Select a day to see the recommended beach choice</h2>
+                        <p class="text-muted mb-0">The first option is the beach that best matches the day’s itinerary. Other options are there for wind, heat, energy or preference changes.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const ids = dailyBeachSuggestions[selectedDay] || [];
+            const suggestions = ids.map(function(id) { return beaches.find(function(beach) { return beach.id === id; }); }).filter(Boolean);
+            const first = suggestions[0];
+
+            panel.innerHTML = `
+                <div class="card-body">
+                    <p class="beach-section-label mb-1">Day ${selectedDay} beach choices</p>
+                    <h2 class="fw-bold mb-3">${first ? "Recommended: " + first.name : "Beach suggestions"}</h2>
+                    ${first ? `<div class="summary-box mb-3"><strong>Why this is recommended:</strong> ${first.whyRecommended}</div>` : ""}
+                    <div class="row g-3 mt-2">
+                        ${suggestions.map(function(beach, index) {
+                            return `
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="condition-box">
+                                        <strong>${index === 0 ? "⭐ Recommended" : "Option " + (index + 1)}</strong><br>
+                                        ${beach.name}<br>
+                                        <span class="text-muted small">${beach.decisionRule}</span>
+                                    </div>
+                                </div>
+                            `;
+                        }).join("")}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderBeaches() {
+            const visited = getVisitedBeaches();
+            const search = document.getElementById("beachSearch").value.toLowerCase().trim();
+            const selectedDay = document.getElementById("dayFilter").value;
+            const selectedIds = getSelectedDayIds();
+            const drive = document.getElementById("driveFilter").value;
+            const snorkel = document.getElementById("snorkelFilter").value;
+            const priority = document.getElementById("priorityFilter").value;
+
+            let filtered = beaches.filter(function(beach) {
+                const text = JSON.stringify(beach).toLowerCase();
+                const matchesSearch = !search || text.includes(search);
+                const matchesDay = selectedDay === "all" || (beach.days || []).includes(Number(selectedDay)) || selectedIds.includes(beach.id);
+                const matchesDrive = drive === "all" || beach.driveCategory === drive;
+                const matchesSnorkel = snorkel === "all" || beach.snorkeling === snorkel;
+                const matchesPriority = priority === "all" ||
+                    (priority === "visited" && visited[beach.id]) ||
+                    (priority !== "visited" && beach.priority === priority) ||
+                    (priority === "recommended" && selectedIds[0] === beach.id);
+                return matchesSearch && matchesDay && matchesDrive && matchesSnorkel && matchesPriority;
+            });
+
+            if (selectedIds.length) {
+                filtered.sort(function(a, b) {
+                    const ai = selectedIds.includes(a.id) ? selectedIds.indexOf(a.id) : 999;
+                    const bi = selectedIds.includes(b.id) ? selectedIds.indexOf(b.id) : 999;
+                    return ai - bi;
+                });
+            } else {
+                const order = { recommended: 0, alternative: 1, backup: 2, optional: 3 };
+                filtered.sort(function(a, b) { return (order[a.priority] ?? 9) - (order[b.priority] ?? 9); });
+            }
+
+            document.getElementById("beachCards").innerHTML = filtered.map(function(beach) {
+                const isVisited = visited[beach.id];
+                const ribbonClass = getRibbonClass(beach, selectedIds);
+                return `
+                    <div class="col-lg-6">
+                        <article class="card h-100 shadow-sm ${isVisited ? "visited-indicator" : ""}">
+                            <div class="beach-image-wrap">
+                                <img class="beach-image" src="${beach.image}" alt="Representative beach image for ${beach.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80'">
+                                <span class="beach-ribbon ${ribbonClass}">⭐ ${getPriorityLabel(beach, selectedIds)}</span>
+                                <span class="beach-image-label">Representative visual</span>
+                            </div>
+                            <div class="card-header bg-primary text-white"><strong>${beach.name}</strong></div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <span class="badge text-bg-dark">${beach.area}</span>
+                                    <span class="badge text-bg-secondary">${beach.driveCategory} drive</span>
+                                    <span class="badge text-bg-warning">${beach.snorkeling} snorkeling</span>
+                                    ${isVisited ? '<span class="badge text-bg-success">Visited</span>' : ''}
+                                </div>
+                                <p><strong>Quick summary:</strong> ${beach.summary}</p>
+                                <p><strong>Why this is recommended:</strong> ${beach.whyRecommended}</p>
+                                <div class="row g-3 mt-2">
+                                    <div class="col-6 col-md-3"><div class="beach-meta-box"><small>Drive</small><strong>${beach.drive}</strong></div></div>
+                                    <div class="col-6 col-md-3"><div class="beach-meta-box"><small>Cost</small><strong>${beach.cost}</strong></div></div>
+                                    <div class="col-6 col-md-3"><div class="beach-meta-box"><small>Best time</small><strong>${beach.bestTime}</strong></div></div>
+                                    <div class="col-6 col-md-3"><div class="beach-meta-box"><small>Water shoes</small><strong>${beach.waterShoes}</strong></div></div>
+                                </div>
+                            </div>
+                            <div class="card-footer d-flex flex-wrap justify-content-between gap-2">
+                                <button class="btn btn-sm btn-warning" type="button" onclick="openBeachDetails('${beach.id}')">View details</button>
+                                <a class="btn btn-sm btn-outline-primary" href="${getDirectionsFromKamilariUrl(beach)}" target="_blank" rel="noopener noreferrer">Directions from Kamilari</a>
+                                <a class="btn btn-sm btn-outline-secondary" href="${getDirectionsFromCurrentLocationUrl(beach)}" target="_blank" rel="noopener noreferrer">From current location</a>
+                                <a class="btn btn-sm btn-outline-dark" href="${beach.mapUrl}" target="_blank" rel="noopener noreferrer">Map</a>
+                            </div>
+                        </article>
+                    </div>
+                `;
+            }).join("");
+        }
+
+        window.openBeachDetails = function(id) {
+            const beach = beaches.find(function(item) { return item.id === id; });
+            if (!beach) return;
+            const visited = getVisitedBeaches();
+            const isVisited = Boolean(visited[beach.id]);
+            document.getElementById("beachModalTitle").textContent = beach.name;
+            document.getElementById("beachModalBody").innerHTML = `
+                <div class="row g-4">
+                    <div class="col-lg-5">
+                        <img src="${beach.image}" class="modal-beach-image" alt="Representative image for ${beach.name}" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80'">
+                        <p class="text-muted mt-2 mb-0">Image is representative until replaced by final local/official photos.</p>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="mb-3">
+                            <span class="beach-pill">${beach.area}</span>
+                            <span class="beach-pill">${beach.driveCategory} drive</span>
+                            <span class="beach-pill">${getPriorityLabel(beach, getSelectedDayIds())}</span>
+                            <span class="beach-pill">Snorkeling: ${beach.snorkeling}</span>
+                        </div>
+
+                        <div class="summary-box mb-3"><strong>Why this is recommended:</strong><br>${beach.whyRecommended}</div>
+                        <p><strong>What this is:</strong> ${beach.summary}</p>
+                        <p><strong>What to expect:</strong> ${beach.whatToExpect}</p>
+                        <p><strong>Snorkeling note:</strong> ${beach.snorkelingNote}</p>
+                        <p><strong>Wind / wave warning:</strong> ${beach.wind}</p>
+                        <p><strong>Fun fact:</strong> ${beach.funFact}</p>
+                        <p><strong>Extra-time summary:</strong> ${beach.extraTimeSummary}</p>
+                        <p><strong>Decision rule:</strong> ${beach.decisionRule}</p>
+
+                        <p><strong>Do not miss:</strong></p>
+                        <ul>${(beach.doNotMiss || []).map(function(item) { return `<li>${item}</li>`; }).join("")}</ul>
+
+                        <div class="row g-3 mt-2">
+                            <div class="col-md-3"><div class="beach-meta-box"><small>Distance</small><strong>${beach.distance}</strong></div></div>
+                            <div class="col-md-3"><div class="beach-meta-box"><small>Drive</small><strong>${beach.drive}</strong></div></div>
+                            <div class="col-md-3"><div class="beach-meta-box"><small>Cost</small><strong>${beach.cost}</strong></div></div>
+                            <div class="col-md-3"><div class="beach-meta-box"><small>Facilities</small><strong>${beach.facilitiesType}</strong></div></div>
+                            <div class="col-md-6"><div class="beach-meta-box"><small>Shade</small><strong>${beach.shade}</strong></div></div>
+                            <div class="col-md-6"><div class="beach-meta-box"><small>Family fit</small><strong>${beach.familyFit}</strong></div></div>
+                        </div>
+
+                        <hr>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="modalVisitedBeach" ${isVisited ? "checked" : ""}>
+                            <label class="form-check-label fw-bold" for="modalVisitedBeach">Mark this beach as visited</label>
+                        </div>
+                        <div class="d-flex flex-wrap gap-2">
+                            <button class="btn btn-warning" type="button" onclick="saveVisitedBeach('${beach.id}')">Save visited status</button>
+                            <a class="btn btn-warning" href="${getDirectionsFromKamilariUrl(beach)}" target="_blank" rel="noopener noreferrer">Directions from Kamilari</a>
+                            <a class="btn btn-outline-primary" href="${getDirectionsFromCurrentLocationUrl(beach)}" target="_blank" rel="noopener noreferrer">Directions from current location</a>
+                            <a class="btn btn-outline-dark" href="${beach.mapUrl}" target="_blank" rel="noopener noreferrer">Open Google Maps</a>
+                            <a class="btn btn-outline-secondary" href="itinerary.html">Back to itinerary</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            new bootstrap.Modal(document.getElementById("beachModal")).show();
+        };
+
+        window.saveVisitedBeach = function(id) {
+            const visited = getVisitedBeaches();
+            visited[id] = document.getElementById("modalVisitedBeach").checked;
+            saveVisitedBeaches(visited);
+            renderDailyPanel();
+            renderBeaches();
+            alert("Beach visited status saved.");
+        };
+
+        function setupEvents() {
+            ["beachSearch", "dayFilter", "driveFilter", "snorkelFilter", "priorityFilter"].forEach(function(id) {
+                document.getElementById(id).addEventListener("input", function() { renderDailyPanel(); renderBeaches(); });
+                document.getElementById(id).addEventListener("change", function() { renderDailyPanel(); renderBeaches(); });
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            populateFilters();
+            setupEvents();
+            renderDailyPanel();
+            renderBeaches();
+        });
+    </script>
+</body>
+</html>

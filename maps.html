@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maps | Crete Family Holiday 2026</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        .maps-hero {
+            background: linear-gradient(135deg, rgba(2, 62, 138, 0.92), rgba(0, 119, 182, 0.78));
+        }
+
+        #creteMap {
+            width: 100%;
+            height: 660px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 38px rgba(0, 0, 0, 0.16);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .map-section-label {
+            letter-spacing: 1.6px;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            color: var(--aegean-blue, #0077b6);
+            font-weight: 800;
+        }
+
+        .map-kpi-value {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--deep-blue, #023e8a);
+        }
+
+        .map-pill {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            border-radius: 999px;
+            background: rgba(0, 119, 182, 0.1);
+            color: var(--deep-blue, #023e8a);
+            font-size: 0.8rem;
+            font-weight: 800;
+            margin: 0.15rem;
+        }
+
+        .map-pill-planned { background: #ffffff; color: #222831; border: 1px solid #adb5bd; }
+        .map-pill-visited { background: rgba(220, 53, 69, 0.16); color: #b02a37; }
+        .map-pill-restaurant { background: rgba(84, 88, 87, 0.16); color: #343a40; }
+        .map-pill-beach { background: rgba(244, 185, 66, 0.28); color: #5c4000; }
+        .map-pill-activity { background: rgba(107, 142, 35, 0.16); color: #405512; }
+
+        .map-list-item {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+            padding: 0.9rem 0;
+        }
+
+        .map-list-item:last-child { border-bottom: 0; }
+
+        .leaflet-popup-content-wrapper {
+            border-radius: 16px;
+        }
+
+        .popup-title {
+            font-weight: 900;
+            color: #023e8a;
+            margin-bottom: 0.35rem;
+        }
+
+        .legend-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 0.35rem;
+        }
+
+        .dot-planned { background: #ffffff; border: 1px solid #545857; }
+        .dot-visited { background: #dc3545; }
+        .dot-restaurant { background: #545857; }
+        .dot-beach { background: #f4b942; }
+        .dot-activity { background: #6b8e23; }
+
+        .map-card-sticky {
+            position: sticky;
+            top: 75px;
+        }
+
+        @media (max-width: 991px) {
+            #creteMap { height: 520px; }
+            .map-card-sticky { position: static; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">🇬🇷 Crete 2026</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="itinerary.html">Daily Planner</a></li>
+                    <li class="nav-item"><a class="nav-link" href="activities.html">Activities</a></li>
+                    <li class="nav-item"><a class="nav-link" href="restaurants.html">Restaurants</a></li>
+                    <li class="nav-item"><a class="nav-link" href="beaches.html">Beaches</a></li>
+                    <li class="nav-item"><a class="nav-link" href="budget.html">Budget</a></li>
+                    <li class="nav-item"><a class="nav-link" href="packing.html">Packing</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="maps.html">Maps</a></li>
+                    <li class="nav-item"><a class="nav-link" href="traveltips.html">Travel Tips</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><button id="darkModeToggle" class="btn btn-sm btn-outline-light ms-lg-3" type="button">🌙</button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="maps-hero text-white py-5" style="margin-top: 56px;">
+        <div class="container py-5">
+            <p class="text-uppercase fw-bold mb-2">Trip Map 1.0</p>
+            <h1 class="display-4 fw-bold">Planned + Visited Places Map</h1>
+            <p class="lead">A visual overview of beaches, restaurants, activities, villages and visited places saved from the itinerary, activities, restaurants and beaches pages.</p>
+            <div class="row g-3 mt-4">
+                <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>Home base</strong><br>Kamilari</div></div>
+                <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>Map type</strong><br>Leaflet + OpenStreetMap</div></div>
+                <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>Visited log</strong><br>Local browser storage</div></div>
+                <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>Scope</strong><br>South/Central Crete</div></div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="alert alert-warning shadow-sm border-0 mb-5">
+                    <h2 class="h5 fw-bold mb-2">Important map note</h2>
+                    <p class="mb-0">Coordinates are practical planning pins and may be approximate for broad areas, beaches or grouped restaurant zones. Use the new direction buttons for final navigation in Google Maps. Leaflet map tiles require internet access when first loaded.</p>
+                </div>
+
+                <div class="row g-4 mb-5">
+                    <div class="col-md-3">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body">
+                                <h3>📍 Pins</h3>
+                                <div id="totalPins" class="map-kpi-value">0</div>
+                                <p class="text-muted mb-0">Visible places</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body">
+                                <h3>✅ Visited</h3>
+                                <div id="visitedPins" class="map-kpi-value">0</div>
+                                <p class="text-muted mb-0">Marked as visited</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body">
+                                <h3>🏖️ Beaches</h3>
+                                <div id="beachPins" class="map-kpi-value">0</div>
+                                <p class="text-muted mb-0">Beach pins</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body">
+                                <h3>🍽️ Food</h3>
+                                <div id="restaurantPins" class="map-kpi-value">0</div>
+                                <p class="text-muted mb-0">Restaurant pins</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-lg-8">
+                        <div id="creteMap"></div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card shadow-sm map-card-sticky mb-4">
+                            <div class="card-body">
+                                <p class="map-section-label mb-1">Filters</p>
+                                <h2 class="fw-bold mb-4">Show on map</h2>
+
+                                <div class="mb-3">
+                                    <label for="mapSearch" class="form-label fw-bold">Search</label>
+                                    <input id="mapSearch" class="form-control" type="search" placeholder="Search Matala, Kommos, restaurant...">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="categoryFilter" class="form-label fw-bold">Category</label>
+                                    <select id="categoryFilter" class="form-select">
+                                        <option value="all">All categories</option>
+                                        <option value="base">Home base / logistics</option>
+                                        <option value="beach">Beaches</option>
+                                        <option value="activity">Activities / places</option>
+                                        <option value="restaurant">Restaurants</option>
+                                        <option value="village">Villages / towns</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="visitedFilter" class="form-label fw-bold">Visited status</label>
+                                    <select id="visitedFilter" class="form-select">
+                                        <option value="all">All</option>
+                                        <option value="visited">Visited only</option>
+                                        <option value="notVisited">Not visited only</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-4">
+                                    <p class="fw-bold mb-2">Legend</p>
+                                    <div><span class="legend-dot dot-visited"></span>Visited places = red</div>
+                                    <div><span class="legend-dot dot-beach"></span>Beaches = yellow</div>
+                                    <div><span class="legend-dot dot-activity"></span>Nature / activities = green</div>
+                                    <div><span class="legend-dot dot-restaurant"></span>Restaurants = grey</div>
+                                    <div><span class="legend-dot dot-planned"></span>Cities / base = white</div>
+                                </div>
+
+                                <div class="d-grid gap-2">
+                                    <button id="fitMap" class="btn btn-warning" type="button">Fit visible pins</button>
+                                    <button id="refreshMap" class="btn btn-outline-secondary" type="button">Refresh visited status</button>
+                                    <a class="btn btn-outline-primary" href="itinerary.html">Back to itinerary</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <p class="map-section-label mb-1">Visible list</p>
+                                <h2 class="fw-bold mb-3">Places on map</h2>
+                                <div id="pinList"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Crete Family Holiday 2026</h5>
+                    <p class="mb-0">Personal travel planner for Kamilari, South Crete.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Last updated: July 2026</p>
+                    <p class="mb-0">Built for GitHub Pages</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+
+    <script>
+        const storageKeys = {
+            places: "creteVisitedPlaces",
+            activities: "creteVisitedActivities",
+            beaches: "creteVisitedBeaches",
+            restaurants: "creteVisitedRestaurants"
+        };
+
+        let map;
+        let markerLayer;
+        let visiblePins = [];
+
+        const pins = [
+            { id: "kamilari", name: "Kamilari Home Base", category: "base", type: "Home base", lat: 35.0337, lng: 24.7935, sourceKeys: ["place-kamilari"], description: "Apartment base area for the trip. Most daily plans start and end here.", mapUrl: "https://www.google.com/maps/search/?api=1&query=Kamilari+Crete" },
+            { id: "heraklion-airport", name: "Heraklion Airport", category: "base", type: "Logistics", lat: 35.3397, lng: 25.1803, sourceKeys: ["place-heraklion-airport"], description: "Arrival and departure airport. Keep buffer time for driving and car return.", mapUrl: "https://www.google.com/maps/search/?api=1&query=Heraklion+Airport" },
+            { id: "pitsidia", name: "Pitsidia", category: "village", type: "Village / restaurants", lat: 35.0167, lng: 24.7833, sourceKeys: ["place-pitsidia"], description: "Nearby village useful for dinner options around Kommos and Matala days.", mapUrl: "https://www.google.com/maps/search/?api=1&query=Pitsidia+Crete" },
+            { id: "mires", name: "Moires / Mires", category: "village", type: "Market / groceries", lat: 35.0522, lng: 24.8733, sourceKeys: ["place-moires", "place-mires", "mires-market"], description: "Useful town for groceries, market day and practical errands.", mapUrl: "https://www.google.com/maps/search/?api=1&query=Moires+Crete" },
+
+            { id: "phaistos", name: "Phaistos Palace", category: "activity", type: "Archaeology", lat: 35.0514, lng: 24.8138, sourceKeys: ["place-phaistos-palace", "phaistos-palace"], description: "Recommended Minoan palace visit close to Kamilari.", mapUrl: "https://www.google.com/maps/search/?api=1&query=Phaistos+Palace+Crete" },
+            { id: "agia-triada", name: "Agia Triada", category: "activity", type: "Archaeology", lat: 35.0586, lng: 24.7937, sourceKeys: ["place-agia-triada", "agia-triada"], description: "Optional archaeological add-on near Phaistos.", mapUrl: "https://www.google.com/maps/search/?api=1&query=Agia+Triada+Archaeological+Site+Crete" },
+            { id: "gortyna", name: "Ancient Gortyna", category: "activity", type: "Archaeology", lat: 35.0612, lng: 24.9476, sourceKeys: ["place-gortyna", "gortyna"], description: "Ancient city site for the Messara history day.", mapUrl: "https://www.google.com/maps/search/?api=1&query=Ancient+Gortyna+Crete" },
+            { id: "heraklion-museum", name: "Heraklion Archaeological Museum", category: "activity", type: "Museum", lat: 35.3384, lng: 25.1365, sourceKeys: ["place-heraklion-archaeological-museum", "heraklion-museum"], description: "Main museum visit for the Minoan story and Phaistos Disc.", mapUrl: "https://www.google.com/maps/search/?api=1&query=Heraklion+Archaeological+Museum" },
+            { id: "zaros", name: "Zaros / Votomos Lake", category: "activity", type: "Nature", lat: 35.1301, lng: 24.9046, sourceKeys: ["place-zaros-lake", "place-votomos-lake", "zaros-lake"], description: "Mountain/lake short-walk day with lunch options.", mapUrl: "https://www.google.com/maps/search/?api=1&query=Zaros+Lake+Votomos+Crete" },
+            { id: "agia-galini", name: "Agia Galini", category: "village", type: "Coastal village", lat: 35.0968, lng: 24.6889, sourceKeys: ["place-agia-galini", "agia-galini"], description: "Coastal village and harbour day with beach/seafood options.", mapUrl: "https://www.google.com/maps/search/?api=1&query=Agia+Galini+Crete" },
+
+            { id: "kommos", name: "Kommos Beach", category: "beach", type: "Beach / snorkeling", lat: 35.0044, lng: 24.7609, sourceKeys: ["place-kommos-beach", "place-kommos", "kommos", "kommos-beach"], description: "Recommended close beach for low-cost swimming/snorkeling when calm.", mapUrl: "https://www.google.com/maps/search/?api=1&query=Kommos+Beach+Crete" },
+            { id: "kalamaki", name: "Kalamaki Beach", category: "beach", type: "Easy beach", lat: 35.0280, lng: 24.7592, sourceKeys: ["place-kalamaki-beach", "place-kalamaki", "kalamaki", "kalamaki-beach"], description: "Easy beach alternative with tavernas and practical facilities.", mapUrl: "https://www.google.com/maps/search/?api=1&query=Kalamaki+Beach+Crete" },
+            { id: "matala", name: "Matala Beach / Village", category: "beach", type: "Beach / village", lat: 34.9934, lng: 24.7497, sourceKeys: ["place-matala", "place-matala-beach", "matala", "matala-evening"], description: "Iconic beach village with caves, restaurants and sunset atmosphere.", mapUrl: "https://www.google.com/maps/search/?api=1&query=Matala+Beach+Crete" },
+            { id: "red-beach", name: "Red Beach", category: "beach", type: "Optional beach", lat: 34.9867, lng: 24.7475, sourceKeys: ["place-red-beach", "red-beach"], description: "Optional Matala-area beach add-on if heat and energy allow.", mapUrl: "https://www.google.com/maps/search/?api=1&query=Red+Beach+Matala+Crete" },
+            { id: "agiofarago", name: "Agiofarago Gorge / Beach", category: "beach", type: "Wild beach / gorge", lat: 34.9288, lng: 24.7791, sourceKeys: ["place-agiofarago-gorge", "place-agiofarago-beach", "place-agiofarago", "agiofarago"], description: "Adventure beach reached through a gorge walk. Early start required.", mapUrl: "https://www.google.com/maps/search/?api=1&query=Agiofarago+Beach+Crete" },
+            { id: "triopetra", name: "Triopetra Beach", category: "beach", type: "Scenic beach", lat: 35.1163, lng: 24.5480, sourceKeys: ["place-triopetra", "triopetra"], description: "Optional longer-drive scenic beach known for three rocks.", mapUrl: "https://www.google.com/maps/search/?api=1&query=Triopetra+Beach+Crete" },
+            { id: "ligres", name: "Ligres Beach", category: "beach", type: "Wild beach", lat: 35.1152, lng: 24.5704, sourceKeys: ["place-ligres", "ligres"], description: "Optional quieter beach near the Triopetra idea.", mapUrl: "https://www.google.com/maps/search/?api=1&query=Ligres+Beach+Crete" },
+
+            { id: "taverna-acropolis", name: "Taverna Acropolis", category: "restaurant", type: "Restaurant", lat: 35.0337, lng: 24.7935, sourceKeys: ["taverna-acropolis"], description: "Recommended easy local dinner near Kamilari.", mapUrl: "https://www.google.com/maps/search/?api=1&query=Taverna+Acropolis+Kamilari+Crete" },
+            { id: "taverna-kipos-kamilari", name: "Taverna Kipos Garden", category: "restaurant", type: "Restaurant", lat: 35.0342, lng: 24.7942, sourceKeys: ["taverna-kipos-kamilari", "taverna-kipos"], description: "Recommended relaxed garden dinner near Kamilari.", mapUrl: "https://www.google.com/maps/search/?api=1&query=Kipos+Restaurant+Kamilari+Crete" },
+            { id: "loggia", name: "Loggia", category: "restaurant", type: "Restaurant", lat: 35.0338, lng: 24.7938, sourceKeys: ["loggia"], description: "Nearby seafood/Mediterranean local dinner option.", mapUrl: "https://www.google.com/maps/search/?api=1&query=Loggia+Kamilari+Crete" },
+            { id: "pizzeria-ariadni", name: "Pizzeria Ariadni", category: "restaurant", type: "Restaurant", lat: 35.0340, lng: 24.7922, sourceKeys: ["pizzeria-ariadni"], description: "Family-friendly pizza backup near Kamilari.", mapUrl: "https://www.google.com/maps/search/?api=1&query=Pizzeria+Ariadni+Kamilari+Crete" },
+            { id: "livas-pitsidia", name: "Livas", category: "restaurant", type: "Restaurant", lat: 35.0168, lng: 24.7833, sourceKeys: ["livas-pitsidia"], description: "Recommended Pitsidia food option for beach days.", mapUrl: "https://www.google.com/maps/search/?api=1&query=Livas+Pitsidia+Crete" },
+            { id: "raftis-pitsidia", name: "Raftis", category: "restaurant", type: "Restaurant", lat: 35.0167, lng: 24.7835, sourceKeys: ["raftis-pitsidia", "raftis"], description: "Special dinner option in Pitsidia.", mapUrl: "https://www.google.com/maps/search/?api=1&query=Raftis+Pitsidia+Crete" },
+            { id: "green-kukunari", name: "Green Kukunari", category: "restaurant", type: "Restaurant", lat: 35.0166, lng: 24.7832, sourceKeys: ["green-kukunari"], description: "Lighter/healthy Pitsidia alternative.", mapUrl: "https://www.google.com/maps/search/?api=1&query=Green+Kukunari+Pitsidia+Crete" },
+            { id: "scala-matala", name: "SCALA Premium Sea Food Bar", category: "restaurant", type: "Restaurant", lat: 34.9934, lng: 24.7497, sourceKeys: ["scala-matala"], description: "Recommended special seafood option in Matala.", mapUrl: "https://www.google.com/maps/search/?api=1&query=SCALA+Premium+Sea+Food+Bar+Matala" },
+            { id: "georges-yard", name: "George's Yard", category: "restaurant", type: "Restaurant", lat: 34.9936, lng: 24.7500, sourceKeys: ["georges-yard"], description: "Strong Matala alternative restaurant.", mapUrl: "https://www.google.com/maps/search/?api=1&query=George%27s+Yard+Matala+Crete" },
+            { id: "lamb-house-mires", name: "Lamb House", category: "restaurant", type: "Restaurant", lat: 35.0522, lng: 24.8733, sourceKeys: ["lamb-house-mires"], description: "Lamb/meat option near Mires and central Messara plans.", mapUrl: "https://www.google.com/maps/search/?api=1&query=Lamb+House+Mires+Crete" },
+            { id: "vegera-zaros", name: "Vegera", category: "restaurant", type: "Restaurant", lat: 35.1301, lng: 24.9046, sourceKeys: ["vegera-zaros"], description: "Recommended Zaros lunch option.", mapUrl: "https://www.google.com/maps/search/?api=1&query=Vegera+Zaros+Crete" },
+            { id: "apnea-agia-galini", name: "Apnea Restaurant Beach Bar", category: "restaurant", type: "Restaurant", lat: 35.0968, lng: 24.6889, sourceKeys: ["apnea-agia-galini"], description: "Recommended Agia Galini food option.", mapUrl: "https://www.google.com/maps/search/?api=1&query=Apnea+Restaurant+Beach+Bar+Agia+Galini" },
+            { id: "avli-agia-galini", name: "Avli Taverna", category: "restaurant", type: "Restaurant", lat: 35.0966, lng: 24.6892, sourceKeys: ["avli-agia-galini"], description: "Agia Galini seafood/Mediterranean alternative.", mapUrl: "https://www.google.com/maps/search/?api=1&query=Avli+Taverna+Agia+Galini" }
+        ];
+
+        function readStorage(key) {
+            try {
+                return JSON.parse(localStorage.getItem(key)) || {};
+            } catch (error) {
+                return {};
+            }
+        }
+
+        function getVisitedLookup() {
+            const placeStore = readStorage(storageKeys.places);
+            const activityStore = readStorage(storageKeys.activities);
+            const beachStore = readStorage(storageKeys.beaches);
+            const restaurantStore = readStorage(storageKeys.restaurants);
+            return Object.assign({}, placeStore, activityStore, beachStore, restaurantStore);
+        }
+
+        function isPinVisited(pin) {
+            const lookup = getVisitedLookup();
+            return (pin.sourceKeys || [pin.id]).some(function(key) {
+                const value = lookup[key];
+                return value === true || (value && value.visited === true);
+            });
+        }
+
+        function getPinColor(pin) {
+            // Color coding requested:
+            // Red = visited places, Yellow = beaches, Green = nature/activities,
+            // Grey = restaurants, White = cities/villages/base/logistics.
+            if (isPinVisited(pin)) return "#dc3545";
+            if (pin.category === "beach") return "#f4b942";
+            if (pin.category === "restaurant") return "#545857";
+            if (pin.category === "activity") return "#6b8e23";
+            return "#ffffff";
+        }
+
+        function createIcon(pin) {
+            const color = getPinColor(pin);
+            const borderColor = color === "#ffffff" ? "#545857" : "white";
+            return L.divIcon({
+                className: "custom-map-marker",
+                html: `<div style="background:${color}; width:20px; height:20px; border-radius:50%; border:3px solid ${borderColor}; box-shadow:0 2px 8px rgba(0,0,0,.35);"></div>`,
+                iconSize: [20, 20],
+                iconAnchor: [10, 10],
+                popupAnchor: [0, -10]
+            });
+        }
+
+        function getDirectionsFromKamilariUrl(pin) {
+            return "https://www.google.com/maps/dir/?api=1&origin=Kamilari%2C%20Crete&destination=" + pin.lat + "," + pin.lng + "&travelmode=driving";
+        }
+
+        function getDirectionsFromCurrentLocationUrl(pin) {
+            return "https://www.google.com/maps/dir/?api=1&destination=" + pin.lat + "," + pin.lng + "&travelmode=driving";
+        }
+
+        function getFilteredPins() {
+            const search = document.getElementById("mapSearch").value.toLowerCase().trim();
+            const category = document.getElementById("categoryFilter").value;
+            const visitedFilter = document.getElementById("visitedFilter").value;
+
+            return pins.filter(function(pin) {
+                const text = JSON.stringify(pin).toLowerCase();
+                const visited = isPinVisited(pin);
+                const matchesSearch = !search || text.includes(search);
+                const matchesCategory = category === "all" || pin.category === category;
+                const matchesVisited = visitedFilter === "all" ||
+                    (visitedFilter === "visited" && visited) ||
+                    (visitedFilter === "notVisited" && !visited);
+                return matchesSearch && matchesCategory && matchesVisited;
+            });
+        }
+
+        function renderMap() {
+            visiblePins = getFilteredPins();
+            markerLayer.clearLayers();
+
+            visiblePins.forEach(function(pin) {
+                const visited = isPinVisited(pin);
+                const marker = L.marker([pin.lat, pin.lng], { icon: createIcon(pin) });
+                marker.bindPopup(`
+                    <div>
+                        <div class="popup-title">${visited ? "✅ " : ""}${pin.name}</div>
+                        <div><strong>Type:</strong> ${pin.type}</div>
+                        <div><strong>Status:</strong> ${visited ? "Visited" : "Planned / not visited"}</div>
+                        <p class="mb-2 mt-2">${pin.description}</p>
+                        <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;">
+                            <a href="${getDirectionsFromKamilariUrl(pin)}" target="_blank" rel="noopener noreferrer" style="background:#f4b942; color:#222831; padding:6px 10px; border-radius:999px; text-decoration:none; font-weight:800;">Directions from Kamilari</a>
+                            <a href="${getDirectionsFromCurrentLocationUrl(pin)}" target="_blank" rel="noopener noreferrer" style="background:#0077b6; color:white; padding:6px 10px; border-radius:999px; text-decoration:none; font-weight:800;">Directions from current location</a>
+                            <a href="${pin.mapUrl}" target="_blank" rel="noopener noreferrer" style="background:#eef4f7; color:#023e8a; padding:6px 10px; border-radius:999px; text-decoration:none; font-weight:800;">Open Google Maps</a>
+                        </div>
+                    </div>
+                `);
+                markerLayer.addLayer(marker);
+            });
+
+            renderPinList();
+            renderStats();
+        }
+
+        function renderStats() {
+            const visitedCount = visiblePins.filter(isPinVisited).length;
+            document.getElementById("totalPins").textContent = visiblePins.length;
+            document.getElementById("visitedPins").textContent = visitedCount;
+            document.getElementById("beachPins").textContent = visiblePins.filter(pin => pin.category === "beach").length;
+            document.getElementById("restaurantPins").textContent = visiblePins.filter(pin => pin.category === "restaurant").length;
+        }
+
+        function renderPinList() {
+            const container = document.getElementById("pinList");
+            if (!visiblePins.length) {
+                container.innerHTML = '<p class="text-muted mb-0">No pins match the current filters.</p>';
+                return;
+            }
+
+            container.innerHTML = visiblePins.map(function(pin) {
+                const visited = isPinVisited(pin);
+                const categoryClass = pin.category === "restaurant" ? "map-pill-restaurant" : pin.category === "beach" ? "map-pill-beach" : pin.category === "activity" ? "map-pill-activity" : "map-pill-planned";
+                return `
+                    <div class="map-list-item">
+                        <div class="d-flex justify-content-between gap-2">
+                            <strong>${visited ? "✅ " : ""}${pin.name}</strong>
+                            <span class="map-pill ${visited ? "map-pill-visited" : categoryClass}">${visited ? "Visited" : pin.category}</span>
+                        </div>
+                        <p class="text-muted mb-2 small">${pin.description}</p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a class="btn btn-sm btn-warning" href="${getDirectionsFromKamilariUrl(pin)}" target="_blank" rel="noopener noreferrer">Directions from Kamilari</a>
+                            <a class="btn btn-sm btn-outline-primary" href="${getDirectionsFromCurrentLocationUrl(pin)}" target="_blank" rel="noopener noreferrer">From current location</a>
+                            <a class="btn btn-sm btn-outline-secondary" href="${pin.mapUrl}" target="_blank" rel="noopener noreferrer">Open map</a>
+                        </div>
+                    </div>
+                `;
+            }).join("");
+        }
+
+        function fitVisiblePins() {
+            if (!visiblePins.length) return;
+            const bounds = L.latLngBounds(visiblePins.map(pin => [pin.lat, pin.lng]));
+            map.fitBounds(bounds, { padding: [35, 35] });
+        }
+
+        function setupMap() {
+            map = L.map("creteMap", { scrollWheelZoom: true }).setView([35.05, 24.82], 10);
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                maxZoom: 19,
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+            markerLayer = L.layerGroup().addTo(map);
+            renderMap();
+            fitVisiblePins();
+        }
+
+        function setupEvents() {
+            ["mapSearch", "categoryFilter", "visitedFilter"].forEach(function(id) {
+                document.getElementById(id).addEventListener("input", function() { renderMap(); });
+                document.getElementById(id).addEventListener("change", function() { renderMap(); });
+            });
+            document.getElementById("fitMap").addEventListener("click", fitVisiblePins);
+            document.getElementById("refreshMap").addEventListener("click", function() {
+                renderMap();
+                fitVisiblePins();
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            setupMap();
+            setupEvents();
+        });
+    </script>
+</body>
+</html>

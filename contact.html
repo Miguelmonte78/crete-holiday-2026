@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacts | Crete Family Holiday 2026</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <style>
+    .contact-hero {
+      background: linear-gradient(135deg, rgba(2,62,138,.94), rgba(0,119,182,.78));
+    }
+    .section-label { letter-spacing: 1.6px; font-size: .78rem; text-transform: uppercase; color: #0077b6; font-weight: 800; }
+    .contact-card { border-left: 6px solid #f4b942; border-radius: 18px; }
+    .red-card { border-left-color: #dc3545; }
+    .green-card { border-left-color: #6b8e23; }
+    .blue-card { border-left-color: #0077b6; }
+    .grey-card { border-left-color: #545857; }
+    .contact-number { font-size: 1.75rem; font-weight: 900; color: #023e8a; }
+    .contact-pill { display:inline-block; padding:.35rem .75rem; border-radius:999px; background:rgba(0,119,182,.1); color:#023e8a; font-size:.8rem; font-weight:800; margin:.15rem; }
+    .urgent-pill { background:#dc3545; color:white; }
+    .local-note { background:#fffaf0; border-left:6px solid #f4b942; border-radius:14px; padding:1rem; height:100%; }
+    .contact-row { border-bottom:1px solid rgba(0,0,0,.07); padding:.85rem 0; }
+    .contact-row:last-child { border-bottom:0; }
+    .editable-hint { font-size:.88rem; color:#6c757d; }
+    .print-box { background:white; border-radius:18px; padding:1.25rem; box-shadow:0 12px 30px rgba(0,0,0,.08); }
+    @media print {
+      nav, footer, .no-print { display:none !important; }
+      .contact-hero { background:white !important; color:#222 !important; padding:1rem 0 !important; }
+      .card, .print-box { box-shadow:none !important; border:1px solid #ddd !important; }
+      body { background:white !important; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">🇬🇷 Crete 2026</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="itinerary.html">Daily Planner</a></li>
+          <li class="nav-item"><a class="nav-link" href="activities.html">Activities</a></li>
+          <li class="nav-item"><a class="nav-link" href="restaurants.html">Restaurants</a></li>
+          <li class="nav-item"><a class="nav-link" href="beaches.html">Beaches</a></li>
+          <li class="nav-item"><a class="nav-link" href="budget.html">Budget</a></li>
+          <li class="nav-item"><a class="nav-link" href="packing.html">Packing</a></li>
+          <li class="nav-item"><a class="nav-link" href="maps.html">Maps</a></li>
+          <li class="nav-item"><a class="nav-link" href="traveltips.html">Travel Tips</a></li>
+          <li class="nav-item"><a class="nav-link active" href="contact.html">Contacts</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><button id="darkModeToggle" class="btn btn-sm btn-outline-light ms-lg-3" type="button">🌙</button></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="contact-hero text-white py-5" style="margin-top:56px;">
+    <div class="container py-5">
+      <p class="text-uppercase fw-bold mb-2">Contact Hub</p>
+      <h1 class="display-4 fw-bold">Important Contacts</h1>
+      <p class="lead">A dedicated contact page for emergency numbers, accommodation details, rental car, insurance, medical help, airport logistics and family trip notes.</p>
+      <div class="row g-3 mt-4">
+        <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>Emergency</strong><br>112 / 100 / 166 / 199</div></div>
+        <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>Base</strong><br>Kamilari, South Crete</div></div>
+        <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>Arrival</strong><br>Heraklion Airport</div></div>
+        <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>Use</strong><br>Save + print before travel</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="py-5 bg-light">
+      <div class="container">
+        <div class="alert alert-warning shadow-sm border-0 mb-5">
+          <h2 class="h5 fw-bold mb-2">Important</h2>
+          <p class="mb-0">This page contains practical contact placeholders. Before travel, add the final accommodation phone number, host name, rental car company, insurance policy number and any family emergency contacts. Use the print button to keep an offline copy.</p>
+        </div>
+
+        <section class="mb-5">
+          <div class="d-flex justify-content-between align-items-center gap-3 flex-wrap mb-4">
+            <div>
+              <p class="section-label mb-1">Emergency</p>
+              <h2 class="fw-bold mb-0">Numbers to save in both adult phones</h2>
+            </div>
+            <button class="btn btn-warning no-print" onclick="window.print()">Print contact sheet</button>
+          </div>
+
+          <div class="row g-4">
+            <div class="col-md-4 col-lg-2"><div class="card contact-card red-card h-100 shadow-sm"><div class="card-body"><div class="contact-number">112</div><strong>European emergency</strong><p class="editable-hint mb-2">Use for urgent emergency help.</p><span class="contact-pill urgent-pill">Priority</span></div></div></div>
+            <div class="col-md-4 col-lg-2"><div class="card contact-card red-card h-100 shadow-sm"><div class="card-body"><div class="contact-number">100</div><strong>Police</strong><p class="editable-hint mb-2">Accident, theft, safety issue.</p><span class="contact-pill">Police</span></div></div></div>
+            <div class="col-md-4 col-lg-2"><div class="card contact-card red-card h-100 shadow-sm"><div class="card-body"><div class="contact-number">166</div><strong>Ambulance</strong><p class="editable-hint mb-2">Medical emergency.</p><span class="contact-pill">EKAV</span></div></div></div>
+            <div class="col-md-4 col-lg-2"><div class="card contact-card red-card h-100 shadow-sm"><div class="card-body"><div class="contact-number">199</div><strong>Fire brigade</strong><p class="editable-hint mb-2">Fire or wildfire risk.</p><span class="contact-pill">Fire</span></div></div></div>
+            <div class="col-md-4 col-lg-2"><div class="card contact-card blue-card h-100 shadow-sm"><div class="card-body"><div class="contact-number">108</div><strong>Port authority</strong><p class="editable-hint mb-2">Sea/coast emergency.</p><span class="contact-pill">Sea</span></div></div></div>
+            <div class="col-md-4 col-lg-2"><div class="card contact-card green-card h-100 shadow-sm"><div class="card-body"><div class="contact-number">14944</div><strong>Pharmacy/doctor info</strong><p class="editable-hint mb-2">Medical/pharmacy guidance.</p><span class="contact-pill">Health</span></div></div></div>
+          </div>
+        </section>
+
+        <section class="mb-5">
+          <p class="section-label mb-1">Trip contact sheet</p>
+          <h2 class="fw-bold mb-4">Trip contact details</h2>
+          <div class="row g-4">
+            <div class="col-lg-6">
+              <div class="card contact-card h-100 shadow-sm">
+                <div class="card-body">
+                  <h3 class="fw-bold">Accommodation</h3>
+                  <div class="contact-row"><strong>Area:</strong> Kamilari, South Crete</div>
+                  <div class="contact-row"><strong>Accommodation name:</strong> Milonas Home</div>
+                  <div class="contact-row"><strong>Address:</strong> Milonas Home apartment,Kamilari,70200 Timbaki,Heraklion – Crete, Greece</div>
+                  <div class="contact-row"><strong>Host / owner:</strong> Manolis & Femke</div>
+                  <div class="contact-row"><strong>Phone / WhatsApp:</strong> (0030)6938463632</div>
+                  <div class="contact-row"><strong>Check-in notes:</strong> Add key box / parking / arrival instructions here</div>
+                  <a class="btn btn-sm btn-outline-primary mt-3" href="https://www.google.com/maps/search/?api=1&query=Kamilari+Crete" target="_blank" rel="noopener noreferrer">Open Kamilari map</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="card contact-card grey-card h-100 shadow-sm">
+                <div class="card-body">
+                  <h3 class="fw-bold">Rental car</h3>
+                  <div class="contact-row"><strong>Rental company:</strong> The best : information@thebestcars.gr</div>
+                  <div class="contact-row"><strong>Pickup:</strong> Heraklion , Airport Heraklion</div>
+                  <div class="contact-row"><strong>Booking reference:</strong> C5-J097-6303</div>
+                  <div class="contact-row"><strong>Emergency roadside number:</strong> (emergency conctact Martin:
+00306981430492</div>
+                  <div class="contact-row"><strong>Fuel policy:</strong> The car is delivered to you full of petrol and has to be returned with a full tank again. A fuel receipt must be presented
+upon return of the car (petrol station within a range of 5km). In case there is fuel missing on the day of the collection,
+you have to pay the difference in cash to our employee</div>
+                  <div class="contact-row"><strong>Notes:</strong> HERAKLION AIRPORT: When you come out of the building, please go to the right. Past the wooden huts, over the
+zebra strip. There you have a yellow ramp which you can also drive with the luggage cart. Once at the top, please
+walk another 10 meters and then keep to the right on the street. Our office, our employees and your rental car are
+already ready for you there. Video how to find us at the airport : https://www.youtube.com/watch?v=7SzS--jC6wQ
+</div>
+                  <a class="btn btn-sm btn-outline-primary mt-3" href="https://www.google.com/maps/search/?api=1&query=Heraklion+Airport" target="_blank" rel="noopener noreferrer">Open Heraklion Airport map</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="card contact-card blue-card h-100 shadow-sm">
+                <div class="card-body">
+                  <h3 class="fw-bold">Travel insurance</h3>
+                  <div class="contact-row"><strong>Insurance provider:</strong> Add here</div>
+                  <div class="contact-row"><strong>Policy number:</strong> Add here</div>
+                  <div class="contact-row"><strong>Emergency assistance number:</strong> Add here</div>
+                  <div class="contact-row"><strong>Website / app:</strong> Add here</div>
+                  <div class="contact-row"><strong>Documents location:</strong> Add phone folder / printed copy location here</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="card contact-card green-card h-100 shadow-sm">
+                <div class="card-body">
+                  <h3 class="fw-bold">Medical and pharmacy</h3>
+                  <div class="contact-row"><strong>Nearest pharmacy:</strong> Check locally / add after arrival</div>
+                  <div class="contact-row"><strong>Nearest doctor / clinic:</strong> Ask host or pharmacy / add here</div>
+                  <div class="contact-row"><strong>Medication notes:</strong> Add family medication notes here</div>
+                  <div class="contact-row"><strong>Allergy notes:</strong> Add here if needed</div>
+                  <div class="contact-row"><strong>EHIC / insurance cards:</strong> Confirm packed</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="mb-5">
+          <p class="section-label mb-1">Family and documents</p>
+          <h2 class="fw-bold mb-4">Useful family notes</h2>
+          <div class="row g-4">
+            <div class="col-lg-4"><div class="local-note"><strong>Passports / IDs</strong><br>Add where travel documents are stored. Keep digital copies available offline.</div></div>
+            <div class="col-lg-4"><div class="local-note"><strong>Emergency family contact</strong><br>Add a trusted contact outside the travelling group.</div></div>
+            <div class="col-lg-4"><div class="local-note"><strong>Apartment fallback</strong><br>If plans fail due to heat, wind or tiredness: apartment rest, pool, groceries, local dinner.</div></div>
+          </div>
+        </section>
+
+        <section class="mb-5">
+          <p class="section-label mb-1">Quick links</p>
+          <h2 class="fw-bold mb-4">Open related planner pages</h2>
+          <div class="d-flex flex-wrap gap-2">
+            <a class="btn btn-warning" href="traveltips.html">Emergency and travel tips</a>
+            <a class="btn btn-outline-primary" href="maps.html">Open maps</a>
+            <a class="btn btn-outline-secondary" href="packing.html">Packing checklist</a>
+            <a class="btn btn-outline-dark" href="budget.html">Budget tracker</a>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-dark text-white py-4">
+    <div class="container"><div class="row"><div class="col-md-6"><h5>Crete Family Holiday 2026</h5><p class="mb-0">Personal travel planner for Kamilari, South Crete.</p></div><div class="col-md-6 text-md-end"><p class="mb-0">Last updated: July 2026</p><p class="mb-0">Built for GitHub Pages</p></div></div></div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

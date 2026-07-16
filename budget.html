@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget & Receipt Scanner | Crete Family Holiday 2026</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        .budget-section-label {
+            letter-spacing: 1.6px;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            color: var(--aegean-blue, #0077b6);
+            font-weight: 800;
+        }
+
+        .budget-kpi-value {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--deep-blue, #023e8a);
+        }
+
+        .expense-card {
+            border-left: 6px solid var(--gold, #f4b942);
+        }
+
+        .receipt-preview {
+            width: 100%;
+            max-height: 380px;
+            object-fit: contain;
+            background: #f8f9fa;
+            border: 1px dashed #cfd8dc;
+            border-radius: 16px;
+            padding: 0.75rem;
+        }
+
+        .ocr-text-box {
+            min-height: 180px;
+            max-height: 320px;
+            overflow: auto;
+            white-space: pre-wrap;
+            font-family: Consolas, Monaco, monospace;
+            font-size: 0.85rem;
+            background: #111827;
+            color: #e5e7eb;
+            border-radius: 16px;
+            padding: 1rem;
+        }
+
+        .expense-pill {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            border-radius: 999px;
+            background: rgba(0, 119, 182, 0.1);
+            color: var(--deep-blue, #023e8a);
+            font-size: 0.8rem;
+            font-weight: 800;
+            margin: 0.15rem;
+        }
+
+        .chart-card canvas {
+            max-height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">🇬🇷 Crete 2026</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="itinerary.html">Daily Planner</a></li>
+                    <li class="nav-item"><a class="nav-link" href="activities.html">Activities</a></li>
+                    <li class="nav-item"><a class="nav-link" href="restaurants.html">Restaurants</a></li>
+                    <li class="nav-item"><a class="nav-link" href="beaches.html">Beaches</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="budget.html">Budget</a></li>
+                    <li class="nav-item"><a class="nav-link" href="packing.html">Packing</a></li>
+                    <li class="nav-item"><a class="nav-link" href="traveltips.html">Travel Tips</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><button id="darkModeToggle" class="btn btn-sm btn-outline-light ms-lg-3" type="button">🌙</button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-primary text-white py-5" style="margin-top: 56px;">
+        <div class="container py-5">
+            <p class="text-uppercase fw-bold mb-2">Budget + Actual Spend</p>
+            <h1 class="display-4 fw-bold">Crete Spending Tracker</h1>
+            <p class="lead">Track actual family spending by day, compare it with the planned budget, and use receipt OCR with manual confirmation to prefill expenses faster.</p>
+            <div class="row g-3 mt-4">
+                <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>Total budget</strong><br>€2,500</div></div>
+                <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>Actual tracking</strong><br>Saved locally</div></div>
+                <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>Receipt scan</strong><br>OCR + confirm</div></div>
+                <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>Scope</strong><br>Excl. flights, stay, car</div></div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="alert alert-warning shadow-sm border-0 mb-5">
+                    <h2 class="h5 fw-bold mb-2">Receipt OCR note</h2>
+                    <p class="mb-0">The scanner tries to read receipt text and prefill the expense form. Always review and correct the result before saving. OCR works best with a clear, flat, well-lit photo. The OCR library loads from the internet, so scan functionality requires connectivity the first time it is used.</p>
+                </div>
+
+                <div class="row g-4 mb-5">
+                    <div class="col-md-3">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body">
+                                <h3>💶 Budget</h3>
+                                <div id="totalBudget" class="budget-kpi-value">€2,500</div>
+                                <p class="text-muted mb-0">Total available</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body">
+                                <h3>📊 Estimated</h3>
+                                <div id="plannedSpend" class="budget-kpi-value">Calculating...</div>
+                                <p class="text-muted mb-0">Planning estimate</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body">
+                                <h3>🧾 Actual</h3>
+                                <div id="actualSpend" class="budget-kpi-value">€0</div>
+                                <p class="text-muted mb-0">Entered expenses</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body">
+                                <h3>✅ Remaining</h3>
+                                <div id="remainingBudget" class="budget-kpi-value">€2,500</div>
+                                <p class="text-muted mb-0">Based on actual spend</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow-sm mb-5">
+                    <div class="card-body">
+                        <div class="d-flex flex-column flex-md-row justify-content-between gap-2 mb-2">
+                            <h2 class="h4 fw-bold mb-0">Actual budget usage</h2>
+                            <span id="budgetUsageLabel" class="fw-bold text-muted">€0 spent of €2,500</span>
+                        </div>
+                        <div class="progress" style="height: 30px;">
+                            <div id="budgetProgress" class="progress-bar bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4 mb-5">
+                    <div class="col-lg-7">
+                        <article class="card shadow-sm expense-card h-100">
+                            <div class="card-body">
+                                <p class="budget-section-label mb-1">Add expense</p>
+                                <h2 class="fw-bold mb-4">Manual Entry / Receipt Confirmation</h2>
+
+                                <form id="expenseForm" class="row g-3">
+                                    <input type="hidden" id="expenseId">
+                                    <div class="col-md-3">
+                                        <label for="expenseDay" class="form-label fw-bold">Day</label>
+                                        <select id="expenseDay" class="form-select" required></select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="expenseDate" class="form-label fw-bold">Date</label>
+                                        <input id="expenseDate" type="date" class="form-control">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="expenseCategory" class="form-label fw-bold">Category</label>
+                                        <select id="expenseCategory" class="form-select" required>
+                                            <option value="Food">Food</option>
+                                            <option value="Groceries">Groceries</option>
+                                            <option value="Activities">Activities</option>
+                                            <option value="Fuel">Fuel</option>
+                                            <option value="Parking">Parking</option>
+                                            <option value="Shopping">Shopping</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="expenseAmount" class="form-label fw-bold">Amount €</label>
+                                        <input id="expenseAmount" type="number" class="form-control" min="0" step="0.01" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="expenseMerchant" class="form-label fw-bold">Restaurant / Merchant</label>
+                                        <input id="expenseMerchant" type="text" class="form-control" placeholder="e.g. Taverna Kipos">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="expenseDescription" class="form-label fw-bold">Description</label>
+                                        <input id="expenseDescription" type="text" class="form-control" placeholder="e.g. Family dinner">
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="expenseNotes" class="form-label fw-bold">Notes</label>
+                                        <textarea id="expenseNotes" class="form-control" rows="2" placeholder="Optional family notes, food quality, service, what we ordered..."></textarea>
+                                    </div>
+                                    <div class="col-12 d-flex flex-wrap gap-2">
+                                        <button type="submit" class="btn btn-warning">Save expense</button>
+                                        <button id="clearForm" type="button" class="btn btn-outline-secondary">Clear form</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="col-lg-5">
+                        <article class="card shadow-sm h-100">
+                            <div class="card-body">
+                                <p class="budget-section-label mb-1">Receipt OCR</p>
+                                <h2 class="fw-bold mb-4">Scan Receipt</h2>
+
+                                <input id="receiptInput" class="form-control mb-3" type="file" accept="image/*" capture="environment">
+                                <img id="receiptPreview" class="receipt-preview mb-3" alt="Receipt preview" style="display: none;">
+
+                                <div class="d-flex flex-wrap gap-2 mb-3">
+                                    <button id="scanReceipt" type="button" class="btn btn-primary" disabled>Scan receipt</button>
+                                    <button id="clearReceipt" type="button" class="btn btn-outline-secondary" disabled>Clear receipt</button>
+                                </div>
+
+                                <div class="mb-2 d-flex justify-content-between">
+                                    <strong>OCR status</strong>
+                                    <span id="ocrStatus" class="text-muted">No receipt loaded</span>
+                                </div>
+                                <div id="ocrText" class="ocr-text-box">Upload or take a receipt photo, then press “Scan receipt”.</div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="row g-4 mb-5">
+                    <div class="col-lg-6">
+                        <div class="card shadow-sm chart-card h-100">
+                            <div class="card-body">
+                                <p class="budget-section-label mb-1">Actual spend</p>
+                                <h2 class="fw-bold mb-4">By Category</h2>
+                                <canvas id="categoryChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card shadow-sm chart-card h-100">
+                            <div class="card-body">
+                                <p class="budget-section-label mb-1">Actual spend</p>
+                                <h2 class="fw-bold mb-4">By Day</h2>
+                                <canvas id="dayChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow-sm mb-5">
+                    <div class="card-body">
+                        <div class="d-flex flex-column flex-md-row justify-content-between gap-2 mb-4">
+                            <div>
+                                <p class="budget-section-label mb-1">Expense log</p>
+                                <h2 class="fw-bold mb-0">Actual Expenses</h2>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button id="exportExpenses" class="btn btn-outline-primary" type="button">Export JSON</button>
+                                <button id="resetExpenses" class="btn btn-outline-danger" type="button">Delete all expenses</button>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>Day</th>
+                                        <th>Date</th>
+                                        <th>Category</th>
+                                        <th>Merchant</th>
+                                        <th>Description</th>
+                                        <th>Amount</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="expenseTableBody">
+                                    <tr><td colspan="7" class="text-muted">No expenses saved yet.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <p class="budget-section-label mb-1">Planning estimate</p>
+                        <h2 class="fw-bold mb-4">Estimated Cost by Day</h2>
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>Day</th>
+                                        <th>Theme</th>
+                                        <th>Activity cost</th>
+                                        <th>Food budget</th>
+                                        <th>Estimated total</th>
+                                        <th>Actual entered</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="estimateTableBody">
+                                    <tr><td colspan="6" class="text-muted">Loading estimate data...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Crete Family Holiday 2026</h5>
+                    <p class="mb-0">Personal travel planner for Kamilari, South Crete.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Last updated: July 2026</p>
+                    <p class="mb-0">Built for GitHub Pages</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+
+    <script>
+        const expenseStorageKey = "creteActualExpenses";
+        const totalBudgetFallback = 2500;
+        let selectedReceiptFile = null;
+        let categoryChart = null;
+        let dayChart = null;
+
+        function formatEuro(value) {
+            return "€" + Number(value || 0).toLocaleString("en-GB", { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+        }
+
+        function parseEuroAmount(value) {
+            const text = String(value || "");
+            const matches = text.match(/\d+[\.,]\d{2}|\d+/g) || [];
+            if (!matches.length) return 0;
+            const number = matches[0].replace(",", ".");
+            return Number(number) || 0;
+        }
+
+        function averageFromEuroRange(value, fallback) {
+            const text = String(value || "");
+            const matches = text.match(/€\s*\d+/g) || [];
+            const numbers = matches.map(function (match) { return Number(match.replace(/[^0-9]/g, "")); });
+            if (!numbers.length) return fallback || 0;
+            if (numbers.length === 1) return numbers[0];
+            return (numbers[0] + numbers[1]) / 2;
+        }
+
+        function getTripData() {
+            return window.creteTripData || { trip: { budget: totalBudgetFallback }, itinerary: [] };
+        }
+
+        function getExpenses() {
+            try {
+                return JSON.parse(localStorage.getItem(expenseStorageKey)) || [];
+            } catch (error) {
+                return [];
+            }
+        }
+
+        function saveExpenses(expenses) {
+            localStorage.setItem(expenseStorageKey, JSON.stringify(expenses));
+        }
+
+        function getPlannedSpend() {
+            const data = getTripData();
+            const itinerary = Array.isArray(data.itinerary) ? data.itinerary : [];
+            const dailyEstimate = itinerary.reduce(function (sum, day) {
+                return sum + averageFromEuroRange(day.estimatedTotal, 0);
+            }, 0);
+            return dailyEstimate + 150;
+        }
+
+        function populateDayDropdown() {
+            const data = getTripData();
+            const select = document.getElementById("expenseDay");
+            const itinerary = Array.isArray(data.itinerary) ? data.itinerary : [];
+            select.innerHTML = itinerary.map(function (day) {
+                return `<option value="${day.day}">Day ${day.day} — ${day.title}</option>`;
+            }).join("");
+        }
+
+        function getActualByDay(dayNumber) {
+            return getExpenses().filter(function (expense) {
+                return Number(expense.day) === Number(dayNumber);
+            }).reduce(function (sum, expense) {
+                return sum + Number(expense.amount || 0);
+            }, 0);
+        }
+
+        function renderSummary() {
+            const data = getTripData();
+            const totalBudget = data.trip && data.trip.budget ? data.trip.budget : totalBudgetFallback;
+            const plannedSpend = getPlannedSpend();
+            const actualSpend = getExpenses().reduce(function (sum, expense) { return sum + Number(expense.amount || 0); }, 0);
+            const remaining = totalBudget - actualSpend;
+            const usage = Math.min(100, Math.max(0, (actualSpend / totalBudget) * 100));
+
+            document.getElementById("totalBudget").textContent = formatEuro(totalBudget);
+            document.getElementById("plannedSpend").textContent = formatEuro(plannedSpend);
+            document.getElementById("actualSpend").textContent = formatEuro(actualSpend);
+            document.getElementById("remainingBudget").textContent = formatEuro(remaining);
+            document.getElementById("budgetUsageLabel").textContent = formatEuro(actualSpend) + " spent of " + formatEuro(totalBudget);
+
+            const progress = document.getElementById("budgetProgress");
+            progress.style.width = usage.toFixed(0) + "%";
+            progress.setAttribute("aria-valuenow", usage.toFixed(0));
+            progress.textContent = usage.toFixed(0) + "%";
+            progress.classList.remove("bg-success", "bg-warning", "bg-danger");
+            if (usage >= 90) progress.classList.add("bg-danger");
+            else if (usage >= 75) progress.classList.add("bg-warning");
+            else progress.classList.add("bg-success");
+        }
+
+        function renderExpenseTable() {
+            const table = document.getElementById("expenseTableBody");
+            const expenses = getExpenses();
+            if (!expenses.length) {
+                table.innerHTML = '<tr><td colspan="7" class="text-muted">No expenses saved yet.</td></tr>';
+                return;
+            }
+
+            table.innerHTML = expenses.map(function (expense) {
+                return `
+                    <tr>
+                        <td><strong>Day ${expense.day}</strong></td>
+                        <td>${expense.date || ""}</td>
+                        <td><span class="badge text-bg-secondary">${expense.category}</span></td>
+                        <td>${expense.merchant || ""}</td>
+                        <td>${expense.description || ""}</td>
+                        <td><strong>${formatEuro(expense.amount)}</strong></td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-primary" onclick="editExpense('${expense.id}')">Edit</button>
+                            <button class="btn btn-sm btn-outline-danger" onclick="deleteExpense('${expense.id}')">Delete</button>
+                        </td>
+                    </tr>
+                `;
+            }).join("");
+        }
+
+        function renderEstimateTable() {
+            const data = getTripData();
+            const itinerary = Array.isArray(data.itinerary) ? data.itinerary : [];
+            const table = document.getElementById("estimateTableBody");
+
+            table.innerHTML = itinerary.map(function (day) {
+                const actual = getActualByDay(day.day);
+                return `
+                    <tr>
+                        <td><strong>Day ${day.day}</strong><br><span class="text-muted">${day.title}</span></td>
+                        <td>${day.theme}</td>
+                        <td>${day.activityCost}</td>
+                        <td>${day.foodBudget}</td>
+                        <td><strong>${day.estimatedTotal}</strong></td>
+                        <td><span class="expense-pill">${formatEuro(actual)}</span></td>
+                    </tr>
+                `;
+            }).join("");
+        }
+
+        function refreshCharts() {
+            if (!window.Chart) return;
+
+            const expenses = getExpenses();
+            const categories = ["Food", "Groceries", "Activities", "Fuel", "Parking", "Shopping", "Other"];
+            const categoryData = categories.map(function (category) {
+                return expenses.filter(function (expense) { return expense.category === category; })
+                    .reduce(function (sum, expense) { return sum + Number(expense.amount || 0); }, 0);
+            });
+
+            const data = getTripData();
+            const days = Array.isArray(data.itinerary) ? data.itinerary.map(function (day) { return day.day; }) : [];
+            const dayData = days.map(function (day) { return getActualByDay(day); });
+
+            if (categoryChart) categoryChart.destroy();
+            if (dayChart) dayChart.destroy();
+
+            categoryChart = new Chart(document.getElementById("categoryChart"), {
+                type: "doughnut",
+                data: {
+                    labels: categories,
+                    datasets: [{
+                        data: categoryData,
+                        backgroundColor: ["#0077b6", "#f4b942", "#6b8e23", "#c76f43", "#545857", "#00a8cc", "#adb5bd"],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: "bottom" },
+                        tooltip: { callbacks: { label: function (context) { return context.label + ": " + formatEuro(context.raw); } } }
+                    }
+                }
+            });
+
+            dayChart = new Chart(document.getElementById("dayChart"), {
+                type: "bar",
+                data: {
+                    labels: days.map(function (day) { return "D" + day; }),
+                    datasets: [{
+                        label: "Actual spend",
+                        data: dayData,
+                        backgroundColor: "#0077b6",
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: { y: { beginAtZero: true, ticks: { callback: function (value) { return "€" + value; } } } },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { callbacks: { label: function (context) { return "Actual spend: " + formatEuro(context.raw); } } }
+                    }
+                }
+            });
+        }
+
+        function refreshAll() {
+            renderSummary();
+            renderExpenseTable();
+            renderEstimateTable();
+            refreshCharts();
+        }
+
+        function clearExpenseForm() {
+            document.getElementById("expenseId").value = "";
+            document.getElementById("expenseForm").reset();
+            populateDayDropdown();
+        }
+
+        function saveExpenseFromForm(event) {
+            event.preventDefault();
+            const expenses = getExpenses();
+            const id = document.getElementById("expenseId").value || "expense-" + Date.now();
+            const existingIndex = expenses.findIndex(function (expense) { return expense.id === id; });
+            const expense = {
+                id,
+                day: Number(document.getElementById("expenseDay").value),
+                date: document.getElementById("expenseDate").value,
+                category: document.getElementById("expenseCategory").value,
+                amount: Number(document.getElementById("expenseAmount").value || 0),
+                merchant: document.getElementById("expenseMerchant").value.trim(),
+                description: document.getElementById("expenseDescription").value.trim(),
+                notes: document.getElementById("expenseNotes").value.trim()
+            };
+
+            if (existingIndex >= 0) expenses[existingIndex] = expense;
+            else expenses.push(expense);
+
+            saveExpenses(expenses);
+            clearExpenseForm();
+            refreshAll();
+        }
+
+        window.editExpense = function (id) {
+            const expense = getExpenses().find(function (item) { return item.id === id; });
+            if (!expense) return;
+            document.getElementById("expenseId").value = expense.id;
+            document.getElementById("expenseDay").value = expense.day;
+            document.getElementById("expenseDate").value = expense.date || "";
+            document.getElementById("expenseCategory").value = expense.category;
+            document.getElementById("expenseAmount").value = expense.amount;
+            document.getElementById("expenseMerchant").value = expense.merchant || "";
+            document.getElementById("expenseDescription").value = expense.description || "";
+            document.getElementById("expenseNotes").value = expense.notes || "";
+            document.getElementById("expenseForm").scrollIntoView({ behavior: "smooth" });
+        };
+
+        window.deleteExpense = function (id) {
+            const expenses = getExpenses().filter(function (expense) { return expense.id !== id; });
+            saveExpenses(expenses);
+            refreshAll();
+        };
+
+        function detectTotalFromOcr(text) {
+            const lines = String(text || "").split(/\n+/).map(function (line) { return line.trim(); }).filter(Boolean);
+            const totalKeywords = ["total", "amount", "sum", "σύνολο", "πληρωτέο", "τελικό"];
+            const candidateLines = lines.filter(function (line) {
+                const lower = line.toLowerCase();
+                return totalKeywords.some(function (keyword) { return lower.includes(keyword); });
+            });
+
+            const searchLines = candidateLines.length ? candidateLines : lines.slice(-12);
+            const amounts = [];
+            searchLines.forEach(function (line) {
+                const matches = line.match(/\d+[\.,]\d{2}/g) || [];
+                matches.forEach(function (match) {
+                    amounts.push(Number(match.replace(",", ".")));
+                });
+            });
+
+            if (!amounts.length) return "";
+            return Math.max.apply(null, amounts).toFixed(2);
+        }
+
+        function detectMerchantFromOcr(text) {
+            const lines = String(text || "").split(/\n+/).map(function (line) { return line.trim(); }).filter(Boolean);
+            const cleanLines = lines.filter(function (line) {
+                return line.length >= 3 && !/^[0-9\s.,€:-]+$/.test(line);
+            });
+            return cleanLines[0] || "";
+        }
+
+        function detectDateFromOcr(text) {
+            const match = String(text || "").match(/(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{2,4})/);
+            if (!match) return "";
+            let day = match[1].padStart(2, "0");
+            let month = match[2].padStart(2, "0");
+            let year = match[3];
+            if (year.length === 2) year = "20" + year;
+            return year + "-" + month + "-" + day;
+        }
+
+        function prefillFromOcr(text) {
+            const amount = detectTotalFromOcr(text);
+            const merchant = detectMerchantFromOcr(text);
+            const date = detectDateFromOcr(text);
+
+            if (amount) document.getElementById("expenseAmount").value = amount;
+            if (merchant) document.getElementById("expenseMerchant").value = merchant;
+            if (date) document.getElementById("expenseDate").value = date;
+            if (!document.getElementById("expenseDescription").value) {
+                document.getElementById("expenseDescription").value = merchant ? "Receipt from " + merchant : "Receipt expense";
+            }
+            document.getElementById("expenseCategory").value = "Food";
+        }
+
+        function setupReceiptScanner() {
+            const input = document.getElementById("receiptInput");
+            const preview = document.getElementById("receiptPreview");
+            const scanButton = document.getElementById("scanReceipt");
+            const clearButton = document.getElementById("clearReceipt");
+            const status = document.getElementById("ocrStatus");
+            const textBox = document.getElementById("ocrText");
+
+            input.addEventListener("change", function () {
+                selectedReceiptFile = input.files && input.files[0] ? input.files[0] : null;
+                if (!selectedReceiptFile) return;
+                preview.src = URL.createObjectURL(selectedReceiptFile);
+                preview.style.display = "block";
+                scanButton.disabled = false;
+                clearButton.disabled = false;
+                status.textContent = "Receipt loaded";
+                textBox.textContent = "Ready to scan. Press “Scan receipt”.";
+            });
+
+            clearButton.addEventListener("click", function () {
+                selectedReceiptFile = null;
+                input.value = "";
+                preview.removeAttribute("src");
+                preview.style.display = "none";
+                scanButton.disabled = true;
+                clearButton.disabled = true;
+                status.textContent = "No receipt loaded";
+                textBox.textContent = "Upload or take a receipt photo, then press “Scan receipt”.";
+            });
+
+            scanButton.addEventListener("click", async function () {
+                if (!selectedReceiptFile || !window.Tesseract) return;
+                scanButton.disabled = true;
+                status.textContent = "Scanning...";
+                textBox.textContent = "OCR is running. This may take a few seconds.";
+
+                try {
+                    const result = await Tesseract.recognize(selectedReceiptFile, "eng+ell", {
+                        logger: function (message) {
+                            if (message.status) {
+                                status.textContent = message.status + (message.progress ? " " + Math.round(message.progress * 100) + "%" : "");
+                            }
+                        }
+                    });
+                    const text = result.data && result.data.text ? result.data.text : "";
+                    textBox.textContent = text || "No text detected. Try a clearer photo or enter manually.";
+                    prefillFromOcr(text);
+                    status.textContent = "Scan complete — review before saving";
+                } catch (error) {
+                    status.textContent = "Scan failed";
+                    textBox.textContent = "OCR failed. Please enter the expense manually. Error: " + error.message;
+                } finally {
+                    scanButton.disabled = false;
+                }
+            });
+        }
+
+        function setupExportAndReset() {
+            document.getElementById("exportExpenses").addEventListener("click", function () {
+                const blob = new Blob([JSON.stringify(getExpenses(), null, 2)], { type: "application/json" });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement("a");
+                link.href = url;
+                link.download = "crete-expenses.json";
+                link.click();
+                URL.revokeObjectURL(url);
+            });
+
+            document.getElementById("resetExpenses").addEventListener("click", function () {
+                if (!confirm("Delete all saved expenses on this device?")) return;
+                localStorage.removeItem(expenseStorageKey);
+                refreshAll();
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            populateDayDropdown();
+            refreshAll();
+            setupReceiptScanner();
+            setupExportAndReset();
+            document.getElementById("expenseForm").addEventListener("submit", saveExpenseFromForm);
+            document.getElementById("clearForm").addEventListener("click", clearExpenseForm);
+        });
+    </script>
+</body>
+</html>

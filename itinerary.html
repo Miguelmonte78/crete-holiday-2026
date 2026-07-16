@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Planner | Crete Family Holiday 2026</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        .itinerary-hero { background: linear-gradient(135deg, rgba(2,62,138,.92), rgba(0,119,182,.78)); }
+        .planner-section-label { letter-spacing: 1.6px; font-size: .78rem; text-transform: uppercase; color: #0077b6; font-weight: 800; }
+        .day-card-header { background: linear-gradient(135deg, #023e8a, #0077b6); color: #fff; }
+        .recommendation-box { border-left: 6px solid #f4b942; background: #fffaf0; border-radius: 16px; padding: 1rem; }
+        .extra-box { border-left: 6px solid #6b8e23; background: #f7fbef; border-radius: 16px; padding: 1rem; height: 100%; }
+        .meta-box { background: linear-gradient(180deg, #fff, #fffaf0); border: 1px solid #e8dfcf; border-radius: 14px; padding: .85rem; height: 100%; }
+        .meta-box small { display:block; text-transform:uppercase; letter-spacing:.6px; font-size:.7rem; color:#6c757d; font-weight:800; margin-bottom:.2rem; }
+        .meta-box strong { color:#023e8a; }
+        .tag-pill { display:inline-block; padding:.35rem .75rem; border-radius:999px; background:rgba(0,119,182,.1); color:#023e8a; font-size:.8rem; font-weight:800; margin:.15rem; }
+        .recommended-pill { background:#f4b942; color:#222831; }
+        .visited-place-row { padding:.75rem 0; border-bottom:1px solid rgba(0,0,0,.06); }
+        .visited-place-row:last-child { border-bottom:0; }
+        .visited-place-row input:checked + label { text-decoration: line-through; color:#6c757d; }
+        .summary-card { border-left: 6px solid #f4b942; }
+        .sticky-actions { position: sticky; top: 75px; }
+        @media (max-width: 991px) { .sticky-actions { position: static; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">🇬🇷 Crete 2026</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="itinerary.html">Daily Planner</a></li>
+                    <li class="nav-item"><a class="nav-link" href="activities.html">Activities</a></li>
+                    <li class="nav-item"><a class="nav-link" href="restaurants.html">Restaurants</a></li>
+                    <li class="nav-item"><a class="nav-link" href="beaches.html">Beaches</a></li>
+                    <li class="nav-item"><a class="nav-link" href="budget.html">Budget</a></li>
+                    <li class="nav-item"><a class="nav-link" href="packing.html">Packing</a></li>
+                    <li class="nav-item"><a class="nav-link" href="maps.html">Maps</a></li>
+                    <li class="nav-item"><a class="nav-link" href="traveltips.html">Travel Tips</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><button id="darkModeToggle" class="btn btn-sm btn-outline-light ms-lg-3" type="button">🌙</button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="itinerary-hero text-white py-5" style="margin-top:56px;">
+        <div class="container py-5">
+            <p class="text-uppercase fw-bold mb-2">Daily Planner 2.1</p>
+            <h1 class="display-4 fw-bold">Daily Itinerary + Directions</h1>
+            <p class="lead">Each day now includes direct Google Maps buttons for places in the daily visited log: directions from Kamilari, directions from current location and direct map opening.</p>
+            <div class="row g-3 mt-4">
+                <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>Recommended first</strong><br>Best day plan</div></div>
+                <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>Directions</strong><br>Kamilari / current location</div></div>
+                <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>Visited log</strong><br>Saved in browser</div></div>
+                <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>Linked pages</strong><br>Restaurants / beaches / maps</div></div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="row g-4 mb-5">
+                    <div class="col-lg-8">
+                        <div class="alert alert-info shadow-sm border-0 mb-0">
+                            <h2 class="h5 fw-bold mb-2">How to use this itinerary</h2>
+                            <p class="mb-0">Use the search, theme filter and jump-to-day selector. For every main place in the daily visited log, use <strong>Directions from Kamilari</strong>, <strong>From current location</strong> or <strong>Map</strong>.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card shadow-sm summary-card sticky-actions">
+                            <div class="card-body">
+                                <p class="planner-section-label mb-1">Trip log</p>
+                                <h3 class="fw-bold" id="visitedSummary">0 places visited</h3>
+                                <p class="text-muted mb-3">Visited places are saved on this device.</p>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <a class="btn btn-warning btn-sm" href="maps.html">Open maps</a>
+                                    <a class="btn btn-outline-primary btn-sm" href="restaurants.html">Restaurants</a>
+                                    <a class="btn btn-outline-secondary btn-sm" href="beaches.html">Beaches</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-5">
+                    <div class="col-md-4"><label for="daySearch" class="form-label fw-bold">Search itinerary</label><input id="daySearch" class="form-control form-control-lg" type="search" placeholder="Search Phaistos, Matala, beach..."></div>
+                    <div class="col-md-4"><label for="themeFilter" class="form-label fw-bold">Theme</label><select id="themeFilter" class="form-select form-select-lg"><option value="all">All themes</option></select></div>
+                    <div class="col-md-4"><label for="dayJump" class="form-label fw-bold">Jump to day</label><select id="dayJump" class="form-select form-select-lg"><option value="">Select day...</option></select></div>
+                </div>
+                <div id="daysContainer" class="row g-4"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container"><div class="row"><div class="col-md-6"><h5>Crete Family Holiday 2026</h5><p class="mb-0">Personal travel planner for Kamilari, South Crete.</p></div><div class="col-md-6 text-md-end"><p class="mb-0">Last updated: July 2026</p><p class="mb-0">Built for GitHub Pages</p></div></div></div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        const visitedPlacesKey = "creteVisitedPlaces";
+        const placeCoordinates = {
+            "heraklion-airport":[35.3397,25.1803], "kamilari":[35.0337,24.7935], "pitsidia":[35.0167,24.7833],
+            "phaistos-palace":[35.0514,24.8138], "phaistos":[35.0514,24.8138], "agia-triada":[35.0586,24.7937],
+            "matala":[34.9934,24.7497], "matala-caves":[34.9934,24.7497], "kommos-beach":[35.0044,24.7609], "kommos":[35.0044,24.7609],
+            "kalamaki-beach":[35.0280,24.7592], "kalamaki":[35.0280,24.7592], "agiofarago-gorge":[34.9288,24.7791], "agiofarago-beach":[34.9288,24.7791], "agiofarago":[34.9288,24.7791],
+            "odigitria-area":[34.9753,24.7906], "odigitria":[34.9753,24.7906], "zaros-lake":[35.1301,24.9046], "votomos-lake":[35.1301,24.9046], "zaros-village":[35.1301,24.9046], "zaros":[35.1301,24.9046],
+            "red-beach":[34.9867,24.7475], "heraklion-archaeological-museum":[35.3384,25.1365], "heraklion-museum":[35.3384,25.1365], "heraklion-city":[35.3387,25.1442], "heraklion":[35.3387,25.1442],
+            "gortyna":[35.0612,24.9476], "messara-museum":[35.0522,24.8733], "mires":[35.0522,24.8733], "moires":[35.0522,24.8733],
+            "agia-galini":[35.0968,24.6889], "agia-galini-harbour":[35.0968,24.6889], "triopetra":[35.1163,24.5480], "ligres":[35.1152,24.5704], "favourite-beach":[34.9934,24.7497], "flexible":[35.0337,24.7935]
+        };
+
+        const enrichedDays = [
+            {day:1,date:"21 Jul",theme:"Arrival",title:"Arrival and settle in Kamilari",distanceKm:"65 km",driveTime:"1h 10m",activityCost:"€0",foodBudget:"€60–80",summary:"Arrival day should stay practical and calm: airport, car, apartment, groceries and a local dinner.",why:"This is recommended because arrival days are tiring. Staying local protects energy and avoids unnecessary stress.",see:"First views of the Messara plain, Kamilari and nearby practical shops/restaurants.",fun:"A calm first evening makes the first proper holiday day much easier.",places:["Heraklion Airport","Kamilari","Pitsidia"],restaurants:["Taverna Acropolis","Taverna Kipos Garden","Loggia","Pizzeria Ariadni"],extras:["Short Kamilari walk if energy allows","Grocery stop for water and breakfast","Early night"]},
+            {day:2,date:"22 Jul",theme:"Archaeology / Matala",title:"Phaistos Palace and Matala evening",distanceKm:"35–45 km",driveTime:"Short local drives",activityCost:"€30–40",foodBudget:"€80–130",summary:"Ancient Crete in the morning and the iconic Matala atmosphere later in the day.",why:"This combines the best nearby cultural site with one of the most memorable coastal villages without a long drive.",see:"Phaistos ruins, Messara views, Matala caves, village streets and sunset atmosphere.",fun:"The Phaistos Disc was discovered at Phaistos and remains one of archaeology's famous mysteries.",places:["Phaistos Palace","Agia Triada","Matala","Matala Caves"],restaurants:["Taverna Acropolis","Lamb House","SCALA Premium Sea Food Bar","Alexis Zorbas"],extras:["Agia Triada if still cool","Kommos sunset if Matala is too busy","Matala caves if open"]},
+            {day:3,date:"23 Jul",theme:"Beach / Snorkeling",title:"Kommos or Kalamaki beach morning",distanceKm:"20–30 km",driveTime:"10–20 min each way",activityCost:"€0",foodBudget:"€60–90",summary:"A low-cost nearby beach day focused on calm-water swimming and snorkeling.",why:"Kommos is close, natural and flexible. Kalamaki is the easier backup if facilities matter.",see:"Wide beach, dunes, sea views and possible snorkeling if conditions are calm.",fun:"Kommos was connected to the ancient Minoan world as a harbour area.",places:["Kommos Beach","Kalamaki Beach","Pitsidia"],restaurants:["Livas","Pizzeria Ariadni","Green Kukunari","Taverna Acropolis"],extras:["Kalamaki for easier facilities","Pitsidia dinner","Skip snorkeling if windy"]},
+            {day:4,date:"24 Jul",theme:"Nature / Adventure",title:"Agiofarago gorge and beach",distanceKm:"45–55 km",driveTime:"Medium drive plus walk",activityCost:"€0",foodBudget:"€60–90",summary:"A more adventurous nature day with a gorge walk ending at a wild beach.",why:"It adds nature, a short walk and a memorable wild beach without a full mountain hike.",see:"Limestone gorge walls, a remote beach and clear water if conditions are calm.",fun:"Agiofarago means 'Gorge of the Saints'.",places:["Agiofarago Gorge","Agiofarago Beach","Odigitria area"],restaurants:["Livas","Taverna Acropolis","Raftis","Green Kukunari"],extras:["Go very early only","Bring proper shoes and water","Swap with Kommos if too hot"]},
+            {day:5,date:"25 Jul",theme:"Nature / Mountain",title:"Zaros lake and village lunch",distanceKm:"65–80 km",driveTime:"45–60 min each way",activityCost:"€0",foodBudget:"€70–100",summary:"A cooler inland nature day with a short lake walk and traditional lunch.",why:"It gives variety after beach days and matches the short-walk preference.",see:"Lake scenery, mountain village atmosphere and inland Crete landscapes.",fun:"Zaros is known for spring water and mountain scenery.",places:["Zaros Lake","Votomos Lake","Zaros village"],restaurants:["Vegera","Votomos Taverna Fish Farm","Taverna Kipos Garden"],extras:["Fish farm lunch","Moires grocery stop","Keep the day light"]},
+            {day:6,date:"26 Jul",theme:"Matala / Beach",title:"Matala beach and village focus",distanceKm:"30–40 km",driveTime:"15–20 min each way",activityCost:"€0–20",foodBudget:"€90–150",summary:"A fuller Matala day with beach, caves view, village atmosphere and dinner options.",why:"Matala is iconic and works best as a late afternoon/evening visit.",see:"Sandstone caves, beach bay, colourful village streets and sunset light.",fun:"Matala became famous for its 1960s and 1970s traveller history.",places:["Matala","Matala Beach","Red Beach"],restaurants:["SCALA Premium Sea Food Bar","George's Yard","Alexis Zorbas","Livas"],extras:["Red Beach only if cool enough","Return to Pitsidia if crowded","Kommos for a quieter sunset"]},
+            {day:7,date:"27 Jul",theme:"Museum / Culture",title:"Heraklion Archaeological Museum",distanceKm:"130 km",driveTime:"1h 10m each way",activityCost:"€40",foodBudget:"€80–120",summary:"The key indoor museum day to understand Minoan Crete and the Phaistos connection.",why:"The museum gives meaning to the ruins and is a strong heat-safe activity.",see:"Minoan artefacts, frescoes, pottery, jewellery and the Phaistos Disc.",fun:"The museum houses many of Crete's most important ancient objects.",places:["Heraklion Archaeological Museum","Heraklion city"],restaurants:["Taverna Acropolis","Taverna Kipos Garden","Loggia"],extras:["Natural History Museum backup","Short city lunch","Avoid too much city walking"]},
+            {day:8,date:"28 Jul",theme:"Rest",title:"Rest, pool and local dinner",distanceKm:"0–25 km",driveTime:"Optional short drive",activityCost:"€0",foodBudget:"€50–90",summary:"A recovery day to use the apartment, pool, groceries and local restaurants.",why:"A buffer rest day prevents the trip from becoming too packed.",see:"Kamilari village life, pool time and a slower family rhythm.",fun:"Slow days often become the easiest family memories.",places:["Kamilari","Pitsidia"],restaurants:["Taverna Kipos Garden","Taverna Acropolis","Loggia","Pizzeria Ariadni"],extras:["Short beach repeat","Grocery refresh","Pizza backup"]},
+            {day:9,date:"29 Jul",theme:"Archaeology",title:"Gortyna and Messara history",distanceKm:"45–65 km",driveTime:"30–45 min each way",activityCost:"€20–40",foodBudget:"€70–120",summary:"A second history day focused on Gortyna and central Messara.",why:"It broadens the story beyond Minoan palace sites and stays reasonably close.",see:"Roman remains, stone inscriptions, open ruins and local town life.",fun:"Gortyna is famous for ancient law-code inscriptions.",places:["Gortyna","Messara Museum","Mires"],restaurants:["Lamb House","Taverna Acropolis","Taverna Kipos Garden"],extras:["Messara Museum if open","Lamb House if timing works","Shorten if hot"]},
+            {day:10,date:"30 Jul",theme:"Coastal village",title:"Agia Galini harbour and beach",distanceKm:"70 km",driveTime:"45–55 min each way",activityCost:"€0",foodBudget:"€90–130",summary:"A coastal village day with harbour views, beach time and seafood options.",why:"It gives a different coastal feel from Matala and adds variety.",see:"Harbour, village streets, sea views and relaxed south-coast atmosphere.",fun:"Agia Galini means 'Holy Peace'.",places:["Agia Galini","Agia Galini harbour"],restaurants:["Apnea Restaurant Beach Bar","Avli Taverna","Lamb House"],extras:["Seafood lunch","Village walk","Do not overload with extra stops"]},
+            {day:11,date:"31 Jul",theme:"Optional scenic beach",title:"Triopetra or Ligres optional scenic day",distanceKm:"120–150 km",driveTime:"1h 15m+ each way",activityCost:"€0",foodBudget:"€70–110",summary:"A longer scenic beach option only if wind and family energy are good.",why:"Triopetra can be beautiful but should not be forced because of the longer drive.",see:"Open south-coast landscapes, three rocks, broad sea views and wilder scenery.",fun:"Triopetra means 'three stones'.",places:["Triopetra","Ligres"],restaurants:["Taverna Acropolis","Pizzeria Ariadni","Loggia","Raftis"],extras:["Repeat Kommos instead","Check wind first","Avoid late unfamiliar roads if tired"]},
+            {day:12,date:"1 Aug",theme:"Local life",title:"Moires market and grocery reset",distanceKm:"35–45 km",driveTime:"25–35 min each way",activityCost:"Variable",foodBudget:"€50–100",summary:"A practical local-life day for groceries, budget control and slower rhythm.",why:"It supports the rest of the trip by reducing restaurant pressure and refreshing supplies.",see:"Local shops, market atmosphere and everyday Messara life.",fun:"A good grocery day can save the cost of multiple restaurant lunches.",places:["Moires","Kamilari"],restaurants:["Lamb House","Taverna Acropolis","Pizzeria Ariadni"],extras:["Coffee stop","Apartment lunch","Rest afternoon"]},
+            {day:13,date:"2 Aug",theme:"Flexible beach",title:"Repeat favourite beach",distanceKm:"20–45 km",driveTime:"Flexible",activityCost:"€0",foodBudget:"€50–100",summary:"Repeat the beach that worked best based on real trip experience and weather.",why:"A known good beach is often better than chasing a new location.",see:"Kommos, Kalamaki, Matala or whichever beach has become the family favourite.",fun:"Repeat days often create the most relaxed memories.",places:["Kommos","Kalamaki","Matala"],restaurants:["Livas","Pizzeria Ariadni","Green Kukunari","George's Yard"],extras:["Apartment dinner","Green Kukunari lighter meal","Matala evening if preferred"]},
+            {day:14,date:"3 Aug",theme:"Buffer",title:"Weather backup or missed highlight",distanceKm:"Flexible",driveTime:"Flexible",activityCost:"Flexible",foodBudget:"€50–120",summary:"A buffer day for weather changes, missed highlights or simply doing less.",why:"A flexible day protects the itinerary from becoming fragile.",see:"Whatever the family most wants to repeat or missed earlier.",fun:"Flexible days often become the best days because they fit real conditions.",places:["Flexible"],restaurants:["Taverna Acropolis","Pizzeria Ariadni","Taverna Kipos Garden"],extras:["Weather backup museum","Local beach repeat","Special restaurant evening"]},
+            {day:15,date:"4 Aug",theme:"Final full day",title:"Favourite repeat and final dinner",distanceKm:"Flexible",driveTime:"Flexible",activityCost:"€0–20",foodBudget:"€100–170",summary:"Choose the favourite beach/place and finish with a memorable final dinner.",why:"The last full day should consolidate the best memories, not create stress.",see:"Matala, Kommos, Kamilari or the family's favourite place from the trip.",fun:"A repeated favourite can become the place everyone remembers most clearly.",places:["Favourite beach","Matala","Kommos","Kamilari"],restaurants:["SCALA Premium Sea Food Bar","Raftis","Loggia","George's Yard"],extras:["Start packing","Special dinner","Avoid overloading"]},
+            {day:16,date:"5/6 Aug",theme:"Departure",title:"Pack, check out and airport",distanceKm:"65 km",driveTime:"1h 10m",activityCost:"€0",foodBudget:"€30–60",summary:"Departure day is logistics only: packing, car return and airport buffer.",why:"Airport days punish over-planning. A simple plan is the best plan.",see:"Final route from Kamilari to Heraklion Airport.",fun:"A boring departure plan is usually the most successful departure plan.",places:["Kamilari","Heraklion Airport"],restaurants:["Taverna Acropolis","Pizzeria Ariadni","Taverna Kipos Garden"],extras:["Check fuel policy","Simple breakfast/lunch","No sightseeing unless huge buffer"]}
+        ];
+
+        function slugify(value){ return String(value || "").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""); }
+        function getVisitedPlaces(){ try { return JSON.parse(localStorage.getItem(visitedPlacesKey)) || {}; } catch(e) { return {}; } }
+        function saveVisitedPlaces(visited){ localStorage.setItem(visitedPlacesKey, JSON.stringify(visited)); }
+        function getPlaceCoordinates(placeName){ return placeCoordinates[slugify(placeName)] || null; }
+        function getDirectionsFromKamilariUrl(placeName){ const c=getPlaceCoordinates(placeName); const d=c ? c[0]+","+c[1] : encodeURIComponent(placeName+" Crete"); return "https://www.google.com/maps/dir/?api=1&origin=Kamilari%2C%20Crete&destination="+d+"&travelmode=driving"; }
+        function getDirectionsFromCurrentLocationUrl(placeName){ const c=getPlaceCoordinates(placeName); const d=c ? c[0]+","+c[1] : encodeURIComponent(placeName+" Crete"); return "https://www.google.com/maps/dir/?api=1&destination="+d+"&travelmode=driving"; }
+        function getOpenMapUrl(placeName){ const c=getPlaceCoordinates(placeName); const q=c ? c[0]+","+c[1] : encodeURIComponent(placeName+" Crete"); return "https://www.google.com/maps/search/?api=1&query="+q; }
+
+        function updateVisitedSummary(){ const visited=getVisitedPlaces(); const count=Object.values(visited).filter(Boolean).length; document.getElementById("visitedSummary").textContent = count + (count === 1 ? " place visited" : " places visited"); }
+
+        function renderVisitedPlaces(day){
+            const visited=getVisitedPlaces();
+            return (day.places || []).map(place => {
+                const id="place-"+slugify(place);
+                const checked=visited[id] ? "checked" : "";
+                return `<div class="visited-place-row">
+                    <div class="d-flex gap-2 align-items-start">
+                        <input class="form-check-input visited-place-checkbox" type="checkbox" id="${id}" data-place-id="${id}" ${checked}>
+                        <label class="form-check-label" for="${id}"><strong>${place}</strong></label>
+                    </div>
+                    <div class="d-flex flex-wrap gap-2 ms-4 mt-2">
+                        <a class="btn btn-sm btn-outline-primary" href="${getDirectionsFromKamilariUrl(place)}" target="_blank" rel="noopener noreferrer">Directions from Kamilari</a>
+                        <a class="btn btn-sm btn-outline-secondary" href="${getDirectionsFromCurrentLocationUrl(place)}" target="_blank" rel="noopener noreferrer">From current location</a>
+                        <a class="btn btn-sm btn-outline-dark" href="${getOpenMapUrl(place)}" target="_blank" rel="noopener noreferrer">Map</a>
+                    </div>
+                </div>`;
+            }).join("");
+        }
+
+        function renderDayCard(day){
+            const restaurants=(day.restaurants || []).map((r,i)=>`<span class="tag-pill ${i===0?'recommended-pill':''}">${i===0?'⭐ Recommended: ':'Option '+(i+1)+': '}${r}</span>`).join("");
+            const extras=(day.extras || []).map(e=>`<div class="col-md-4"><div class="extra-box"><p class="mb-0">${e}</p></div></div>`).join("");
+            return `<div class="col-12 day-card-wrapper" id="day-${day.day}" data-theme="${day.theme}">
+                <article class="card shadow-sm day-card">
+                    <div class="card-header day-card-header p-4"><div class="d-flex flex-column flex-lg-row justify-content-between gap-3"><div><p class="text-uppercase fw-bold mb-1">Day ${day.day} • ${day.date}</p><h2 class="fw-bold mb-2">${day.title}</h2><span class="tag-pill recommended-pill">${day.theme}</span></div><div class="text-lg-end"><div><strong>Distance:</strong> ${day.distanceKm}</div><div><strong>Drive:</strong> ${day.driveTime}</div><div><strong>Food:</strong> ${day.foodBudget}</div></div></div></div>
+                    <div class="card-body p-4"><div class="row g-4"><div class="col-lg-8">
+                        <p class="planner-section-label mb-1">Quick read</p><h3 class="fw-bold">Summary</h3><p>${day.summary}</p>
+                        <div class="recommendation-box mt-4"><p class="planner-section-label mb-1">Recommended plan</p><h3 class="fw-bold">${day.title}</h3><p><strong>Why this is recommended:</strong> ${day.why}</p><p><strong>What we will see:</strong> ${day.see}</p><p class="mb-0"><strong>Fun fact:</strong> ${day.fun}</p></div>
+                        <div class="mt-4"><p class="planner-section-label mb-1">Restaurant choices</p><div>${restaurants}</div><div class="mt-3"><a href="restaurants.html" class="btn btn-sm btn-warning">Open restaurant guide</a></div></div>
+                    </div><div class="col-lg-4"><div class="row g-3"><div class="col-6"><div class="meta-box"><small>Activity cost</small><strong>${day.activityCost}</strong></div></div><div class="col-6"><div class="meta-box"><small>Theme</small><strong>${day.theme}</strong></div></div></div><div class="card shadow-sm mt-4"><div class="card-body"><p class="planner-section-label mb-1">Visited log + directions</p><h4 class="fw-bold">Places</h4>${renderVisitedPlaces(day)}</div></div><div class="d-grid gap-2 mt-4"><a class="btn btn-outline-primary" href="maps.html">Open map</a><a class="btn btn-outline-secondary" href="activities.html">Open activities</a></div></div></div>
+                    <hr class="my-4"><p class="planner-section-label mb-1">Extra time / alternatives</p><div class="row g-3">${extras}</div></div>
+                </article>
+            </div>`;
+        }
+
+        function renderDays(){
+            const search=document.getElementById("daySearch").value.toLowerCase().trim();
+            const theme=document.getElementById("themeFilter").value;
+            const filtered=enrichedDays.filter(day => (!search || JSON.stringify(day).toLowerCase().includes(search)) && (theme === "all" || day.theme === theme));
+            document.getElementById("daysContainer").innerHTML = filtered.map(renderDayCard).join("");
+            setupVisitedCheckboxes(); updateVisitedSummary();
+        }
+
+        function populateFilters(){
+            const themes=Array.from(new Set(enrichedDays.map(d=>d.theme))).sort();
+            document.getElementById("themeFilter").innerHTML = '<option value="all">All themes</option>' + themes.map(t=>`<option value="${t}">${t}</option>`).join("");
+            document.getElementById("dayJump").innerHTML = '<option value="">Select day...</option>' + enrichedDays.map(day=>`<option value="day-${day.day}">Day ${day.day} — ${day.title}</option>`).join("");
+        }
+
+        function setupVisitedCheckboxes(){ document.querySelectorAll(".visited-place-checkbox").forEach(cb => cb.addEventListener("change", function(){ const visited=getVisitedPlaces(); visited[cb.dataset.placeId]=cb.checked; saveVisitedPlaces(visited); updateVisitedSummary(); })); }
+        function setupEvents(){ document.getElementById("daySearch").addEventListener("input", renderDays); document.getElementById("themeFilter").addEventListener("change", renderDays); document.getElementById("dayJump").addEventListener("change", function(){ const target=document.getElementById(this.value); if(target) target.scrollIntoView({behavior:"smooth"}); }); }
+        document.addEventListener("DOMContentLoaded", function(){ populateFilters(); setupEvents(); renderDays(); });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurants | Crete Family Holiday 2026</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        .restaurant-hero {
+            background: linear-gradient(135deg, rgba(2, 62, 138, 0.92), rgba(0, 119, 182, 0.78));
+        }
+
+        .restaurant-image {
+            width: 100%;
+            height: 235px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .restaurant-image-wrap {
+            position: relative;
+            overflow: hidden;
+            background: #d8e9ee;
+        }
+
+        .restaurant-badge-layer {
+            position: absolute;
+            left: 14px;
+            right: 14px;
+            bottom: 14px;
+            display: flex;
+            justify-content: space-between;
+            gap: 0.5rem;
+            align-items: end;
+        }
+
+        .restaurant-image-label,
+        .restaurant-score-label {
+            background: rgba(34, 40, 49, 0.84);
+            color: #fff;
+            border-radius: 999px;
+            padding: 0.35rem 0.75rem;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+        }
+
+        .recommendation-ribbon {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: var(--gold, #f4b942);
+            color: var(--charcoal, #222831);
+            border-radius: 999px;
+            padding: 0.45rem 0.85rem;
+            font-size: 0.76rem;
+            font-weight: 900;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+        }
+
+        .restaurant-section-label {
+            letter-spacing: 1.6px;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            color: var(--aegean-blue, #0077b6);
+            font-weight: 800;
+        }
+
+        .restaurant-meta-box {
+            background: linear-gradient(180deg, #ffffff, #fffaf0);
+            border: 1px solid #e8dfcf;
+            border-radius: 14px;
+            padding: 0.75rem;
+            height: 100%;
+        }
+
+        .restaurant-meta-box small {
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            font-size: 0.7rem;
+            color: #6c757d;
+            font-weight: 800;
+            margin-bottom: 0.2rem;
+        }
+
+        .restaurant-meta-box strong {
+            color: var(--deep-blue, #023e8a);
+        }
+
+        .restaurant-pill {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            border-radius: 999px;
+            background: rgba(0, 119, 182, 0.1);
+            color: var(--deep-blue, #023e8a);
+            font-size: 0.8rem;
+            font-weight: 800;
+            margin: 0.15rem;
+        }
+
+        .visited-indicator {
+            border-left: 6px solid #198754;
+        }
+
+        .modal-restaurant-image {
+            width: 100%;
+            height: 410px;
+            object-fit: cover;
+            border-radius: 18px;
+            background: #eef4f7;
+        }
+
+        .summary-box {
+            border-left: 6px solid var(--gold, #f4b942);
+            background: #fffaf0;
+            border-radius: 14px;
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">🇬🇷 Crete 2026</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="itinerary.html">Daily Planner</a></li>
+                    <li class="nav-item"><a class="nav-link" href="activities.html">Activities</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="restaurants.html">Restaurants</a></li>
+                    <li class="nav-item"><a class="nav-link" href="beaches.html">Beaches</a></li>
+                    <li class="nav-item"><a class="nav-link" href="budget.html">Budget</a></li>
+                    <li class="nav-item"><a class="nav-link" href="packing.html">Packing</a></li>
+                    <li class="nav-item"><a class="nav-link" href="traveltips.html">Travel Tips</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><button id="darkModeToggle" class="btn btn-sm btn-outline-light ms-lg-3" type="button">🌙</button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="restaurant-hero text-white py-5" style="margin-top: 56px;">
+        <div class="container py-5">
+            <p class="text-uppercase fw-bold mb-2">Restaurant Guide 2.0</p>
+            <h1 class="display-4 fw-bold">Restaurant Choices + Meal Cost Tracker</h1>
+            <p class="lead">Choose recommended restaurants that match the itinerary, explore alternatives by day and area, mark restaurants as visited, and save actual family meal costs directly into the budget tracker.</p>
+            <div class="row g-3 mt-4">
+                <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>Recommended first</strong><br>Best match for itinerary</div></div>
+                <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>Alternatives</strong><br>4–5 choices per key day</div></div>
+                <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>Visit log</strong><br>Saved in browser</div></div>
+                <div class="col-md-3"><div class="bg-white text-dark rounded p-3 h-100"><strong>Budget update</strong><br>Actual meal costs</div></div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="alert alert-info shadow-sm border-0 mb-5">
+                    <h2 class="h5 fw-bold mb-2">How this page works</h2>
+                    <p class="mb-0">Use the day filter to find restaurants near the planned itinerary location. The yellow “Recommended” label means this is the first choice for that day or location. Open details to read why it is recommended, what to expect, review summary, menu/photo links, direction buttons, map links, and to save the actual meal cost.</p>
+                </div>
+
+                <div class="row g-3 mb-5">
+                    <div class="col-lg-4">
+                        <label for="restaurantSearch" class="form-label fw-bold">Search</label>
+                        <input id="restaurantSearch" type="search" class="form-control form-control-lg" placeholder="Search seafood, pizza, Kamilari, lamb, Matala...">
+                    </div>
+                    <div class="col-lg-2">
+                        <label for="dayFilter" class="form-label fw-bold">Day</label>
+                        <select id="dayFilter" class="form-select form-select-lg">
+                            <option value="all">All days</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2">
+                        <label for="areaFilter" class="form-label fw-bold">Area</label>
+                        <select id="areaFilter" class="form-select form-select-lg">
+                            <option value="all">All areas</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2">
+                        <label for="priceFilter" class="form-label fw-bold">Budget</label>
+                        <select id="priceFilter" class="form-select form-select-lg">
+                            <option value="all">All</option>
+                            <option value="budget">Budget</option>
+                            <option value="mid">Mid-range</option>
+                            <option value="special">Special</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2">
+                        <label for="recommendationFilter" class="form-label fw-bold">Priority</label>
+                        <select id="recommendationFilter" class="form-select form-select-lg">
+                            <option value="all">All</option>
+                            <option value="recommended">Recommended</option>
+                            <option value="alternative">Alternatives</option>
+                            <option value="visited">Visited</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="text-center mb-5">
+                    <p class="restaurant-section-label">Choice without confusion</p>
+                    <h2 class="fw-bold">Recommended First, Options After</h2>
+                    <p class="text-muted">The first-choice restaurant is highlighted, but every key area has alternatives so you are not stuck with only one option.</p>
+                </div>
+
+                <div id="dailyRecommendationPanel" class="card shadow-sm mb-5"></div>
+
+                <div id="restaurantCards" class="row g-4"></div>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal fade" id="restaurantModal" tabindex="-1" aria-labelledby="restaurantModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <p class="restaurant-section-label mb-1">Restaurant details</p>
+                        <h2 id="restaurantModalTitle" class="modal-title fw-bold"></h2>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="restaurantModalBody"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Crete Family Holiday 2026</h5>
+                    <p class="mb-0">Personal travel planner for Kamilari, South Crete.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Last updated: July 2026</p>
+                    <p class="mb-0">Built for GitHub Pages</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+
+    <script>
+        const expenseStorageKey = "creteActualExpenses";
+        const visitedRestaurantsKey = "creteVisitedRestaurants";
+
+        const fallbackRestaurants = [
+            {
+                id: "taverna-acropolis",
+                name: "Taverna Acropolis",
+                area: "Kamilari",
+                type: "Traditional",
+                budget: "budget",
+                cuisine: "Mediterranean / Greek",
+                priceLevel: "€",
+                score: 4.6,
+                reviewCount: 134,
+                familyCost: "€55–85",
+                image: "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=1200&q=80",
+                photos: [
+                    "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1543352634-a1c51d9f1fa7?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80"
+                ],
+                daySuggestions: [1, 2, 8, 12, 15],
+                recommendationLevel: "recommended",
+                recommendedFor: "Best easy local dinner when you want traditional food without driving.",
+                reviewSummary: "Strong local option in Kamilari, mentioned for traditional Greek dishes, good value, and a familiar village feeling.",
+                whyRecommended: "This is a practical first-choice restaurant because it is very close to the apartment area, keeps driving almost zero, and gives the family a straightforward Cretan taverna experience. It is especially useful on arrival day, after archaeological visits, or on days when we want to protect the budget and avoid a long evening drive.",
+                whatToExpect: "Expect a simple village taverna experience: Greek classics, salads, grilled dishes, local atmosphere, and a slower holiday rhythm. This is not meant to be a fancy dinner; it is the kind of place that works well when everyone is tired and hungry.",
+                doNotMiss: ["Greek salad", "grilled meat or local taverna dishes", "easy village atmosphere"],
+                familyFit: "Very good for low-stress family dinners.",
+                reservation: "Recommended in high season.",
+                menuNote: "Menu should be checked locally or via listing photos before visiting.",
+                tripadvisorUrl: "https://www.tripadvisor.com/Restaurants-g775998-Kamilari_Crete.html",
+                mapUrl: "https://www.google.com/maps/search/?api=1&query=Taverna+Acropolis+Kamilari+Crete"
+            },
+            {
+                id: "loggia",
+                name: "Loggia",
+                area: "Kamilari",
+                type: "Seafood",
+                budget: "mid",
+                cuisine: "Seafood / Mediterranean",
+                priceLevel: "€€–€€€",
+                score: 4.6,
+                reviewCount: 301,
+                familyCost: "€80–120",
+                image: "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80",
+                photos: [
+                    "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1534766555764-ce878a5e3a2b?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=1200&q=80"
+                ],
+                daySuggestions: [1, 8, 15],
+                recommendationLevel: "alternative",
+                recommendedFor: "Good nearby option for a nicer local dinner.",
+                reviewSummary: "Tripadvisor listings show Loggia as one of the highest visibility restaurants in Kamilari, with seafood and Mediterranean cuisine and many positive review snippets.",
+                whyRecommended: "Loggia is recommended as a stronger dinner option close to base when you want something a little more special than a simple taverna but still do not want a long drive. It is useful for a relaxed evening after a beach or rest day.",
+                whatToExpect: "Expect Mediterranean dishes, seafood options, a more polished meal style and a higher family cost than the simplest tavernas.",
+                doNotMiss: ["Seafood specials", "shared starters", "local wine if available"],
+                familyFit: "Good, but better for a calm evening than a rushed meal.",
+                reservation: "Recommended.",
+                menuNote: "Check listing photos or restaurant page for current menu.",
+                tripadvisorUrl: "https://www.tripadvisor.com/Restaurants-g775998-Kamilari_Crete.html",
+                mapUrl: "https://www.google.com/maps/search/?api=1&query=Loggia+Kamilari+Crete"
+            },
+            {
+                id: "taverna-kipos-kamilari",
+                name: "Taverna Kipos Garden",
+                area: "Kamilari",
+                type: "Traditional",
+                budget: "mid",
+                cuisine: "Mediterranean / European / Greek",
+                priceLevel: "€€–€€€",
+                score: 4.6,
+                reviewCount: 134,
+                familyCost: "€70–105",
+                image: "https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?auto=format&fit=crop&w=1200&q=80",
+                photos: [
+                    "https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=1200&q=80"
+                ],
+                daySuggestions: [2, 5, 8, 12],
+                recommendationLevel: "recommended",
+                recommendedFor: "Best relaxed garden-style dinner near Kamilari.",
+                reviewSummary: "Official and listing information describe a family-run garden restaurant with home-cooked food, daily specials and vegetarian or seasonal dishes.",
+                whyRecommended: "This is a strong recommendation because it fits the family travel rhythm: close to the apartment, relaxed setting, good for dinner after a hot day, and likely more comfortable if we want a slower meal rather than a busy village stop.",
+                whatToExpect: "Expect a garden setting, home-cooked style dishes, Greek and European influence, and a comfortable atmosphere for a family dinner.",
+                doNotMiss: ["Daily specials", "vegetarian or seasonal dishes", "garden terrace atmosphere"],
+                familyFit: "Very good for a relaxed evening.",
+                reservation: "Recommended; website notes open every night except Mondays, but verify locally.",
+                menuNote: "Daily specials may change; check directly on arrival.",
+                tripadvisorUrl: "https://www.tripadvisor.com/Restaurants-g775998-Kamilari_Crete.html",
+                mapUrl: "https://www.google.com/maps/search/?api=1&query=Kipos+Restaurant+Kamilari+Crete"
+            },
+            {
+                id: "pizzeria-ariadni",
+                name: "Pizzeria Ariadni",
+                area: "Kamilari",
+                type: "Pizza",
+                budget: "mid",
+                cuisine: "Pizza / Italian",
+                priceLevel: "€€–€€€",
+                score: 4.0,
+                reviewCount: 152,
+                familyCost: "€60–90",
+                image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1200&q=80",
+                photos: [
+                    "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=1200&q=80"
+                ],
+                daySuggestions: [3, 8, 13, 14],
+                recommendationLevel: "alternative",
+                recommendedFor: "Best kid-friendly backup when everyone wants pizza or pasta.",
+                reviewSummary: "Listings describe it as a pizza and Italian option in Kamilari, useful when the family wants a break from taverna food.",
+                whyRecommended: "This is not the most authentic Cretan choice, but it is very useful as a family backup. After several Greek meals, pizza can be the easiest way to keep the evening simple and avoid food decision fatigue.",
+                whatToExpect: "Expect pizza, pasta or Italian-style family food. This is a comfort-food option rather than a destination restaurant.",
+                doNotMiss: ["Pizza", "takeaway option if available", "simple family dinner"],
+                familyFit: "Very good for children and low-risk dinner.",
+                reservation: "Useful in high season.",
+                menuNote: "Menu availability varies; check listing photos or locally.",
+                tripadvisorUrl: "https://www.tripadvisor.com/Restaurants-g775998-Kamilari_Crete.html",
+                mapUrl: "https://www.google.com/maps/search/?api=1&query=Pizzeria+Ariadni+Kamilari+Crete"
+            },
+            {
+                id: "livas-pitsidia",
+                name: "Livas",
+                area: "Pitsidia",
+                type: "Traditional",
+                budget: "budget",
+                cuisine: "Mediterranean / Greek",
+                priceLevel: "€",
+                score: 4.8,
+                reviewCount: 122,
+                familyCost: "€55–85",
+                image: "https://images.unsplash.com/photo-1543352634-a1c51d9f1fa7?auto=format&fit=crop&w=1200&q=80",
+                photos: [
+                    "https://images.unsplash.com/photo-1543352634-a1c51d9f1fa7?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80"
+                ],
+                daySuggestions: [3, 4, 6, 13],
+                recommendationLevel: "recommended",
+                recommendedFor: "Best nearby low-cost Greek option around Pitsidia/Matala days.",
+                reviewSummary: "Tripadvisor listings show Livas as a highly rated Pitsidia option with Mediterranean and Greek food and a budget-friendly price level.",
+                whyRecommended: "Livas is recommended because it gives us a strong local option close to the beach days around Kommos, Matala and Pitsidia, without needing to drive back and forth too much. It also helps protect the budget compared with special seafood dinners.",
+                whatToExpect: "Expect a local Greek meal, likely simpler and more relaxed than Matala waterfront restaurants, with good value and village atmosphere.",
+                doNotMiss: ["Greek starters", "local meat or vegetable dishes", "complimentary fruit/raki if offered"],
+                familyFit: "Very good for informal family meals.",
+                reservation: "Recommended in high season.",
+                menuNote: "Check menu/listing photos before visiting.",
+                tripadvisorUrl: "https://www.tripadvisor.com/Restaurants-g2334507-Pitsidia_Crete.html",
+                mapUrl: "https://www.google.com/maps/search/?api=1&query=Livas+Pitsidia+Crete"
+            },
+            {
+                id: "raftis-pitsidia",
+                name: "Raftis",
+                area: "Pitsidia",
+                type: "Modern",
+                budget: "special",
+                cuisine: "International / Mediterranean / Greek",
+                priceLevel: "€€–€€€",
+                score: 4.6,
+                reviewCount: 157,
+                familyCost: "€100–150",
+                image: "https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=1200&q=80",
+                photos: [
+                    "https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?auto=format&fit=crop&w=1200&q=80"
+                ],
+                daySuggestions: [4, 6, 15],
+                recommendationLevel: "alternative",
+                recommendedFor: "Best nearby special dinner without driving all the way to Heraklion or far west.",
+                reviewSummary: "Tripadvisor lists Raftis around 4.6 with 157 reviews and describes International, Mediterranean, European and Greek cuisine, with vegetarian, vegan and gluten-free options.",
+                whyRecommended: "Raftis is a good alternative when we want a more elevated meal but still want to stay close to Kamilari. It fits a special evening after a beach/nature day if everyone has energy for a nicer dinner.",
+                whatToExpect: "Expect a more polished restaurant experience than a basic taverna, with a broader menu, wine/cocktail options and a slightly higher cost.",
+                doNotMiss: ["seasonal menu", "modern Greek dishes", "wine/cocktail options"],
+                familyFit: "Good for a calmer dinner; less ideal if everyone is exhausted.",
+                reservation: "Recommended; listings show evening hours and Tuesday closure, but verify before visiting.",
+                menuNote: "Menu/new dishes are often mentioned in listing reviews; check current menu online or locally.",
+                tripadvisorUrl: "https://www.tripadvisor.com/Restaurant_Review-g2334507-d7008494-Reviews-Raftis-Pitsidia_Crete.html",
+                mapUrl: "https://www.google.com/maps/search/?api=1&query=Raftis+Pitsidia+Crete"
+            },
+            {
+                id: "green-kukunari",
+                name: "Green Kukunari",
+                area: "Pitsidia",
+                type: "Healthy",
+                budget: "budget",
+                cuisine: "European / Healthy / Vegan-friendly",
+                priceLevel: "€",
+                score: 4.8,
+                reviewCount: 39,
+                familyCost: "€45–75",
+                image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=80",
+                photos: [
+                    "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1543352634-a1c51d9f1fa7?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80"
+                ],
+                daySuggestions: [3, 4, 13, 14],
+                recommendationLevel: "alternative",
+                recommendedFor: "Best fresh/healthy alternative near Pitsidia.",
+                reviewSummary: "Tripadvisor listings show Green Kukunari as a highly rated healthy/European option in Pitsidia, with comments around vegan dishes.",
+                whyRecommended: "This is a useful alternative because not every day needs to be grilled meat or seafood. It gives the family a lighter option during hot weather, especially after beach mornings.",
+                whatToExpect: "Expect healthier dishes, lighter meals and a different feel from traditional tavernas.",
+                doNotMiss: ["fresh salads", "healthy bowls or vegan dishes", "lighter lunch/dinner"],
+                familyFit: "Good if everyone wants lighter food.",
+                reservation: "Optional; check hours.",
+                menuNote: "Check listing photos for current menu.",
+                tripadvisorUrl: "https://www.tripadvisor.com/Restaurants-g2334507-Pitsidia_Crete.html",
+                mapUrl: "https://www.google.com/maps/search/?api=1&query=Green+Kukunari+Pitsidia+Crete"
+            },
+            {
+                id: "scala-matala",
+                name: "SCALA Premium Sea Food Bar",
+                area: "Matala",
+                type: "Seafood",
+                budget: "special",
+                cuisine: "European / Greek / Seafood",
+                priceLevel: "€€–€€€",
+                score: 4.5,
+                reviewCount: 1568,
+                familyCost: "€120–170",
+                image: "https://images.unsplash.com/photo-1534766555764-ce878a5e3a2b?auto=format&fit=crop&w=1200&q=80",
+                photos: [
+                    "https://images.unsplash.com/photo-1534766555764-ce878a5e3a2b?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=1200&q=80"
+                ],
+                daySuggestions: [2, 6, 15],
+                recommendationLevel: "recommended",
+                recommendedFor: "Best special seafood/sunset-style dinner in Matala.",
+                reviewSummary: "Tripadvisor lists SCALA among the top Matala restaurants, around 4.5 with more than 1,500 reviews, with European and Greek cuisine and many traveler photos.",
+                whyRecommended: "SCALA is recommended as a special dinner option because it fits a Matala evening perfectly: beach/village atmosphere, seafood focus, and a more memorable holiday meal. It is not the cheapest choice, so it is best used intentionally for one special dinner rather than a routine meal.",
+                whatToExpect: "Expect a busy, polished Matala restaurant with seafood and Greek/European dishes. It should feel more like a holiday dining experience than a simple village taverna.",
+                doNotMiss: ["seafood dishes", "sunset timing", "sharing starters"],
+                familyFit: "Good for a special family dinner if budget allows.",
+                reservation: "Strongly recommended for evening/sunset.",
+                menuNote: "Menu/photos available through listing; verify prices before choosing as it is a special-budget option.",
+                tripadvisorUrl: "https://www.tripadvisor.com/Restaurants-g656572-Matala_Crete.html",
+                mapUrl: "https://www.google.com/maps/search/?api=1&query=SCALA+Premium+Sea+Food+Bar+Matala"
+            },
+            {
+                id: "georges-yard",
+                name: "George's Yard",
+                area: "Matala",
+                type: "Seafood",
+                budget: "mid",
+                cuisine: "Seafood / Mediterranean",
+                priceLevel: "€€–€€€",
+                score: 4.8,
+                reviewCount: 547,
+                familyCost: "€95–140",
+                image: "https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=1200&q=80",
+                photos: [
+                    "https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1534766555764-ce878a5e3a2b?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80"
+                ],
+                daySuggestions: [2, 6, 13],
+                recommendationLevel: "alternative",
+                recommendedFor: "Strong Matala alternative if SCALA is full or too expensive.",
+                reviewSummary: "Tripadvisor lists George's Yard highly in Matala, around 4.8 with more than 500 reviews, with seafood and Mediterranean cuisine.",
+                whyRecommended: "This is a strong alternative because it still gives a high-quality Matala dining option while giving us flexibility if SCALA is unavailable, too busy or too expensive.",
+                whatToExpect: "Expect seafood/Mediterranean food, a Matala holiday setting and a mid-to-special cost range.",
+                doNotMiss: ["seafood", "Greek/Mediterranean dishes", "Matala evening atmosphere"],
+                familyFit: "Good family option for a Matala dinner.",
+                reservation: "Recommended in high season.",
+                menuNote: "Check listing/menu photos before choosing.",
+                tripadvisorUrl: "https://www.tripadvisor.com/Restaurants-g656572-Matala_Crete.html",
+                mapUrl: "https://www.google.com/maps/search/?api=1&query=George%27s+Yard+Matala+Crete"
+            },
+            {
+                id: "alexis-zorbas-matala",
+                name: "Alexis Zorbas",
+                area: "Matala",
+                type: "Traditional",
+                budget: "budget",
+                cuisine: "Seafood / Mediterranean",
+                priceLevel: "€",
+                score: 4.3,
+                reviewCount: 448,
+                familyCost: "€60–95",
+                image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80",
+                photos: [
+                    "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1543352634-a1c51d9f1fa7?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1200&q=80"
+                ],
+                daySuggestions: [2, 6, 13],
+                recommendationLevel: "alternative",
+                recommendedFor: "Budget-friendlier Matala option.",
+                reviewSummary: "Tripadvisor listings show Alexis Zorbas as a Matala seafood/Mediterranean option with many reviews and a lower price level than several top waterfront options.",
+                whyRecommended: "This is useful when we want the Matala experience but do not want a special-dinner bill. It keeps us in the village area while controlling cost.",
+                whatToExpect: "Expect more traditional, casual food and a practical Matala dinner rather than a premium food experience.",
+                doNotMiss: ["traditional dishes", "simple seafood", "Matala village setting"],
+                familyFit: "Good for casual family dinner.",
+                reservation: "Optional, but high season can be busy.",
+                menuNote: "Check daily menu/prices locally.",
+                tripadvisorUrl: "https://www.tripadvisor.com/Restaurants-g656572-Matala_Crete.html",
+                mapUrl: "https://www.google.com/maps/search/?api=1&query=Alexis+Zorbas+Matala+Crete"
+            },
+            {
+                id: "vegera-zaros",
+                name: "Vegera",
+                area: "Zaros",
+                type: "Traditional",
+                budget: "budget",
+                cuisine: "Mediterranean / Greek",
+                priceLevel: "€",
+                score: 4.8,
+                reviewCount: 833,
+                familyCost: "€60–90",
+                image: "https://images.unsplash.com/photo-1543352634-a1c51d9f1fa7?auto=format&fit=crop&w=1200&q=80",
+                photos: [
+                    "https://images.unsplash.com/photo-1543352634-a1c51d9f1fa7?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=1200&q=80"
+                ],
+                daySuggestions: [5],
+                recommendationLevel: "recommended",
+                recommendedFor: "Best first-choice lunch on the Zaros day.",
+                reviewSummary: "Tripadvisor shows Vegera near Lake Votomos/Zaros with a very strong rating and many reviews, making it a good lunch candidate for the mountain day.",
+                whyRecommended: "Vegera is recommended for the Zaros day because it matches the destination: mountain village atmosphere, Greek food and a natural lunch stop around the lake/nature plan. This helps make the day feel different from the beach days.",
+                whatToExpect: "Expect Greek/Mediterranean food in or near Zaros, likely a more village/mountain feeling than coastal restaurants.",
+                doNotMiss: ["local Greek dishes", "village lunch atmosphere", "slow lunch before apartment rest"],
+                familyFit: "Very good for lunch after the lake walk.",
+                reservation: "Optional, but useful in peak season.",
+                menuNote: "Check listing/menu photos or ask locally.",
+                tripadvisorUrl: "https://www.tripadvisor.com/RestaurantsNear-g1591528-d21358135-Lake_of_Zaros_Votomos-Zaros_Crete.html",
+                mapUrl: "https://www.google.com/maps/search/?api=1&query=Vegera+Zaros+Crete"
+            },
+            {
+                id: "votomos-taverna",
+                name: "Votomos Taverna Fish Farm",
+                area: "Zaros",
+                type: "Traditional",
+                budget: "mid",
+                cuisine: "Mediterranean / Greek / Trout",
+                priceLevel: "€€–€€€",
+                score: 4.1,
+                reviewCount: 121,
+                familyCost: "€75–115",
+                image: "https://images.unsplash.com/photo-1534766555764-ce878a5e3a2b?auto=format&fit=crop&w=1200&q=80",
+                photos: [
+                    "https://images.unsplash.com/photo-1534766555764-ce878a5e3a2b?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1543352634-a1c51d9f1fa7?auto=format&fit=crop&w=1200&q=80"
+                ],
+                daySuggestions: [5],
+                recommendationLevel: "alternative",
+                recommendedFor: "Alternative Zaros lunch if you want trout/fish farm experience.",
+                reviewSummary: "Tripadvisor describes Votomos Taverna Fish Farm as Mediterranean/Greek with local trout and Cretan traditional cuisine.",
+                whyRecommended: "This is a good alternative because it connects directly to Zaros and the lake/fish-farm theme. It is more specific than a general taverna and may be more memorable if the family wants trout or a mountain-lake meal.",
+                whatToExpect: "Expect a local trout/fish farm style taverna, Greek dishes and a nature-day food experience.",
+                doNotMiss: ["local trout", "terrace setting if available", "Cretan traditional dishes"],
+                familyFit: "Good if everyone likes fish/trout.",
+                reservation: "Optional.",
+                menuNote: "Check current menu and prices locally.",
+                tripadvisorUrl: "https://www.tripadvisor.com/Restaurant_Review-g1591528-d1798773-Reviews-Votomos_Taverna_Fish_Farm-Zaros_Crete.html",
+                mapUrl: "https://www.google.com/maps/search/?api=1&query=Votomos+Taverna+Fish+Farm+Zaros+Crete"
+            },
+            {
+                id: "lamb-house-mires",
+                name: "Lamb House",
+                area: "Mires",
+                type: "Traditional",
+                budget: "mid",
+                cuisine: "Mediterranean / Barbecue / Greek",
+                priceLevel: "€€–€€€",
+                score: 4.7,
+                reviewCount: 331,
+                familyCost: "€80–120",
+                image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80",
+                photos: [
+                    "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1200&q=80"
+                ],
+                daySuggestions: [2, 9, 10, 12],
+                recommendationLevel: "recommended",
+                recommendedFor: "Best meat/lamb option around Mires, market or archaeology days.",
+                reviewSummary: "Tripadvisor lists Lamb House around 4.7 with more than 300 reviews, ranked highly in Mires, with Mediterranean, barbecue and Greek cuisine.",
+                whyRecommended: "Lamb House is recommended because it gives a very clear food identity: lamb, barbecue and Greek meat dishes. It is a strong choice when the day already brings us toward Mires, Gortyna, Phaistos or the local market area.",
+                whatToExpect: "Expect a meat-focused Greek meal, with lamb dishes and traditional sides. This is more of a food destination than a quick snack stop.",
+                doNotMiss: ["lamb dishes", "barbecue plates", "traditional Greek sides"],
+                familyFit: "Good if the family wants meat; less ideal for a very light lunch.",
+                reservation: "Recommended for a planned meal.",
+                menuNote: "Menu and prices should be checked locally/current listing.",
+                tripadvisorUrl: "https://www.tripadvisor.com/Restaurant_Review-g7777547-d14009543-Reviews-Lamb_House-Mires_Crete.html",
+                mapUrl: "https://www.google.com/maps/search/?api=1&query=Lamb+House+Mires+Crete"
+            },
+            {
+                id: "apnea-agia-galini",
+                name: "Apnea Restaurant Beach Bar",
+                area: "Agia Galini",
+                type: "Seafood",
+                budget: "mid",
+                cuisine: "Seafood / Mediterranean",
+                priceLevel: "€€–€€€",
+                score: 4.8,
+                reviewCount: 530,
+                familyCost: "€90–130",
+                image: "https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=1200&q=80",
+                photos: [
+                    "https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80"
+                ],
+                daySuggestions: [10],
+                recommendationLevel: "recommended",
+                recommendedFor: "Best Agia Galini first-choice lunch/dinner near the beach/harbour day.",
+                reviewSummary: "Tripadvisor lists Apnea very highly in Agia Galini, around 4.8 with more than 500 reviews, with seafood and Mediterranean cuisine.",
+                whyRecommended: "Apnea is recommended for the Agia Galini day because it fits the coastal village theme: beach/harbour atmosphere, seafood, and a strong review profile. It gives that day a clear food anchor.",
+                whatToExpect: "Expect a coastal restaurant/beach-bar style meal with seafood and Mediterranean dishes, likely more holiday-feeling than inland tavernas.",
+                doNotMiss: ["seafood", "snack/lunch options", "coastal setting"],
+                familyFit: "Good for lunch or early dinner on the Agia Galini day.",
+                reservation: "Recommended in high season.",
+                menuNote: "Check menu/photos before choosing exact dishes.",
+                tripadvisorUrl: "https://www.tripadvisor.com/Restaurants-g635862-Agia_Galini_Agios_Vasileios_Municipality_Rethymnon_Prefecture_Crete.html",
+                mapUrl: "https://www.google.com/maps/search/?api=1&query=Apnea+Restaurant+Beach+Bar+Agia+Galini"
+            },
+            {
+                id: "avli-agia-galini",
+                name: "Avli Taverna",
+                area: "Agia Galini",
+                type: "Seafood",
+                budget: "mid",
+                cuisine: "Seafood / Mediterranean",
+                priceLevel: "€€–€€€",
+                score: 4.6,
+                reviewCount: 646,
+                familyCost: "€90–130",
+                image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80",
+                photos: [
+                    "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1534766555764-ce878a5e3a2b?auto=format&fit=crop&w=1200&q=80"
+                ],
+                daySuggestions: [10],
+                recommendationLevel: "alternative",
+                recommendedFor: "Strong Agia Galini alternative for seafood/Mediterranean food.",
+                reviewSummary: "Tripadvisor lists Avli Taverna among highly visible Agia Galini restaurants, around 4.6 with more than 600 reviews.",
+                whyRecommended: "Avli is a strong alternative if Apnea is full, too busy, or if the menu looks better on the day. It keeps the same coastal food theme and provides choice.",
+                whatToExpect: "Expect seafood/Mediterranean dishes and a classic Agia Galini dining option.",
+                doNotMiss: ["sea bream or fish if available", "Greek starters", "seafood dishes"],
+                familyFit: "Good for a planned coastal meal.",
+                reservation: "Recommended.",
+                menuNote: "Menu may be available via listing; check current prices.",
+                tripadvisorUrl: "https://www.tripadvisor.com/Restaurants-g635862-Agia_Galini_Agios_Vasileios_Municipality_Rethymnon_Prefecture_Crete.html",
+                mapUrl: "https://www.google.com/maps/search/?api=1&query=Avli+Taverna+Agia+Galini"
+            }
+        ];
+
+        const dailyRestaurantSuggestions = {
+            1: ["taverna-acropolis", "taverna-kipos-kamilari", "loggia", "pizzeria-ariadni"],
+            2: ["taverna-acropolis", "lamb-house-mires", "taverna-kipos-kamilari", "scala-matala", "alexis-zorbas-matala"],
+            3: ["livas-pitsidia", "pizzeria-ariadni", "green-kukunari", "taverna-acropolis"],
+            4: ["livas-pitsidia", "taverna-acropolis", "raftis-pitsidia", "green-kukunari"],
+            5: ["vegera-zaros", "votomos-taverna", "taverna-kipos-kamilari", "taverna-acropolis"],
+            6: ["scala-matala", "georges-yard", "alexis-zorbas-matala", "livas-pitsidia", "raftis-pitsidia"],
+            7: ["taverna-acropolis", "taverna-kipos-kamilari", "loggia", "pizzeria-ariadni"],
+            8: ["taverna-kipos-kamilari", "taverna-acropolis", "loggia", "pizzeria-ariadni"],
+            9: ["lamb-house-mires", "taverna-acropolis", "taverna-kipos-kamilari", "loggia"],
+            10: ["apnea-agia-galini", "avli-agia-galini", "lamb-house-mires", "taverna-acropolis"],
+            11: ["taverna-acropolis", "pizzeria-ariadni", "loggia", "raftis-pitsidia"],
+            12: ["lamb-house-mires", "taverna-acropolis", "to-kentrikon", "pizzeria-ariadni"],
+            13: ["livas-pitsidia", "pizzeria-ariadni", "green-kukunari", "georges-yard"],
+            14: ["taverna-acropolis", "pizzeria-ariadni", "taverna-kipos-kamilari", "green-kukunari"],
+            15: ["scala-matala", "raftis-pitsidia", "loggia", "georges-yard", "taverna-kipos-kamilari"],
+            16: ["taverna-acropolis", "pizzeria-ariadni", "taverna-kipos-kamilari"]
+        };
+
+        function slugify(value) {
+            return String(value || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+        }
+
+        function normalizeRestaurant(item) {
+            const id = item.id || slugify(item.name);
+            const fallback = fallbackRestaurants.find(function (restaurant) { return restaurant.id === id || restaurant.name === item.name; }) || {};
+            return Object.assign({}, fallback, item, { id });
+        }
+
+        const restaurantCoordinates = {
+            "taverna-acropolis": [35.0337, 24.7935],
+            "loggia": [35.0338, 24.7938],
+            "taverna-kipos-kamilari": [35.0342, 24.7942],
+            "pizzeria-ariadni": [35.0340, 24.7922],
+            "livas-pitsidia": [35.0168, 24.7833],
+            "raftis-pitsidia": [35.0167, 24.7835],
+            "green-kukunari": [35.0166, 24.7832],
+            "scala-matala": [34.9934, 24.7497],
+            "georges-yard": [34.9936, 24.7500],
+            "alexis-zorbas-matala": [34.9934, 24.7497],
+            "vegera-zaros": [35.1301, 24.9046],
+            "votomos-taverna": [35.1301, 24.9046],
+            "lamb-house-mires": [35.0522, 24.8733],
+            "apnea-agia-galini": [35.0968, 24.6889],
+            "avli-agia-galini": [35.0966, 24.6892]
+        };
+
+        function getRestaurantCoordinates(restaurant) {
+            return restaurantCoordinates[restaurant.id] || null;
+        }
+
+        function getDirectionsFromKamilariUrl(restaurant) {
+            const coordinates = getRestaurantCoordinates(restaurant);
+            const destination = coordinates ? coordinates[0] + "," + coordinates[1] : encodeURIComponent(restaurant.name + " " + restaurant.area + " Crete");
+            return "https://www.google.com/maps/dir/?api=1&origin=Kamilari%2C%20Crete&destination=" + destination + "&travelmode=driving";
+        }
+
+        function getDirectionsFromCurrentLocationUrl(restaurant) {
+            const coordinates = getRestaurantCoordinates(restaurant);
+            const destination = coordinates ? coordinates[0] + "," + coordinates[1] : encodeURIComponent(restaurant.name + " " + restaurant.area + " Crete");
+            return "https://www.google.com/maps/dir/?api=1&destination=" + destination + "&travelmode=driving";
+        }
+
+        function getRestaurants() {
+            const data = window.creteTripData || {};
+            const central = Array.isArray(data.restaurants) ? data.restaurants.map(normalizeRestaurant) : [];
+            const merged = [...fallbackRestaurants];
+
+            central.forEach(function (restaurant) {
+                const index = merged.findIndex(function (item) { return item.id === restaurant.id; });
+                if (index >= 0) merged[index] = Object.assign({}, merged[index], restaurant);
+                else merged.push(restaurant);
+            });
+
+            return merged;
+        }
+
+        function getExpenses() {
+            try { return JSON.parse(localStorage.getItem(expenseStorageKey)) || []; }
+            catch (error) { return []; }
+        }
+
+        function saveExpenses(expenses) {
+            localStorage.setItem(expenseStorageKey, JSON.stringify(expenses));
+        }
+
+        function getVisitedRestaurants() {
+            try { return JSON.parse(localStorage.getItem(visitedRestaurantsKey)) || {}; }
+            catch (error) { return {}; }
+        }
+
+        function saveVisitedRestaurants(visited) {
+            localStorage.setItem(visitedRestaurantsKey, JSON.stringify(visited));
+        }
+
+        function getRestaurantExpenses(id) {
+            return getExpenses().filter(function (expense) { return expense.restaurantId === id; });
+        }
+
+        function getRestaurantActualTotal(id) {
+            return getRestaurantExpenses(id).reduce(function (sum, expense) { return sum + Number(expense.amount || 0); }, 0);
+        }
+
+        function formatEuro(value) {
+            return "€" + Number(value || 0).toLocaleString("en-GB", { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+        }
+
+        function getSelectedDayIds() {
+            const value = document.getElementById("dayFilter").value;
+            if (value === "all") return [];
+            return dailyRestaurantSuggestions[value] || [];
+        }
+
+        function getRecommendationLabel(restaurant, selectedDayIds) {
+            if (selectedDayIds.length && selectedDayIds[0] === restaurant.id) return "Recommended for selected day";
+            if (restaurant.recommendationLevel === "recommended") return "Recommended";
+            return "Alternative option";
+        }
+
+        function populateFilters() {
+            const restaurants = getRestaurants();
+            const areaFilter = document.getElementById("areaFilter");
+            const dayFilter = document.getElementById("dayFilter");
+            const areas = Array.from(new Set(restaurants.map(function (restaurant) { return restaurant.area; }))).filter(Boolean).sort();
+            areaFilter.innerHTML = '<option value="all">All areas</option>' + areas.map(function (area) {
+                return `<option value="${area}">${area}</option>`;
+            }).join("");
+
+            const data = window.creteTripData || {};
+            const itinerary = Array.isArray(data.itinerary) ? data.itinerary : [];
+            dayFilter.innerHTML = '<option value="all">All days</option>' + itinerary.map(function (day) {
+                return `<option value="${day.day}">Day ${day.day} — ${day.title}</option>`;
+            }).join("");
+        }
+
+        function renderDailyPanel() {
+            const selectedDay = document.getElementById("dayFilter").value;
+            const panel = document.getElementById("dailyRecommendationPanel");
+            const restaurants = getRestaurants();
+
+            if (selectedDay === "all") {
+                panel.innerHTML = `
+                    <div class="card-body">
+                        <p class="restaurant-section-label mb-1">Daily recommendations</p>
+                        <h2 class="fw-bold">Select a day to see 4–5 restaurant choices</h2>
+                        <p class="text-muted mb-0">The first restaurant shown for each day is the recommended match for the itinerary. The others are alternatives if the family prefers something else or if the first choice is full.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const ids = dailyRestaurantSuggestions[selectedDay] || [];
+            const suggestions = ids.map(function (id) { return restaurants.find(function (restaurant) { return restaurant.id === id; }); }).filter(Boolean);
+            const first = suggestions[0];
+
+            panel.innerHTML = `
+                <div class="card-body">
+                    <p class="restaurant-section-label mb-1">Day ${selectedDay} restaurant choices</p>
+                    <h2 class="fw-bold mb-3">${first ? "Recommended: " + first.name : "Restaurant suggestions"}</h2>
+                    ${first ? `<div class="summary-box mb-3"><strong>Why this is recommended:</strong> ${first.whyRecommended}</div>` : ""}
+                    <div>
+                        ${suggestions.map(function (restaurant, index) {
+                            return `<span class="restaurant-pill">${index === 0 ? "⭐ Recommended" : "Option " + (index + 1)}: ${restaurant.name}</span>`;
+                        }).join("")}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderRestaurants() {
+            const restaurants = getRestaurants();
+            const visited = getVisitedRestaurants();
+            const search = document.getElementById("restaurantSearch").value.toLowerCase().trim();
+            const selectedArea = document.getElementById("areaFilter").value;
+            const selectedBudget = document.getElementById("priceFilter").value;
+            const selectedRecommendation = document.getElementById("recommendationFilter").value;
+            const selectedDayIds = getSelectedDayIds();
+
+            let filtered = restaurants.filter(function (restaurant) {
+                const actualTotal = getRestaurantActualTotal(restaurant.id);
+                const text = Object.values(restaurant).join(" ").toLowerCase();
+                const matchesSearch = !search || text.includes(search);
+                const matchesArea = selectedArea === "all" || restaurant.area === selectedArea;
+                const matchesBudget = selectedBudget === "all" || restaurant.budget === selectedBudget;
+                const matchesDay = !selectedDayIds.length || selectedDayIds.includes(restaurant.id);
+                const matchesRecommendation = selectedRecommendation === "all" ||
+                    (selectedRecommendation === "recommended" && (restaurant.recommendationLevel === "recommended" || (selectedDayIds.length && selectedDayIds[0] === restaurant.id))) ||
+                    (selectedRecommendation === "alternative" && restaurant.recommendationLevel !== "recommended") ||
+                    (selectedRecommendation === "visited" && (visited[restaurant.id] || actualTotal > 0));
+
+                return matchesSearch && matchesArea && matchesBudget && matchesDay && matchesRecommendation;
+            });
+
+            if (selectedDayIds.length) {
+                filtered.sort(function (a, b) {
+                    return selectedDayIds.indexOf(a.id) - selectedDayIds.indexOf(b.id);
+                });
+            } else {
+                filtered.sort(function (a, b) {
+                    if (a.recommendationLevel === "recommended" && b.recommendationLevel !== "recommended") return -1;
+                    if (a.recommendationLevel !== "recommended" && b.recommendationLevel === "recommended") return 1;
+                    return (b.score || 0) - (a.score || 0);
+                });
+            }
+
+            document.getElementById("restaurantCards").innerHTML = filtered.map(function (restaurant) {
+                const actualTotal = getRestaurantActualTotal(restaurant.id);
+                const isVisited = visited[restaurant.id] || actualTotal > 0;
+                const isRecommended = restaurant.recommendationLevel === "recommended" || (selectedDayIds.length && selectedDayIds[0] === restaurant.id);
+                return `
+                    <div class="col-lg-6 restaurant-card-wrapper">
+                        <article class="card h-100 shadow-sm restaurant-card ${isVisited ? "visited-indicator" : ""}">
+                            <div class="restaurant-image-wrap">
+                                <img class="restaurant-image" src="${restaurant.image}" alt="Representative restaurant visual for ${restaurant.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80'">
+                                ${isRecommended ? `<span class="recommendation-ribbon">⭐ ${getRecommendationLabel(restaurant, selectedDayIds)}</span>` : ""}
+                                <div class="restaurant-badge-layer">
+                                    <span class="restaurant-image-label">Representative visual</span>
+                                    <span class="restaurant-score-label">${restaurant.score ? restaurant.score + "★" : "Score n/a"} ${restaurant.reviewCount ? "(" + restaurant.reviewCount + ")" : ""}</span>
+                                </div>
+                            </div>
+                            <div class="card-header bg-primary text-white">
+                                <strong>${restaurant.name}</strong>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <span class="badge text-bg-dark">${restaurant.area}</span>
+                                    <span class="badge text-bg-secondary">${restaurant.type}</span>
+                                    <span class="badge text-bg-warning">${restaurant.priceLevel || restaurant.budget}</span>
+                                    ${isVisited ? '<span class="badge text-bg-success">Visited</span>' : ''}
+                                </div>
+                                <p><strong>Quick summary:</strong> ${restaurant.reviewSummary || restaurant.highlights || "Restaurant details to verify."}</p>
+                                <p><strong>Best for:</strong> ${restaurant.recommendedFor || restaurant.bestFor || "Flexible meal option."}</p>
+                                <div class="row g-3 mt-2">
+                                    <div class="col-6 col-md-3"><div class="restaurant-meta-box"><small>Family cost</small><strong>${restaurant.familyCost || "To verify"}</strong></div></div>
+                                    <div class="col-6 col-md-3"><div class="restaurant-meta-box"><small>Actual spent</small><strong>${formatEuro(actualTotal)}</strong></div></div>
+                                    <div class="col-6 col-md-3"><div class="restaurant-meta-box"><small>Cuisine</small><strong>${restaurant.cuisine || "To verify"}</strong></div></div>
+                                    <div class="col-6 col-md-3"><div class="restaurant-meta-box"><small>Reserve?</small><strong>${restaurant.reservation || "Check"}</strong></div></div>
+                                </div>
+                            </div>
+                            <div class="card-footer d-flex flex-wrap gap-2 justify-content-between">
+                                <button class="btn btn-warning btn-sm" type="button" onclick="openRestaurantDetails('${restaurant.id}')">View details / add cost</button>
+                                <a class="btn btn-outline-primary btn-sm" href="${getDirectionsFromKamilariUrl(restaurant)}" target="_blank" rel="noopener noreferrer">Directions from Kamilari</a>
+                                <a class="btn btn-outline-secondary btn-sm" href="${getDirectionsFromCurrentLocationUrl(restaurant)}" target="_blank" rel="noopener noreferrer">From current location</a>
+                                <a class="btn btn-outline-dark btn-sm" href="${restaurant.mapUrl}" target="_blank" rel="noopener noreferrer">Map</a>
+                            </div>
+                        </article>
+                    </div>
+                `;
+            }).join("");
+        }
+
+        function renderMealCostForm(restaurant) {
+            const dayOptions = Object.keys(dailyRestaurantSuggestions).map(function (day) {
+                const selected = (dailyRestaurantSuggestions[day] || []).includes(restaurant.id) ? "selected" : "";
+                return `<option value="${day}" ${selected}>Day ${day}</option>`;
+            }).join("");
+
+            return `
+                <form id="mealCostForm" class="row g-3 mt-4">
+                    <input type="hidden" id="mealRestaurantId" value="${restaurant.id}">
+                    <div class="col-md-2">
+                        <label class="form-label fw-bold" for="mealDay">Day</label>
+                        <select id="mealDay" class="form-select">${dayOptions}</select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label fw-bold" for="mealDate">Date</label>
+                        <input id="mealDate" type="date" class="form-control">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label fw-bold" for="mealType">Meal</label>
+                        <select id="mealType" class="form-select">
+                            <option value="Dinner">Dinner</option>
+                            <option value="Lunch">Lunch</option>
+                            <option value="Snack">Snack</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label fw-bold" for="mealAmount">Cost €</label>
+                        <input id="mealAmount" type="number" min="0" step="0.01" class="form-control" required>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label fw-bold" for="mealRating">Our rating</label>
+                        <select id="mealRating" class="form-select">
+                            <option value="">n/a</option>
+                            <option value="5">5</option>
+                            <option value="4">4</option>
+                            <option value="3">3</option>
+                            <option value="2">2</option>
+                            <option value="1">1</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label fw-bold" for="mealNotes">Notes</label>
+                        <textarea id="mealNotes" class="form-control" rows="2" placeholder="What did we eat, was it worth it, would we return?"></textarea>
+                    </div>
+                    <div class="col-12 d-flex flex-wrap gap-2">
+                        <button class="btn btn-warning" type="submit">Save meal cost to budget</button>
+                        <a class="btn btn-outline-primary" href="budget.html">Open receipt scanner</a>
+                    </div>
+                </form>
+            `;
+        }
+
+        window.openRestaurantDetails = function (id) {
+            const restaurant = getRestaurants().find(function (item) { return item.id === id; });
+            if (!restaurant) return;
+
+            const actualTotal = getRestaurantActualTotal(restaurant.id);
+            document.getElementById("restaurantModalTitle").textContent = restaurant.name;
+            document.getElementById("restaurantModalBody").innerHTML = `
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div id="restaurantCarousel" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                ${(restaurant.photos || [restaurant.image]).map(function (photo, index) {
+                                    return `
+                                        <div class="carousel-item ${index === 0 ? "active" : ""}">
+                                            <img src="${photo}" class="modal-restaurant-image" alt="Representative restaurant photo ${index + 1}" onerror="this.src='https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80'">
+                                        </div>
+                                    `;
+                                }).join("")}
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#restaurantCarousel" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#restaurantCarousel" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button>
+                        </div>
+                        <p class="text-muted mt-2 mb-0">Images are representative placeholders unless replaced by local/official photos.</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3">
+                            <span class="restaurant-pill">${restaurant.area}</span>
+                            <span class="restaurant-pill">${restaurant.cuisine}</span>
+                            <span class="restaurant-pill">${restaurant.score || "n/a"}★ ${restaurant.reviewCount ? "(" + restaurant.reviewCount + " reviews)" : ""}</span>
+                            <span class="restaurant-pill">Actual spent: ${formatEuro(actualTotal)}</span>
+                        </div>
+                        <div class="summary-box mb-3"><strong>Why this is recommended:</strong><br>${restaurant.whyRecommended || "To be added."}</div>
+                        <p><strong>What to expect:</strong> ${restaurant.whatToExpect || "Restaurant details to verify."}</p>
+                        <p><strong>Review summary:</strong> ${restaurant.reviewSummary || "Review summary to verify."}</p>
+                        <p><strong>Menu note:</strong> ${restaurant.menuNote || "Check current menu before visiting."}</p>
+                        <p><strong>Family fit:</strong> ${restaurant.familyFit || "To verify."}</p>
+                        <p><strong>Estimated family cost:</strong> ${restaurant.familyCost || "To verify"}</p>
+                        <p><strong>Do not miss:</strong></p>
+                        <ul>${(restaurant.doNotMiss || []).map(function (item) { return `<li>${item}</li>`; }).join("")}</ul>
+                        <div class="d-flex flex-wrap gap-2 mt-3">
+                            <a class="btn btn-warning" href="${getDirectionsFromKamilariUrl(restaurant)}" target="_blank" rel="noopener noreferrer">Directions from Kamilari</a>
+                            <a class="btn btn-outline-primary" href="${getDirectionsFromCurrentLocationUrl(restaurant)}" target="_blank" rel="noopener noreferrer">Directions from current location</a>
+                            <a class="btn btn-outline-dark" href="${restaurant.mapUrl}" target="_blank" rel="noopener noreferrer">Open Google Maps</a>
+                            <a class="btn btn-outline-secondary" href="${restaurant.tripadvisorUrl || '#'}" target="_blank" rel="noopener noreferrer">Open Tripadvisor / photos</a>
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-4">
+                <h3 class="fw-bold">Visited + actual meal cost</h3>
+                <p class="text-muted">Saving this creates a Food expense in the same budget tracker used by budget.html.</p>
+                ${renderMealCostForm(restaurant)}
+            `;
+
+            const modal = new bootstrap.Modal(document.getElementById("restaurantModal"));
+            modal.show();
+
+            document.getElementById("mealCostForm").addEventListener("submit", function (event) {
+                event.preventDefault();
+                saveMealCost(restaurant);
+            });
+        };
+
+        function saveMealCost(restaurant) {
+            const expenses = getExpenses();
+            const expense = {
+                id: "meal-" + restaurant.id + "-" + Date.now(),
+                day: Number(document.getElementById("mealDay").value),
+                date: document.getElementById("mealDate").value,
+                category: "Food",
+                amount: Number(document.getElementById("mealAmount").value || 0),
+                merchant: restaurant.name,
+                restaurantId: restaurant.id,
+                description: document.getElementById("mealType").value + " at " + restaurant.name,
+                notes: document.getElementById("mealNotes").value.trim(),
+                rating: document.getElementById("mealRating").value
+            };
+
+            expenses.push(expense);
+            saveExpenses(expenses);
+
+            const visited = getVisitedRestaurants();
+            visited[restaurant.id] = {
+                visited: true,
+                lastVisitDate: expense.date,
+                lastAmount: expense.amount,
+                rating: expense.rating
+            };
+            saveVisitedRestaurants(visited);
+
+            renderDailyPanel();
+            renderRestaurants();
+            alert("Meal cost saved to budget tracker.");
+        }
+
+        function setupEvents() {
+            ["restaurantSearch", "dayFilter", "areaFilter", "priceFilter", "recommendationFilter"].forEach(function (id) {
+                document.getElementById(id).addEventListener("input", function () {
+                    renderDailyPanel();
+                    renderRestaurants();
+                });
+                document.getElementById(id).addEventListener("change", function () {
+                    renderDailyPanel();
+                    renderRestaurants();
+                });
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            populateFilters();
+            setupEvents();
+            renderDailyPanel();
+            renderRestaurants();
+        });
+    </script>
+</body>
+</html>
