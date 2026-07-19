@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<link href="css/mobile-unfreeze-override.css" rel="stylesheet">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1138,4 +1139,4 @@
     applyDarkMode(localStorage.getItem(storage.theme)||'light');const saved=localStorage.getItem(storage.day);if(saved&&(saved==='all'||document.getElementById(saved)))dayJump.value=saved;applyFilters(false);
   })();
   </script>
-</body></html>
+<script src="js/mobile-unfreeze-override.js"></script></body></html>
