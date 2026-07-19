@@ -1,0 +1,159 @@
+/* V13 Responsive Unfreeze Fix
+   Purpose: Daily Planner selector/filter scrolls away instead of staying fixed.
+   Also improves phone/tablet/desktop responsiveness. */
+
+/* Unfreeze the Daily Planner selector/filter panel */
+.planner-filter,
+#daySelectorPanel,
+.filters {
+  position: static !important;
+  top: auto !important;
+  z-index: auto !important;
+}
+
+/* Prevent day cards from hiding under any fixed element */
+.day-card {
+  scroll-margin-top: 1rem !important;
+}
+
+/* Desktop: keep proposed activity cards in 3 columns */
+.activity-options-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 1rem !important;
+}
+
+/* Tablet: top navbar scrolls away, 2-column proposed activities */
+@media (max-width: 991.98px) {
+  .navbar.fixed-top,
+  nav.fixed-top {
+    position: static !important;
+    top: auto !important;
+  }
+
+  .itinerary-hero,
+  .activities-hero,
+  header[style*="margin-top"] {
+    margin-top: 0 !important;
+  }
+
+  body {
+    padding-top: 0 !important;
+  }
+
+  .activity-options-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .planner-filter .card-body,
+  .card-body.p-4 {
+    padding: 1rem !important;
+  }
+}
+
+/* Phone: everything stacks vertically and no top fixed panels remain */
+@media (max-width: 767.98px) {
+  .navbar.fixed-top,
+  nav.fixed-top,
+  .planner-filter,
+  #daySelectorPanel,
+  .filters {
+    position: static !important;
+    top: auto !important;
+  }
+
+  .itinerary-hero,
+  .activities-hero {
+    margin-top: 0 !important;
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  .itinerary-hero .container,
+  .activities-hero .container {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  .planner-filter {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  .planner-filter .row,
+  .filter-card,
+  .row.g-3.align-items-end {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: .85rem !important;
+  }
+
+  .activity-options-grid,
+  .option-grid,
+  #activityCards {
+    grid-template-columns: 1fr !important;
+  }
+
+  .activity-option {
+    min-height: auto !important;
+    padding: .95rem !important;
+  }
+
+  .day-card {
+    margin-left: .25rem !important;
+    margin-right: .25rem !important;
+    border-radius: 18px !important;
+  }
+
+  .day-card h2 {
+    font-size: clamp(1.55rem, 7vw, 2.05rem) !important;
+    line-height: 1.12 !important;
+  }
+
+  .selected-activity-panel {
+    padding: .95rem !important;
+  }
+
+  .detail-box,
+  .rhythm-box {
+    min-height: auto !important;
+  }
+
+  .activity-actions .btn,
+  .d-flex.flex-wrap.gap-2.mt-3 .btn,
+  .activity-page-link,
+  .activity-page-link-2,
+  .view-details-btn {
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  .floating-day-actions {
+    right: 10px !important;
+    bottom: 10px !important;
+  }
+
+  .floating-day-menu {
+    right: 10px !important;
+    left: 10px !important;
+    width: auto !important;
+    bottom: 92px !important;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 430px) {
+  main .container,
+  .container,
+  .itinerary-page {
+    padding-left: .75rem !important;
+    padding-right: .75rem !important;
+  }
+
+  .display-4,
+  .hero-card h1,
+  .itinerary-hero h1,
+  .activities-hero h1 {
+    font-size: clamp(1.85rem, 10vw, 2.4rem) !important;
+  }
+}
