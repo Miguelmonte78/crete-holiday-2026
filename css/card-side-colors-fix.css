@@ -1,0 +1,141 @@
+/* Global card side-color system aligned with original app look */
+    .card,
+    .activity-option,
+    .rhythm-box,
+    .detail-box,
+    .selected-activity-panel,
+    .activity-meta-box,
+    .summary-box {
+      border-color: rgba(0,0,0,.08) !important;
+    }
+
+    /* Daily itinerary cards: make each day visibly color-coded instead of flat grey */
+    .day-card {
+      border-left: 8px solid #f4b942 !important;
+      border-top-left-radius: 18px !important;
+      border-bottom-left-radius: 18px !important;
+    }
+    .day-card[data-theme*="nature"],
+    .day-card[data-theme*="walking"] {
+      border-left-color: #6b8e23 !important;
+    }
+    .day-card[data-theme*="beach"],
+    .day-card[data-theme*="snorkeling"] {
+      border-left-color: #0077b6 !important;
+    }
+    .day-card[data-theme*="culture"],
+    .day-card[data-theme*="history"] {
+      border-left-color: #f4b942 !important;
+    }
+    .day-card[data-theme*="food"],
+    .day-card[data-theme*="village"] {
+      border-left-color: #c96f4a !important;
+    }
+    .day-card[data-theme*="departure"],
+    .day-card[data-theme*="practical"] {
+      border-left-color: #545857 !important;
+    }
+
+    /* Morning / lunch / evening structure boxes */
+    .row .col-md-4:nth-child(1) .rhythm-box,
+    .daily-structure > div:nth-child(1) {
+      border-left: 6px solid #f4b942 !important;
+    }
+    .row .col-md-4:nth-child(2) .rhythm-box,
+    .daily-structure > div:nth-child(2) {
+      border-left: 6px solid #0077b6 !important;
+    }
+    .row .col-md-4:nth-child(3) .rhythm-box,
+    .daily-structure > div:nth-child(3) {
+      border-left: 6px solid #6b8e23 !important;
+    }
+
+    /* Activity option cards: first choice / alternative / extra time */
+    .activity-options-grid .activity-option:nth-child(1),
+    .option-grid .activity-option:nth-child(1),
+    .option-grid .option-card:nth-child(1) {
+      border-left: 8px solid #6b8e23 !important;
+    }
+    .activity-options-grid .activity-option:nth-child(2),
+    .option-grid .activity-option:nth-child(2),
+    .option-grid .option-card:nth-child(2) {
+      border-left: 8px solid #0077b6 !important;
+    }
+    .activity-options-grid .activity-option:nth-child(3),
+    .option-grid .activity-option:nth-child(3),
+    .option-grid .option-card:nth-child(3) {
+      border-left: 8px solid #f4b942 !important;
+    }
+    .activity-option.active,
+    .activity-option.selected,
+    .option-card.selected {
+      border-left-width: 10px !important;
+      box-shadow: 0 .9rem 1.8rem rgba(0, 119, 182, .14) !important;
+    }
+
+    /* Selected activity detail panel and information boxes */
+    .selected-activity-panel,
+    .selected-activity {
+      border-left: 8px solid #f4b942 !important;
+    }
+    .detail-box:nth-of-type(1),
+    .info-grid > div:nth-child(1) {
+      border-left: 6px solid #f4b942 !important;
+    }
+    .detail-box:nth-of-type(2),
+    .info-grid > div:nth-child(2) {
+      border-left: 6px solid #0077b6 !important;
+    }
+    .detail-box:nth-of-type(3),
+    .info-grid > div:nth-child(3) {
+      border-left: 6px solid #6b8e23 !important;
+    }
+    .detail-box:nth-of-type(4),
+    .info-grid > div:nth-child(4) {
+      border-left: 6px solid #c96f4a !important;
+    }
+
+    /* Activities page card color bands */
+    #activityCards > .col-lg-6:nth-child(4n+1) article.card {
+      border-left: 8px solid #f4b942 !important;
+    }
+    #activityCards > .col-lg-6:nth-child(4n+2) article.card {
+      border-left: 8px solid #6b8e23 !important;
+    }
+    #activityCards > .col-lg-6:nth-child(4n+3) article.card {
+      border-left: 8px solid #0077b6 !important;
+    }
+    #activityCards > .col-lg-6:nth-child(4n+4) article.card {
+      border-left: 8px solid #c96f4a !important;
+    }
+
+    /* Homepage/menu cards if this CSS is reused on index.html */
+    .feature-card,
+    .dashboard-card,
+    .home-card,
+    .quick-card,
+    .trip-card {
+      border-left: 8px solid #f4b942 !important;
+      border-radius: 18px !important;
+    }
+    .feature-card:nth-child(2),
+    .dashboard-card:nth-child(2),
+    .home-card:nth-child(2),
+    .quick-card:nth-child(2),
+    .trip-card:nth-child(2) {
+      border-left-color: #6b8e23 !important;
+    }
+    .feature-card:nth-child(3),
+    .dashboard-card:nth-child(3),
+    .home-card:nth-child(3),
+    .quick-card:nth-child(3),
+    .trip-card:nth-child(3) {
+      border-left-color: #0077b6 !important;
+    }
+    .feature-card:nth-child(4),
+    .dashboard-card:nth-child(4),
+    .home-card:nth-child(4),
+    .quick-card:nth-child(4),
+    .trip-card:nth-child(4) {
+      border-left-color: #c96f4a !important;
+    }

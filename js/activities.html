@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Activities | Crete Family Holiday 2026</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<style>
+body{background:#fff8e9;}
+.activities-hero{background:linear-gradient(135deg,rgba(2,62,138,.92),rgba(0,119,182,.78));margin-top:56px;}
+.activity-section-label{letter-spacing:1.6px;font-size:.78rem;text-transform:uppercase;color:#0077b6;font-weight:800;}
+.activity-image{width:100%;height:230px;object-fit:cover;display:block;}
+.activity-image-wrap{position:relative;overflow:hidden;background:#d8e9ee;}
+.activity-ribbon{position:absolute;top:14px;left:14px;border-radius:999px;padding:.45rem .85rem;font-size:.76rem;font-weight:900;box-shadow:0 8px 20px rgba(0,0,0,.18);background:#f4b942;color:#222831;}
+.activity-image-label{position:absolute;left:14px;bottom:14px;background:rgba(34,40,49,.84);color:#fff;border-radius:999px;padding:.35rem .75rem;font-size:.72rem;font-weight:800;}
+.activity-pill{display:inline-block;padding:.35rem .75rem;border-radius:999px;background:rgba(0,119,182,.1);color:#023e8a;font-size:.8rem;font-weight:800;margin:.15rem;}
+.activity-meta-box{background:linear-gradient(180deg,#ffffff,#fffaf0);border:1px solid #e8dfcf;border-radius:14px;padding:.75rem;height:100%;}
+.activity-meta-box small{display:block;text-transform:uppercase;letter-spacing:.6px;font-size:.7rem;color:#6c757d;font-weight:800;margin-bottom:.2rem;}
+.activity-meta-box strong{color:#023e8a;}
+.summary-box{border-left:6px solid #f4b942;background:#fffaf0;border-radius:14px;padding:1rem;}
+.modal-activity-image{width:100%;height:390px;object-fit:cover;border-radius:18px;background:#eef4f7;}
+.activity-linked-highlight{outline:4px solid #f4b942;outline-offset:4px;border-radius:16px;}
+body.dark-mode{background:#111827;color:#e5eef5;}body.dark-mode .bg-light{background:#0f172a!important;}body.dark-mode .card,body.dark-mode .modal-content{background:#1f2937;color:#e5eef5;border-color:rgba(255,255,255,.16);}body.dark-mode .text-muted{color:#cbd5e1!important;}body.dark-mode .activity-meta-box,body.dark-mode .summary-box{background:#172033;color:#e5eef5;border-color:rgba(255,255,255,.16);}body.dark-mode .activity-meta-box strong{color:#90e0ef;}body.dark-mode .navbar.bg-dark{background:#111827!important;border-bottom:1px solid rgba(255,255,255,.12);}
+</style>
+  <!-- V7 FIX: force original light yellow / sand background on page load -->
+  <style id="v7-sand-background-fix">
+    html,
+    body,
+    main,
+    section,
+    .bg-light,
+    .planner-filter,
+    body.dark-mode,
+    body.dark-mode main,
+    body.dark-mode section,
+    body.dark-mode .bg-light,
+    body.dark-mode .planner-filter {
+      background: #fff8e9 !important;
+    }
+
+    body {
+      color: #1f2937;
+    }
+
+    body.dark-mode .card,
+    body.dark-mode .activity-option,
+    body.dark-mode .selected-activity-panel,
+    body.dark-mode .rhythm-box,
+    body.dark-mode .detail-box,
+    body.dark-mode .activity-meta-box,
+    body.dark-mode .summary-box,
+    body.dark-mode .modal-content {
+      background: #ffffff !important;
+      color: #1f2937 !important;
+      border-color: rgba(0,0,0,.12) !important;
+    }
+
+    body.dark-mode .text-muted,
+    body.dark-mode .activity-option small {
+      color: #6c757d !important;
+    }
+
+    body.dark-mode .activity-meta-box strong,
+    body.dark-mode .detail-box h5,
+    body.dark-mode .section-label {
+      color: #023e8a !important;
+    }
+  </style>
+  <script>
+    /* V7: always start itinerary/activities in original light sand mode */
+    localStorage.setItem('crete_dark_mode', 'light');
+    document.documentElement.classList.remove('dark-mode');
+  </script>
+
+
+  <!-- V8 FIX: restore colored side borders on cards -->
+  <style id="v8-card-side-color-fix">
+    /* Global card side-color system aligned with original app look */
+    .card,
+    .activity-option,
+    .rhythm-box,
+    .detail-box,
+    .selected-activity-panel,
+    .activity-meta-box,
+    .summary-box {
+      border-color: rgba(0,0,0,.08) !important;
+    }
+
+    /* Daily itinerary cards: make each day visibly color-coded instead of flat grey */
+    .day-card {
+      border-left: 8px solid #f4b942 !important;
+      border-top-left-radius: 18px !important;
+      border-bottom-left-radius: 18px !important;
+    }
+    .day-card[data-theme*="nature"],
+    .day-card[data-theme*="walking"] {
+      border-left-color: #6b8e23 !important;
+    }
+    .day-card[data-theme*="beach"],
+    .day-card[data-theme*="snorkeling"] {
+      border-left-color: #0077b6 !important;
+    }
+    .day-card[data-theme*="culture"],
+    .day-card[data-theme*="history"] {
+      border-left-color: #f4b942 !important;
+    }
+    .day-card[data-theme*="food"],
+    .day-card[data-theme*="village"] {
+      border-left-color: #c96f4a !important;
+    }
+    .day-card[data-theme*="departure"],
+    .day-card[data-theme*="practical"] {
+      border-left-color: #545857 !important;
+    }
+
+    /* Morning / lunch / evening structure boxes */
+    .row .col-md-4:nth-child(1) .rhythm-box,
+    .daily-structure > div:nth-child(1) {
+      border-left: 6px solid #f4b942 !important;
+    }
+    .row .col-md-4:nth-child(2) .rhythm-box,
+    .daily-structure > div:nth-child(2) {
+      border-left: 6px solid #0077b6 !important;
+    }
+    .row .col-md-4:nth-child(3) .rhythm-box,
+    .daily-structure > div:nth-child(3) {
+      border-left: 6px solid #6b8e23 !important;
+    }
+
+    /* Activity option cards: first choice / alternative / extra time */
+    .activity-options-grid .activity-option:nth-child(1),
+    .option-grid .activity-option:nth-child(1),
+    .option-grid .option-card:nth-child(1) {
+      border-left: 8px solid #6b8e23 !important;
+    }
+    .activity-options-grid .activity-option:nth-child(2),
+    .option-grid .activity-option:nth-child(2),
+    .option-grid .option-card:nth-child(2) {
+      border-left: 8px solid #0077b6 !important;
+    }
+    .activity-options-grid .activity-option:nth-child(3),
+    .option-grid .activity-option:nth-child(3),
+    .option-grid .option-card:nth-child(3) {
+      border-left: 8px solid #f4b942 !important;
+    }
+    .activity-option.active,
+    .activity-option.selected,
+    .option-card.selected {
+      border-left-width: 10px !important;
+      box-shadow: 0 .9rem 1.8rem rgba(0, 119, 182, .14) !important;
+    }
+
+    /* Selected activity detail panel and information boxes */
+    .selected-activity-panel,
+    .selected-activity {
+      border-left: 8px solid #f4b942 !important;
+    }
+    .detail-box:nth-of-type(1),
+    .info-grid > div:nth-child(1) {
+      border-left: 6px solid #f4b942 !important;
+    }
+    .detail-box:nth-of-type(2),
+    .info-grid > div:nth-child(2) {
+      border-left: 6px solid #0077b6 !important;
+    }
+    .detail-box:nth-of-type(3),
+    .info-grid > div:nth-child(3) {
+      border-left: 6px solid #6b8e23 !important;
+    }
+    .detail-box:nth-of-type(4),
+    .info-grid > div:nth-child(4) {
+      border-left: 6px solid #c96f4a !important;
+    }
+
+    /* Activities page card color bands */
+    #activityCards > .col-lg-6:nth-child(4n+1) article.card {
+      border-left: 8px solid #f4b942 !important;
+    }
+    #activityCards > .col-lg-6:nth-child(4n+2) article.card {
+      border-left: 8px solid #6b8e23 !important;
+    }
+    #activityCards > .col-lg-6:nth-child(4n+3) article.card {
+      border-left: 8px solid #0077b6 !important;
+    }
+    #activityCards > .col-lg-6:nth-child(4n+4) article.card {
+      border-left: 8px solid #c96f4a !important;
+    }
+
+    /* Homepage/menu cards if this CSS is reused on index.html */
+    .feature-card,
+    .dashboard-card,
+    .home-card,
+    .quick-card,
+    .trip-card {
+      border-left: 8px solid #f4b942 !important;
+      border-radius: 18px !important;
+    }
+    .feature-card:nth-child(2),
+    .dashboard-card:nth-child(2),
+    .home-card:nth-child(2),
+    .quick-card:nth-child(2),
+    .trip-card:nth-child(2) {
+      border-left-color: #6b8e23 !important;
+    }
+    .feature-card:nth-child(3),
+    .dashboard-card:nth-child(3),
+    .home-card:nth-child(3),
+    .quick-card:nth-child(3),
+    .trip-card:nth-child(3) {
+      border-left-color: #0077b6 !important;
+    }
+    .feature-card:nth-child(4),
+    .dashboard-card:nth-child(4),
+    .home-card:nth-child(4),
+    .quick-card:nth-child(4),
+    .trip-card:nth-child(4) {
+      border-left-color: #c96f4a !important;
+    }
+  </style>
+
+  <!-- V10 UX POLISH: clean single accents + reliable selected activity text updates -->
+  <style id="v10-ux-polish-final">
+    /* Senior UI/UX cleanup: remove previous experimental double bars */
+    .day-card::before,
+    #activityCards article.card::before,
+    .rhythm-box::before,
+    .detail-box::before,
+    .selected-activity-panel::before,
+    .full-details::before,
+    .activity-option::before,
+    .activity-option::after {
+      display: none !important;
+      content: none !important;
+    }
+
+    /* Keep the original warm app canvas */
+    html,
+    body,
+    main,
+    section,
+    .bg-light,
+    .planner-filter,
+    body.dark-mode,
+    body.dark-mode main,
+    body.dark-mode section,
+    body.dark-mode .bg-light,
+    body.dark-mode .planner-filter {
+      background: #fff8e9 !important;
+    }
+
+    /* Design tokens for a cleaner, premium, consistent look */
+    :root {
+      --ux-gold: #f4b942;
+      --ux-green: #6b8e23;
+      --ux-blue: #0077b6;
+      --ux-terracotta: #c96f4a;
+      --ux-grey: #545857;
+      --ux-card: #ffffff;
+      --ux-ink: #132238;
+      --ux-muted: #617282;
+      --ux-line: rgba(19, 34, 56, .10);
+      --ux-shadow: 0 .75rem 1.8rem rgba(19, 34, 56, .08);
+      --ux-shadow-strong: 0 1.2rem 2.6rem rgba(19, 34, 56, .16);
+    }
+
+    /* Main day cards: one elegant side accent only, no duplicate stripe */
+    .day-card {
+      --day-accent: var(--ux-gold);
+      border: 1px solid var(--ux-line) !important;
+      border-left: 7px solid var(--day-accent) !important;
+      border-radius: 22px !important;
+      background: var(--ux-card) !important;
+      box-shadow: var(--ux-shadow) !important;
+      overflow: hidden !important;
+    }
+    .day-card[data-theme*="nature"],
+    .day-card[data-theme*="walking"] { --day-accent: var(--ux-green); }
+    .day-card[data-theme*="beach"],
+    .day-card[data-theme*="snorkeling"] { --day-accent: var(--ux-blue); }
+    .day-card[data-theme*="food"],
+    .day-card[data-theme*="village"] { --day-accent: var(--ux-terracotta); }
+    .day-card[data-theme*="departure"],
+    .day-card[data-theme*="practical"] { --day-accent: var(--ux-grey); }
+
+    /* Rhythm and detail cards: uniform clean left accent, not thick/double */
+    .rhythm-box,
+    .detail-box,
+    .full-details {
+      border: 1px solid var(--ux-line) !important;
+      border-left: 5px solid var(--box-accent, var(--ux-gold)) !important;
+      border-radius: 14px !important;
+      background: #ffffff !important;
+      box-shadow: none !important;
+      color: var(--ux-ink) !important;
+    }
+    .row.g-3 > .col-md-4:nth-child(1) .rhythm-box { --box-accent: var(--ux-gold); }
+    .row.g-3 > .col-md-4:nth-child(2) .rhythm-box { --box-accent: var(--ux-blue); }
+    .row.g-3 > .col-md-4:nth-child(3) .rhythm-box { --box-accent: var(--ux-green); }
+    .selected-activity-panel .row.g-3 > .col-md-6:nth-child(1) .detail-box { --box-accent: var(--ux-gold); }
+    .selected-activity-panel .row.g-3 > .col-md-6:nth-child(2) .detail-box { --box-accent: var(--ux-blue); }
+    .selected-activity-panel .row.g-3 > .col-md-6:nth-child(3) .detail-box { --box-accent: var(--ux-green); }
+    .selected-activity-panel .row.g-3 > .col-md-6:nth-child(4) .detail-box { --box-accent: var(--ux-terracotta); }
+
+    /* Proposed option cards: compact accent bar embedded in border, no double bar */
+    .activity-option {
+      --choice-accent: var(--ux-green);
+      position: relative !important;
+      border: 1px solid var(--ux-line) !important;
+      border-left: 5px solid var(--choice-accent) !important;
+      border-radius: 16px !important;
+      background: #ffffff !important;
+      color: var(--ux-ink) !important;
+      box-shadow: 0 .35rem 1rem rgba(19, 34, 56, .06) !important;
+      transform: none !important;
+      opacity: 1 !important;
+      filter: none !important;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease !important;
+    }
+    .activity-options-grid .activity-option:nth-child(1) { --choice-accent: var(--ux-green); }
+    .activity-options-grid .activity-option:nth-child(2) { --choice-accent: var(--ux-blue); }
+    .activity-options-grid .activity-option:nth-child(3) { --choice-accent: var(--ux-gold); }
+
+    .activity-option:hover,
+    .activity-option:focus {
+      transform: translateY(-3px) !important;
+      box-shadow: var(--ux-shadow) !important;
+    }
+
+    /* Premium selected state: selected comes forward, others stay elegant and readable */
+    .activity-options-grid.has-selection .activity-option:not(.active) {
+      opacity: .72 !important;
+      background: #fbfbfb !important;
+      box-shadow: 0 .25rem .7rem rgba(19, 34, 56, .04) !important;
+      transform: none !important;
+      filter: saturate(.88) !important;
+    }
+    .activity-option.active {
+      opacity: 1 !important;
+      transform: translateY(-6px) !important;
+      background: linear-gradient(180deg, #ffffff 0%, #fffdf7 100%) !important;
+      border: 2px solid color-mix(in srgb, var(--choice-accent) 70%, #ffffff) !important;
+      border-left: 7px solid var(--choice-accent) !important;
+      box-shadow: var(--ux-shadow-strong) !important;
+      z-index: 5 !important;
+    }
+
+    .activity-option.active .option-tag,
+    .activity-option.active span:first-child {
+      background: var(--choice-accent) !important;
+      color: #ffffff !important;
+    }
+    .activity-options-grid .activity-option:nth-child(3).active .option-tag,
+    .activity-options-grid .activity-option:nth-child(3).active span:first-child {
+      color: #1f2937 !important;
+    }
+
+    .activity-option strong {
+      color: #003b73 !important;
+    }
+    .activity-option small,
+    .selected-short,
+    .detail-box p,
+    .rhythm-box p {
+      color: var(--ux-muted) !important;
+    }
+
+    /* Selected activity panel changes accent color based on selected option */
+    .selected-activity-panel {
+      --selected-accent: var(--ux-green);
+      border: 1px solid var(--ux-line) !important;
+      border-left: 7px solid var(--selected-accent) !important;
+      border-radius: 18px !important;
+      background: #ffffff !important;
+      box-shadow: 0 .8rem 2rem rgba(19, 34, 56, .07) !important;
+      color: var(--ux-ink) !important;
+    }
+    .day-card.selected-first-choice .selected-activity-panel { --selected-accent: var(--ux-green); }
+    .day-card.selected-alternative .selected-activity-panel { --selected-accent: var(--ux-blue); }
+    .day-card.selected-extra-time .selected-activity-panel { --selected-accent: var(--ux-gold); }
+
+    .selected-tag {
+      background: var(--selected-accent) !important;
+      color: #ffffff !important;
+    }
+    .day-card.selected-extra-time .selected-tag {
+      color: #1f2937 !important;
+    }
+
+    /* Activities page cards keep the same clean single strip */
+    #activityCards article.card {
+      border: 1px solid var(--ux-line) !important;
+      border-left: 7px solid var(--ux-gold) !important;
+      border-radius: 22px !important;
+      background: #ffffff !important;
+      box-shadow: var(--ux-shadow) !important;
+    }
+    #activityCards > .col-lg-6:nth-child(4n+2) article.card { border-left-color: var(--ux-green) !important; }
+    #activityCards > .col-lg-6:nth-child(4n+3) article.card { border-left-color: var(--ux-blue) !important; }
+    #activityCards > .col-lg-6:nth-child(4n+4) article.card { border-left-color: var(--ux-terracotta) !important; }
+
+    /* Keep dark mode readable if toggled, but do not force an all-dark body */
+    body.dark-mode .day-card,
+    body.dark-mode .activity-option,
+    body.dark-mode .selected-activity-panel,
+    body.dark-mode .rhythm-box,
+    body.dark-mode .detail-box,
+    body.dark-mode .full-details,
+    body.dark-mode #activityCards article.card {
+      background: #ffffff !important;
+      color: var(--ux-ink) !important;
+    }
+  </style>
+  <script id="v10-selection-text-fix-script">
+    document.addEventListener('DOMContentLoaded', function () {
+      const aliasMap = {
+        'phaistos-palace': 'phaistos-palace',
+        'agia-triada': 'agia-triada',
+        'matala-caves': 'matala-evening',
+        'matala-beach': 'matala-evening',
+        'red-beach': 'matala-evening',
+        'kommos-beach': 'kommos-beach',
+        'kalamaki-beach': 'kalamaki-beach',
+        'agiofarago-gorge': 'agiofarago',
+        'agiofarago': 'agiofarago',
+        'zaros-lake': 'zaros-lake',
+        'gortyna': 'gortyna',
+        'agia-galini': 'agia-galini',
+        'triopetra-beach': 'triopetra',
+        'triopetra': 'triopetra'
+      };
+
+      function selectedClassFromTag(tagText) {
+        const value = String(tagText || '').toLowerCase();
+        if (value.includes('alternative')) return 'selected-alternative';
+        if (value.includes('extra')) return 'selected-extra-time';
+        return 'selected-first-choice';
+      }
+
+      function updateSelectedActivityPanel(button) {
+        const dayCard = button.closest('.day-card');
+        if (!dayCard) return;
+        const grid = button.closest('.activity-options-grid');
+        const panel = dayCard.querySelector('.selected-activity-panel');
+        if (!panel) return;
+
+        if (grid) {
+          grid.classList.add('has-selection');
+          grid.querySelectorAll('.activity-option').forEach(function (option) {
+            option.classList.toggle('active', option === button);
+          });
+        }
+
+        dayCard.classList.remove('selected-first-choice', 'selected-alternative', 'selected-extra-time');
+        dayCard.classList.add(selectedClassFromTag(button.dataset.tag || button.textContent));
+
+        const title = button.dataset.title || button.querySelector('strong')?.textContent || 'Selected activity';
+        const tag = button.dataset.tag || button.querySelector('.option-tag')?.textContent || 'Selected';
+        const short = button.dataset.short || button.querySelector('small')?.textContent || '';
+        const what = button.dataset.what || '';
+        const why = button.dataset.why || '';
+        const see = button.dataset.see || '';
+        const tip = button.dataset.tip || '';
+        const full = button.dataset.full || '';
+        const activityId = aliasMap[button.dataset.activityId] || button.dataset.activityId || '';
+        const link = activityId ? 'activities.html?open=details&activity=' + encodeURIComponent(activityId) + '#' + encodeURIComponent(activityId) : 'activities.html';
+
+        const selectedTag = panel.querySelector('.selected-tag');
+        const selectedTitle = panel.querySelector('.selected-title');
+        const selectedShort = panel.querySelector('.selected-short');
+        const selectedWhat = panel.querySelector('.selected-what');
+        const selectedWhy = panel.querySelector('.selected-why');
+        const selectedSee = panel.querySelector('.selected-see');
+        const selectedTip = panel.querySelector('.selected-tip');
+        const selectedFull = panel.querySelector('.selected-full');
+
+        if (selectedTag) selectedTag.textContent = tag;
+        if (selectedTitle) selectedTitle.textContent = title;
+        if (selectedShort) selectedShort.textContent = short;
+        if (selectedWhat) selectedWhat.textContent = what;
+        if (selectedWhy) selectedWhy.textContent = why;
+        if (selectedSee) selectedSee.textContent = see;
+        if (selectedTip) selectedTip.textContent = tip;
+        if (selectedFull) selectedFull.textContent = full;
+
+        panel.querySelectorAll('.activity-page-link, .activity-page-link-2').forEach(function (anchor) {
+          anchor.href = link;
+        });
+      }
+
+      /* Use event delegation so this works even if earlier scripts modified the DOM */
+      document.addEventListener('click', function (event) {
+        const button = event.target.closest('.activity-option');
+        if (!button) return;
+        window.setTimeout(function () {
+          updateSelectedActivityPanel(button);
+        }, 0);
+      });
+
+      /* Initialize every day with its active option, or first option if none is active */
+      document.querySelectorAll('.day-card').forEach(function (dayCard) {
+        const button = dayCard.querySelector('.activity-option.active') || dayCard.querySelector('.activity-option');
+        if (button) updateSelectedActivityPanel(button);
+      });
+    });
+  </script>
+
+
+  <!-- V11 CONTENT FIX: replace generic options with real proposed activities -->
+  <script id="v11-real-proposed-activities-fix">
+    document.addEventListener('DOMContentLoaded', function () {
+      const activityOptionsByDay = {
+        'day-1': [
+          ['First choice','Kamilari village walk','kamilari-walk','Gentle arrival-day orientation walk close to the apartment.','A short local walk through Kamilari to understand the village layout, nearby tavernas, parking and useful shops after arrival.','Recommended because arrival days are unpredictable. It keeps the first evening low-stress, low-cost and close to the apartment.','Village streets, local tavernas, views across the Messara plain and the first relaxed feeling of South Crete.','Buy water and breakfast items first, then keep the walk short and easy.','Use this first evening to identify parking, groceries, the easiest route back to the apartment and one reliable nearby dinner option.'],
+          ['Alternative','Kalamaki sunset','kalamaki-beach','Short coastal sunset outing if arrival was smooth.','A quick drive to Kalamaki for a first sea view, sunset and simple seaside atmosphere.','Good if the flight, car pickup and check-in were easy and everyone still has energy.','Long beach, sunset light, seaside tavernas and a relaxed first contact with the Libyan Sea.','Skip this if arrival is delayed or anyone is tired.','This option gives an immediate holiday feeling but should remain optional.'],
+          ['Alternative','Pitsidia dinner','kamilari-walk','Nearby village dinner with a little more atmosphere.','A nearby village dinner option with more restaurant choice while still staying close to Kamilari.','Useful if Kamilari feels too quiet on the first evening and the family wants more atmosphere without a long drive.','Village square, tavernas and simple local evening life.','Go after 19:00 when it is cooler.','Keep this as a food-focused alternative: dinner, short walk and back to the apartment.']
+        ],
+        'day-2': [
+          ['First choice','Kommos Beach','kommos-beach','Natural beach close to Kamilari for the first full day.','A wide, natural beach with open coastline, space to relax and possible calm-water swimming/snorkeling.','Recommended because it is close, low-cost and ideal for easing into the trip without overplanning.','Long sandy beach, natural coastline, open sea views and a quieter atmosphere than busier beach villages.','Bring shade, water and snacks because the beach can feel exposed.','Arrive early, swim if the sea is calm, then leave before peak heat for lunch and apartment rest.'],
+          ['Alternative','Kalamaki Beach','kalamaki-beach','Easier beach with food and facilities nearby.','A more convenient beach option with tavernas, toilets and easier family logistics close by.','Better if the family wants comfort, food access and easier services rather than a more natural beach.','Sandy beach, cafés, tavernas and a relaxed seaside village setting.','Good for late afternoon and dinner after 17:00.','Use Kalamaki when convenience matters more than wild scenery or when Kommos feels too windy.'],
+          ['Alternative','Matala Village and Beach','matala-evening','Livelier beach village with caves, shops and restaurants.','A classic South Crete village/beach option with visible caves, restaurants and a more touristy atmosphere.','Good if the family wants more than a beach day and prefers a lively village with things to see.','Matala bay, caves from the beach, colorful streets, shops and restaurants.','Choose this later in the afternoon if the heat is strong.','This makes the day more active and atmospheric than Kommos or Kalamaki, but it may be busier.']
+        ],
+        'day-3': [
+          ['First choice','Matala Caves','matala-evening','Iconic cave and beach setting with village atmosphere.','A visit to Matala’s famous cliff caves and the surrounding beach village.','Recommended because it combines culture, short exploration, sea views and a memorable setting for the kids.','Cave cliffs, Matala beach, colorful streets, murals, shops and food options.','Go early for the caves, then decide whether to swim or explore the village.','Do the caves before the strongest heat, then use the rest of Matala as flexible beach/village time.'],
+          ['Alternative','Kommos Beach sunset','kommos-beach','Quieter coastal alternative if Matala feels too busy.','A relaxed beach alternative with wide open views and less village activity.','Useful if Matala is too crowded or the family wants a quieter beach experience.','Open coastline, sunset possibilities and broad natural beach scenery.','Check wind before choosing this option.','This keeps the day simple and scenic while avoiding the busier Matala atmosphere.'],
+          ['Alternative','Kalamaki dinner by the sea','kalamaki-beach','Easy evening option with food close to the beach.','A comfortable food-and-sea alternative focused on dinner near the coast.','Good if the family wants an easy evening without more sightseeing.','Beachfront tavernas, sea views and relaxed evening atmosphere.','Use it after apartment rest, not during peak heat.','This still feels like a holiday evening without requiring much effort.']
+        ],
+        'day-4': [
+          ['First choice','Phaistos Palace','phaistos-palace','Major Minoan palace site close to Kamilari.','An important Minoan palace site with wide views over the Messara plain and strong historical value.','Recommended because it is close, culturally important and easier than a full Heraklion or Knossos day.','Ancient courtyards, palace remains, stone structures, stairways and panoramic views over the plain.','Visit early and bring hats and water because shade is limited.','Keep the visit focused: explain the Minoan palace story, enjoy the views and return for lunch/rest before the heat becomes too strong.'],
+          ['Alternative','Agia Triada Archaeological Site','agia-triada','Smaller nearby archaeological add-on.','A quieter Minoan archaeological site near Phaistos that can add context to the palace landscape.','Good if the family is still interested in archaeology and the weather is manageable.','Compact ruins, countryside setting and a quieter historic atmosphere than Phaistos.','Only add this if Phaistos finishes early and everyone still has energy.','Agia Triada should enrich the history day, not make it too heavy. Skip it if heat or fatigue is building.'],
+          ['Alternative','Matala village later in the day','matala-evening','Beach village option after culture and rest.','A late-day Matala visit for sea views, village atmosphere, restaurants and the caves backdrop.','Good if the family wants a cultural morning and a more relaxed coastal evening.','Matala beach, cave cliffs, shops, restaurants and sunset atmosphere.','Go after apartment rest when the heat drops.','This pairing works well: Phaistos early, rest during heat, Matala as the evening reward.']
+        ],
+        'day-5': [
+          ['First choice','Ancient Gortyna','gortyna','Roman and ancient site in the Messara region.','An important ancient city site that adds Roman and law-code history to the trip.','Recommended because it broadens the cultural story beyond Minoan palaces and stays within a realistic drive.','Outdoor ruins, inscriptions, Roman-era remains and archaeological structures.','Go in the morning and keep the visit concise.','Use this as a focused cultural stop, then combine with lunch or a practical town stop before rest.'],
+          ['Alternative','Zaros Lake','zaros-lake','Cooler inland nature option if culture feels too much.','A peaceful lake and village area in the foothills with a short walk and food options.','Good if the family wants nature and cooler scenery instead of another archaeological site.','Lake views, trees, mountain atmosphere and local tavernas.','Go morning or late afternoon and keep the walk short.','Zaros gives variety and a quieter rhythm after several coastal or cultural days.'],
+          ['Alternative','Kommos Beach','kommos-beach','Simple beach fallback close to Kamilari.','A flexible beach option when archaeology or driving feels too much.','Useful because it keeps the day low-cost and easy to adjust.','Open coastline, sea views and sunset potential.','Check wind and bring shade.','Kommos keeps the day enjoyable without forcing another cultural stop.']
+        ],
+        'day-6': [
+          ['First choice','Agiofarago Gorge','agiofarago','Short dramatic gorge walk with a wild beach reward.','A nature adventure through a dramatic gorge leading toward a remote-feeling beach.','Recommended because it matches nature, adventure and short-walk preferences.','Rock walls, goats, rugged scenery and a wild beach at the end.','Start very early, bring water, proper shoes and snacks.','Treat this as a premium nature day. If heat, wind or road conditions are not good, choose a softer alternative.'],
+          ['Alternative','Matala Beach and village','matala-evening','Comfortable backup with beach, food and facilities.','A safer and easier coastal alternative with restaurants, shops and beach access.','Right alternative if Agiofarago feels too hot, remote or difficult on the day.','Matala bay, cave cliffs, village streets and restaurants.','Use this without feeling the day failed; it is still a strong South Crete experience.','Matala protects the day from weather or energy issues while still giving the family a memorable outing.'],
+          ['Alternative','Kommos Beach','kommos-beach','Low-cost natural beach alternative close to base.','A simpler natural beach day with less driving and more flexibility.','Useful if the family wants to stay closer to Kamilari while still enjoying a scenic beach.','Open sea, long beach, natural coastline and sunset potential.','Check wind and bring shade.','Kommos is the low-stress fallback when the main adventure feels too much.']
+        ],
+        'day-7': [
+          ['First choice','Zaros Lake','zaros-lake','Cooler inland lake walk and village food.','A peaceful lake and village area in the foothills, good for a short nature walk and lunch.','Recommended because it gives a cooler inland contrast to beach days and fits the short-walk preference.','Lake views, trees, mountain scenery and tavernas nearby.','Use this as a reset day after busier coastal or cultural days.','Keep the walk flexible and focus on scenery, lunch and a calmer rhythm.'],
+          ['Alternative','Gortyna archaeological site','gortyna','Culture alternative if the family wants history.','An ancient site offering a different historical period from the Minoan palace sites.','Good alternative if the family prefers culture over inland nature on the day.','Outdoor ruins, inscriptions and Roman-era remains.','Only choose this early morning because it is exposed.','Use it as a short focused cultural visit rather than a long museum-style day.'],
+          ['Alternative','Kommos sunset','kommos-beach','Easy evening beach alternative after a quiet day.','A short late-day beach option close to Kamilari.','Useful if the family wants to add a simple sea moment after a rest-heavy day.','Open beach, sunset light and natural coastline.','Go after 17:00 and keep it simple.','A short sunset visit can make a quiet day feel complete without adding pressure.']
+        ]
+      };
+
+      const fallback = [
+        ['First choice','Kommos Beach','kommos-beach','Natural beach option close to Kamilari.','A spacious beach with natural scenery and possible calm-water swimming.','Recommended because it is close, low-cost and flexible.','Open coastline, sea views and quiet beach space.','Check wind and bring shade.','Use Kommos as the default simple beach option when the plan needs flexibility.'],
+        ['Alternative','Kalamaki Beach','kalamaki-beach','Convenient serviced beach option.','A beach with nearby food and easier family logistics.','Useful when comfort and facilities matter more than wild scenery.','Beach, cafes and tavernas.','Good later in the afternoon.','Kalamaki is the practical fallback beach.'],
+        ['Alternative','Matala Village and Beach','matala-evening','Livelier village, caves and beach.','A classic South Crete village/beach experience.','Useful if the family wants more atmosphere and food options.','Beach, cave cliffs, shops and restaurants.','Go later in the day.','Matala adds atmosphere but can be busier.']
+      ];
+
+      function optionArrayToObject(arr) {
+        return { tag: arr[0], title: arr[1], activityId: arr[2], short: arr[3], what: arr[4], why: arr[5], see: arr[6], tip: arr[7], full: arr[8] };
+      }
+
+      function getOptions(dayCard) {
+        return (activityOptionsByDay[dayCard.id] || fallback).map(optionArrayToObject);
+      }
+
+      function applyOptionToButton(button, option) {
+        button.dataset.tag = option.tag;
+        button.dataset.title = option.title;
+        button.dataset.activityId = option.activityId;
+        button.dataset.short = option.short;
+        button.dataset.what = option.what;
+        button.dataset.why = option.why;
+        button.dataset.see = option.see;
+        button.dataset.tip = option.tip;
+        button.dataset.full = option.full;
+        const tagEl = button.querySelector('.option-tag') || button.querySelector('span');
+        const titleEl = button.querySelector('strong');
+        const shortEl = button.querySelector('small');
+        if (tagEl) tagEl.textContent = option.tag;
+        if (titleEl) titleEl.textContent = option.title;
+        if (shortEl) shortEl.textContent = option.short;
+      }
+
+      function selectedClassFromTag(tagText) {
+        const value = String(tagText || '').toLowerCase();
+        if (value.includes('alternative')) return 'selected-alternative';
+        if (value.includes('extra')) return 'selected-extra-time';
+        return 'selected-first-choice';
+      }
+
+      function updatePanel(button) {
+        const dayCard = button.closest('.day-card');
+        if (!dayCard) return;
+        const panel = dayCard.querySelector('.selected-activity-panel');
+        const grid = button.closest('.activity-options-grid');
+        if (!panel) return;
+        if (grid) {
+          grid.classList.add('has-selection');
+          grid.querySelectorAll('.activity-option').forEach(option => option.classList.toggle('active', option === button));
+        }
+        dayCard.classList.remove('selected-first-choice', 'selected-alternative', 'selected-extra-time');
+        dayCard.classList.add(selectedClassFromTag(button.dataset.tag));
+        const mapping = {
+          '.selected-tag': button.dataset.tag,
+          '.selected-title': button.dataset.title,
+          '.selected-short': button.dataset.short,
+          '.selected-what': button.dataset.what,
+          '.selected-why': button.dataset.why,
+          '.selected-see': button.dataset.see,
+          '.selected-tip': button.dataset.tip,
+          '.selected-full': button.dataset.full
+        };
+        Object.keys(mapping).forEach(selector => {
+          const el = panel.querySelector(selector);
+          if (el) el.textContent = mapping[selector] || '';
+        });
+        const activityId = button.dataset.activityId || '';
+        const link = activityId ? 'activities.html?open=details&activity=' + encodeURIComponent(activityId) + '#' + encodeURIComponent(activityId) : 'activities.html';
+        panel.querySelectorAll('.activity-page-link, .activity-page-link-2').forEach(anchor => anchor.href = link);
+      }
+
+      document.querySelectorAll('.day-card').forEach(dayCard => {
+        const options = getOptions(dayCard);
+        const buttons = Array.from(dayCard.querySelectorAll('.activity-option'));
+        buttons.forEach((button, index) => {
+          applyOptionToButton(button, options[index] || options[0]);
+          button.classList.toggle('active', index === 0);
+        });
+        if (buttons[0]) updatePanel(buttons[0]);
+      });
+
+      document.addEventListener('click', function (event) {
+        const button = event.target.closest('.activity-option');
+        if (!button) return;
+        setTimeout(() => updatePanel(button), 0);
+      });
+    });
+  </script>
+
+
+  <!-- V12 SELECTOR SYNC FIX: day selector title/content/proposed activities aligned -->
+  <script id="v12-selector-content-sync-fix">
+    document.addEventListener('DOMContentLoaded', function () {
+      const syncedDayPlan = {"day-1": {"day": 1, "date": "21 Jul", "title": "Arrival & settle in Kamilari", "theme": "arrival village family food", "summary": "Arrival day focused on transfer, check-in, groceries and a relaxed first evening.", "morning": "Arrive at Heraklion Airport, collect the rental car and drive carefully to Kamilari.", "lunch": "Keep food simple: airport snacks, supermarket stop or a light meal after check-in.", "evening": "Walk through Kamilari, identify easy parking and choose a nearby taverna.", "options": [{"tag": "First choice", "title": "Kamilari village walk", "activityId": "kamilari-walk", "short": "Gentle arrival-day orientation walk close to the apartment.", "what": "A short local walk through Kamilari to understand the village layout, nearby tavernas, parking and useful shops after arrival.", "why": "Recommended because arrival days are unpredictable. It keeps the first evening low-stress, low-cost and close to the apartment.", "see": "Village streets, local tavernas, views across the Messara plain and the first relaxed feeling of South Crete.", "tip": "Buy water and breakfast items first, then keep the walk short and easy.", "full": "Use this first evening to identify parking, groceries, the easiest route back to the apartment and one reliable nearby dinner option."}, {"tag": "Alternative", "title": "Kalamaki sunset", "activityId": "kalamaki-beach", "short": "Short coastal sunset outing if arrival was smooth.", "what": "A quick drive to Kalamaki for a first sea view, sunset and simple seaside atmosphere.", "why": "Good if the flight, car pickup and check-in were easy and everyone still has energy.", "see": "Long beach, sunset light, seaside tavernas and a relaxed first contact with the Libyan Sea.", "tip": "Skip this if arrival is delayed or anyone is tired.", "full": "This option gives an immediate holiday feeling but should remain optional."}, {"tag": "Alternative", "title": "Pitsidia dinner", "activityId": "kamilari-walk", "short": "Nearby village dinner with a little more atmosphere.", "what": "A nearby village dinner option with more restaurant choice while still staying close to Kamilari.", "why": "Useful if Kamilari feels too quiet on the first evening and the family wants more atmosphere without a long drive.", "see": "Village square, tavernas and simple local evening life.", "tip": "Go after 19:00 when it is cooler.", "full": "Keep this as a food-focused alternative: dinner, short walk and back to the apartment."}]}, "day-2": {"day": 2, "date": "22 Jul", "title": "Kommos & Kalamaki beach rhythm", "theme": "beach family snorkeling easy", "summary": "Nearby beach day, lunch, apartment rest and easy evening.", "morning": "Go early to a nearby beach before the strongest heat.", "lunch": "Lunch near the coast or return to the apartment for a simple meal and rest.", "evening": "Short dinner outing after 17:00, depending on energy and sea conditions.", "options": [{"tag": "First choice", "title": "Kommos Beach", "activityId": "kommos-beach", "short": "Natural beach close to Kamilari for the first full day.", "what": "A wide, natural beach with open coastline, space to relax and possible calm-water swimming/snorkeling.", "why": "Recommended because it is close, low-cost and ideal for easing into the trip without overplanning.", "see": "Long sandy beach, natural coastline, open sea views and a quieter atmosphere than busier beach villages.", "tip": "Bring shade, water and snacks because the beach can feel exposed.", "full": "Arrive early, swim if the sea is calm, then leave before peak heat for lunch and apartment rest."}, {"tag": "Alternative", "title": "Kalamaki Beach", "activityId": "kalamaki-beach", "short": "Easier beach with food and facilities nearby.", "what": "A more convenient beach option with tavernas, toilets and easier family logistics close by.", "why": "Better if the family wants comfort, food access and easier services rather than a more natural beach.", "see": "Sandy beach, cafés, tavernas and a relaxed seaside village setting.", "tip": "Good for late afternoon and dinner after 17:00.", "full": "Use Kalamaki when convenience matters more than wild scenery or when Kommos feels too windy."}, {"tag": "Alternative", "title": "Matala Village and Beach", "activityId": "matala-evening", "short": "Livelier beach village with caves, shops and restaurants.", "what": "A classic South Crete village/beach option with visible caves, restaurants and a more touristy atmosphere.", "why": "Good if the family wants more than a beach day and prefers a lively village with things to see.", "see": "Matala bay, caves from the beach, colorful streets, shops and restaurants.", "tip": "Choose this later in the afternoon if the heat is strong.", "full": "This makes the day more active and atmospheric than Kommos or Kalamaki, but it may be busier."}]}, "day-3": {"day": 3, "date": "23 Jul", "title": "Matala caves, beach & village", "theme": "beach culture village family", "summary": "Classic South Crete day combining caves, beach and village atmosphere.", "morning": "Visit Matala early and see the caves before heat and crowds build.", "lunch": "Lunch in Matala or return to Kamilari/Pitsidia for a quieter meal.", "evening": "Relaxed local dinner or optional return for sunset atmosphere.", "options": [{"tag": "First choice", "title": "Matala Caves", "activityId": "matala-evening", "short": "Iconic cave and beach setting with village atmosphere.", "what": "A visit to Matala’s famous cliff caves and the surrounding beach village.", "why": "Recommended because it combines culture, short exploration, sea views and a memorable setting for the kids.", "see": "Cave cliffs, Matala beach, colorful streets, murals, shops and food options.", "tip": "Go early for the caves, then decide whether to swim or explore the village.", "full": "Do the caves before the strongest heat, then use the rest of Matala as flexible beach/village time."}, {"tag": "Alternative", "title": "Kommos Beach sunset", "activityId": "kommos-beach", "short": "Quieter coastal alternative if Matala feels too busy.", "what": "A relaxed beach alternative with wide open views and less village activity.", "why": "Useful if Matala is too crowded or the family wants a quieter beach experience.", "see": "Open coastline, sunset possibilities and broad natural beach scenery.", "tip": "Check wind before choosing this option.", "full": "This keeps the day simple and scenic while avoiding the busier Matala atmosphere."}, {"tag": "Alternative", "title": "Kalamaki dinner by the sea", "activityId": "kalamaki-beach", "short": "Easy evening option with food close to the beach.", "what": "A comfortable food-and-sea alternative focused on dinner near the coast.", "why": "Good if the family wants an easy evening without more sightseeing.", "see": "Beachfront tavernas, sea views and relaxed evening atmosphere.", "tip": "Use it after apartment rest, not during peak heat.", "full": "This still feels like a holiday evening without requiring much effort."}]}, "day-4": {"day": 4, "date": "24 Jul", "title": "Phaistos Palace & Agia Triada", "theme": "culture history family", "summary": "Nearby Minoan history day with Phaistos as the first-choice activity.", "morning": "Visit Phaistos Palace early before the heat becomes uncomfortable.", "lunch": "Simple lunch nearby or return to Kamilari for apartment rest.", "evening": "Keep the evening local or choose a short coastal outing after rest.", "options": [{"tag": "First choice", "title": "Phaistos Palace", "activityId": "phaistos-palace", "short": "Major Minoan palace site close to Kamilari.", "what": "An important Minoan palace site with wide views over the Messara plain and strong historical value.", "why": "Recommended because it is close, culturally important and easier than a full Heraklion or Knossos day.", "see": "Ancient courtyards, palace remains, stone structures, stairways and panoramic views over the plain.", "tip": "Visit early and bring hats and water because shade is limited.", "full": "Keep the visit focused: explain the Minoan palace story, enjoy the views and return for lunch/rest before the heat becomes too strong."}, {"tag": "Alternative", "title": "Agia Triada Archaeological Site", "activityId": "agia-triada", "short": "Smaller nearby archaeological add-on.", "what": "A quieter Minoan archaeological site near Phaistos that can add context to the palace landscape.", "why": "Good if the family is still interested in archaeology and the weather is manageable.", "see": "Compact ruins, countryside setting and a quieter historic atmosphere than Phaistos.", "tip": "Only add this if Phaistos finishes early and everyone still has energy.", "full": "Agia Triada should enrich the history day, not make it too heavy. Skip it if heat or fatigue is building."}, {"tag": "Alternative", "title": "Matala village later in the day", "activityId": "matala-evening", "short": "Beach village option after culture and rest.", "what": "A late-day Matala visit for sea views, village atmosphere, restaurants and the caves backdrop.", "why": "Good if the family wants a cultural morning and a more relaxed coastal evening.", "see": "Matala beach, cave cliffs, shops, restaurants and sunset atmosphere.", "tip": "Go after apartment rest when the heat drops.", "full": "This pairing works well: Phaistos early, rest during heat, Matala as the evening reward."}]}, "day-5": {"day": 5, "date": "25 Jul", "title": "Gortyna & Messara history", "theme": "culture history market family", "summary": "Roman and ancient site in the Messara region.", "morning": "Visit the archaeological site while temperatures are manageable.", "lunch": "Lunch or a practical stop in Moires, then rest.", "evening": "Local easy dinner or short relaxed outing.", "options": [{"tag": "First choice", "title": "Ancient Gortyna", "activityId": "gortyna", "short": "Roman and ancient site in the Messara region.", "what": "An important ancient city site that adds Roman and law-code history to the trip.", "why": "Recommended because it broadens the cultural story beyond Minoan palaces and stays within a realistic drive.", "see": "Outdoor ruins, inscriptions, Roman-era remains and archaeological structures.", "tip": "Go in the morning and keep the visit concise.", "full": "Use this as a focused cultural stop, then combine with lunch or a practical town stop before rest."}, {"tag": "Alternative", "title": "Zaros Lake", "activityId": "zaros-lake", "short": "Cooler inland nature option if culture feels too much.", "what": "A peaceful lake and village area in the foothills with a short walk and food options.", "why": "Good if the family wants nature and cooler scenery instead of another archaeological site.", "see": "Lake views, trees, mountain atmosphere and local tavernas.", "tip": "Go morning or late afternoon and keep the walk short.", "full": "Zaros gives variety and a quieter rhythm after several coastal or cultural days."}, {"tag": "Alternative", "title": "Kommos Beach", "activityId": "kommos-beach", "short": "Simple beach fallback close to Kamilari.", "what": "A flexible beach option when archaeology or driving feels too much.", "why": "Useful because it keeps the day low-cost and easy to adjust.", "see": "Open coastline, sea views and sunset potential.", "tip": "Check wind and bring shade.", "full": "Kommos keeps the day enjoyable without forcing another cultural stop."}]}, "day-6": {"day": 6, "date": "26 Jul", "title": "Agiofarago Gorge adventure", "theme": "nature beach walking adventure", "summary": "Short dramatic gorge walk with a wild beach reward.", "morning": "Start very early for the gorge walk and avoid peak heat.", "lunch": "Snack or picnic if conditions are good, then return before the hottest hours.", "evening": "Very relaxed local evening after the adventure.", "options": [{"tag": "First choice", "title": "Agiofarago Gorge", "activityId": "agiofarago", "short": "Short dramatic gorge walk with a wild beach reward.", "what": "A nature adventure through a dramatic gorge leading toward a remote-feeling beach.", "why": "Recommended because it matches nature, adventure and short-walk preferences.", "see": "Rock walls, goats, rugged scenery and a wild beach at the end.", "tip": "Start very early, bring water, proper shoes and snacks.", "full": "Treat this as a premium nature day. If heat, wind or road conditions are not good, choose a softer alternative."}, {"tag": "Alternative", "title": "Matala Beach and village", "activityId": "matala-evening", "short": "Comfortable backup with beach, food and facilities.", "what": "A safer and easier coastal alternative with restaurants, shops and beach access.", "why": "Right alternative if Agiofarago feels too hot, remote or difficult on the day.", "see": "Matala bay, cave cliffs, village streets and restaurants.", "tip": "Use this without feeling the day failed; it is still a strong South Crete experience.", "full": "Matala protects the day from weather or energy issues while still giving the family a memorable outing."}, {"tag": "Alternative", "title": "Kommos Beach", "activityId": "kommos-beach", "short": "Low-cost natural beach alternative close to base.", "what": "A simpler natural beach day with less driving and more flexibility.", "why": "Useful if the family wants to stay closer to Kamilari while still enjoying a scenic beach.", "see": "Open sea, long beach, natural coastline and sunset potential.", "tip": "Check wind and bring shade.", "full": "Kommos is the low-stress fallback when the main adventure feels too much."}]}, "day-7": {"day": 7, "date": "27 Jul", "title": "Zaros Lake & Rouvas nature", "theme": "nature walking food village", "summary": "Cooler inland nature day with lake walk and mountain food.", "morning": "Start with a lake walk or light nature stop while it is cooler.", "lunch": "Lunch in or near Zaros, then apartment rest.", "evening": "Short easy outing or quiet local dinner.", "options": [{"tag": "First choice", "title": "Zaros Lake", "activityId": "zaros-lake", "short": "Cooler inland lake walk and village food.", "what": "A peaceful lake and village area in the foothills, good for a short nature walk and lunch.", "why": "Recommended because it gives a cooler inland contrast to beach days and fits the short-walk preference.", "see": "Lake views, trees, mountain scenery and tavernas nearby.", "tip": "Use this as a reset day after busier coastal or cultural days.", "full": "Keep the walk flexible and focus on scenery, lunch and a calmer rhythm."}, {"tag": "Alternative", "title": "Gortyna archaeological site", "activityId": "gortyna", "short": "Culture alternative if the family wants history.", "what": "An ancient site offering a different historical period from the Minoan palace sites.", "why": "Good alternative if the family prefers culture over inland nature on the day.", "see": "Outdoor ruins, inscriptions and Roman-era remains.", "tip": "Only choose this early morning because it is exposed.", "full": "Use it as a short focused cultural visit rather than a long museum-style day."}, {"tag": "Alternative", "title": "Kommos sunset", "activityId": "kommos-beach", "short": "Easy evening beach alternative after a quiet day.", "what": "A short late-day beach option close to Kamilari.", "why": "Useful if the family wants to add a simple sea moment after a rest-heavy day.", "see": "Open beach, sunset light and natural coastline.", "tip": "Go after 17:00 and keep it simple.", "full": "A short sunset visit can make a quiet day feel complete without adding pressure."}]}, "day-8": {"day": 8, "date": "28 Jul", "title": "Rest day & local villages", "theme": "easy village food family", "summary": "Flexible local day for rest, groceries and easy food.", "morning": "Keep the morning slow with village errands or pool/rest time.", "lunch": "Use apartment lunch or a simple village meal to control budget.", "evening": "Choose a short nearby dinner or beach sunset.", "options": [{"tag": "First choice", "title": "Pitsidia and Kamilari local evening", "activityId": "kamilari-walk", "short": "Short local village outing with food nearby.", "what": "A simple village-focused day using nearby Kamilari and Pitsidia instead of a long excursion.", "why": "Recommended because it protects energy and gives the family a break from structured sightseeing.", "see": "Village streets, tavernas, local life and an easy evening atmosphere.", "tip": "Use this day for laundry, groceries and resetting the plan.", "full": "This is the planned recovery day: keep it local and avoid unnecessary driving."}, {"tag": "Alternative", "title": "Kalamaki Beach sunset", "activityId": "kalamaki-beach", "short": "Easy late-day beach option with food nearby.", "what": "A nearby coastal outing for swimming, sunset and dinner.", "why": "Good if the family wants sea time without turning the day into a full excursion.", "see": "Beach, sunset light, tavernas and relaxed seaside atmosphere.", "tip": "Go after 17:00 when it is cooler.", "full": "This adds holiday feeling while keeping the day light."}, {"tag": "Alternative", "title": "Moires practical grocery stop", "activityId": "groceries", "short": "Useful errand stop for supplies and budget control.", "what": "A practical local-town stop for groceries, snacks, water and trip supplies.", "why": "Useful if supplies are low and you want to reduce restaurant spending.", "see": "Local shops, produce and everyday Messara life.", "tip": "Keep it short and combine with rest.", "full": "This is not a sightseeing highlight, but it supports the whole trip budget and logistics."}]}, "day-9": {"day": 9, "date": "29 Jul", "title": "Triopetra & Ligres beaches", "theme": "beach nature scenic", "summary": "Scenic south-coast beach day with dramatic landscapes.", "morning": "Leave early if the wind forecast looks good.", "lunch": "Simple beach lunch or taverna stop, then return for rest.", "evening": "Relax locally after the longer drive.", "options": [{"tag": "First choice", "title": "Triopetra Scenic Beach", "activityId": "triopetra", "short": "Dramatic south-coast beach known for rock formations.", "what": "A scenic beach with a wilder feel and dramatic coastal landscape.", "why": "Recommended if the family wants a more special beach day and accepts a longer drive.", "see": "Open sea, dramatic rocks, wide beach and strong scenery.", "tip": "Check wind before committing; this beach is best on calmer days.", "full": "Triopetra is worth it for scenery, but it should not be forced if driving or wind conditions are poor."}, {"tag": "Alternative", "title": "Kommos Beach", "activityId": "kommos-beach", "short": "Closer natural beach fallback.", "what": "A low-stress beach alternative closer to Kamilari.", "why": "Good if Triopetra feels too far or windy.", "see": "Open coastline, sea views and sunset potential.", "tip": "Bring shade and check wind.", "full": "Kommos keeps the day enjoyable while reducing the drive."}, {"tag": "Alternative", "title": "Agia Galini coastal village", "activityId": "agia-galini", "short": "Harbour village alternative with food and sea views.", "what": "A coastal village outing with harbour scenery, food and optional beach time.", "why": "Useful if the family wants scenery and restaurants rather than a remote beach.", "see": "Harbour, village streets, sea views and tavernas.", "tip": "Go morning or later afternoon.", "full": "Agia Galini gives a more comfortable village-coast day."}]}, "day-10": {"day": 10, "date": "30 Jul", "title": "Agia Galini coastal village", "theme": "village beach food family", "summary": "Seaside village day with harbour walk, beach and lunch.", "morning": "Visit the harbour village early or later in the afternoon.", "lunch": "Eat in Agia Galini or return for rest depending on heat.", "evening": "Keep the evening flexible after the coastal visit.", "options": [{"tag": "First choice", "title": "Agia Galini harbour walk", "activityId": "agia-galini", "short": "Coastal village walk with harbour views and food.", "what": "A relaxed village visit with harbour scenery, beach access and restaurants.", "why": "Recommended because it gives variety from Matala: more harbour village, slower walk and good food options.", "see": "Harbour, hillside streets, sea views, shops and restaurants.", "tip": "Walk first, then eat before the heat builds.", "full": "Keep the outing focused and avoid adding too many stops to the drive."}, {"tag": "Alternative", "title": "Matala Village and Beach", "activityId": "matala-evening", "short": "Livelier beach village alternative.", "what": "A classic beach-village experience with caves, shops and restaurants.", "why": "Good if the family wants a more lively atmosphere than Agia Galini.", "see": "Cave cliffs, beach, shops and sunset atmosphere.", "tip": "Go later in the day if it is hot.", "full": "Matala is busier but very memorable."}, {"tag": "Alternative", "title": "Kommos Beach sunset", "activityId": "kommos-beach", "short": "Shorter low-cost coastal fallback.", "what": "A nearby natural beach option if driving to Agia Galini feels too much.", "why": "Useful if the family wants less driving and more rest.", "see": "Open beach, sunset light and natural coastline.", "tip": "Go after apartment rest.", "full": "This keeps the day simple and scenic."}]}, "day-11": {"day": 11, "date": "31 Jul", "title": "Heraklion Archaeological Museum", "theme": "culture museum food city", "summary": "Indoor cultural day with major Minoan artifacts.", "morning": "Drive early and visit the museum before the city gets too tiring.", "lunch": "Lunch in Heraklion or a simple stop before returning south.", "evening": "Keep the evening quiet after the city day.", "options": [{"tag": "First choice", "title": "Heraklion Archaeological Museum", "activityId": "heraklion-museum", "short": "Top indoor museum for Minoan Crete.", "what": "A major museum visit focused on Minoan artifacts and context for the palace sites.", "why": "Recommended because it gives meaning to Phaistos, Knossos and the wider ancient history of Crete while also being an indoor heat-friendly activity.", "see": "Minoan artifacts, pottery, frescoes, palace objects and the famous Phaistos Disc context.", "tip": "Go early and keep the visit focused so the family does not get overloaded.", "full": "This is the best structured indoor culture day and should be treated as the main event, not combined with too many extras."}, {"tag": "Alternative", "title": "Heraklion old town and harbour walk", "activityId": "heraklion-museum", "short": "City walk option after or instead of the museum.", "what": "A lighter city experience with old-town streets, harbour views and food stops.", "why": "Good if the family wants atmosphere and food more than a long museum visit.", "see": "Old town streets, harbour area, shops and restaurants.", "tip": "Avoid too much walking in peak heat.", "full": "This can be a shorter city alternative or a small add-on after the museum."}, {"tag": "Alternative", "title": "Knossos Palace if energy allows", "activityId": "heraklion-museum", "short": "Major palace site near Heraklion, only if energy is high.", "what": "A famous Minoan palace site near Heraklion that can be paired with the museum only if the family has enough energy.", "why": "Worth considering if the family wants the most complete Minoan culture day, but it may be too much with heat and driving.", "see": "Palace ruins, reconstructed areas and major Minoan history.", "tip": "Do not force it if the museum already feels enough.", "full": "This is a bonus option, not required for the day to be successful."}]}, "day-12": {"day": 12, "date": "1 Aug", "title": "Snorkeling & easy beach day", "theme": "beach snorkeling easy family", "summary": "Flexible beach day based on wind and sea conditions.", "morning": "Choose the beach based on wind and calm sea conditions.", "lunch": "Simple beach lunch or apartment lunch, then rest.", "evening": "Short sunset or village dinner.", "options": [{"tag": "First choice", "title": "Kommos Beach snorkeling", "activityId": "kommos-beach", "short": "Flexible low-cost beach and snorkeling option.", "what": "A nearby natural beach where swimming or snorkeling may work if the sea is calm.", "why": "Recommended because it is close, cheap and easy to shorten if conditions are not ideal.", "see": "Open beach, clear water on calm days and natural coastline.", "tip": "Only snorkel when the sea is calm and safe.", "full": "Keep this day flexible and weather-led."}, {"tag": "Alternative", "title": "Kalamaki Beach", "activityId": "kalamaki-beach", "short": "Convenient serviced beach fallback.", "what": "A more comfortable beach option with food and services nearby.", "why": "Good if the family wants easier logistics and less preparation.", "see": "Beach, tavernas, cafés and sunset atmosphere.", "tip": "Choose this if wind or heat makes Kommos less comfortable.", "full": "Kalamaki is the practical version of the easy beach day."}, {"tag": "Alternative", "title": "Matala Beach", "activityId": "matala-evening", "short": "More atmosphere with beach and village.", "what": "A beach-village option with shops, restaurants and the caves backdrop.", "why": "Good if the family wants atmosphere rather than a quiet beach day.", "see": "Beach, cave cliffs, restaurants and evening village life.", "tip": "Go later in the day if it is hot.", "full": "Matala turns the day into a livelier outing."}]}, "day-13": {"day": 13, "date": "2 Aug", "title": "Psiloritis foothills & villages", "theme": "nature village scenic food", "summary": "Mountain atmosphere without a heavy hike.", "morning": "Drive inland for cooler views and short village stops.", "lunch": "Plan a village lunch or coffee stop.", "evening": "Return for a calm local evening.", "options": [{"tag": "First choice", "title": "Zaros and Psiloritis foothills", "activityId": "zaros-lake", "short": "Inland mountain atmosphere with low-effort nature.", "what": "A scenic inland day using Zaros and the foothills as an easy mountain/nature experience.", "why": "Recommended because it adds variety to beach days without requiring a heavy hike.", "see": "Mountain views, inland villages, lake scenery and cooler atmosphere.", "tip": "Keep the drive realistic and do not turn it into a full mountain expedition.", "full": "Use Zaros as the anchor and add viewpoints or villages only if energy allows."}, {"tag": "Alternative", "title": "Gortyna cultural stop", "activityId": "gortyna", "short": "Short culture option if inland nature is not preferred.", "what": "An ancient site that can replace the mountain plan if the family wants history instead.", "why": "Good if weather or interest makes a cultural stop more appealing than mountain roads.", "see": "Ruins, inscriptions and open archaeological scenery.", "tip": "Go early due to exposure.", "full": "Keep it short and combine with lunch/rest."}, {"tag": "Alternative", "title": "Kommos sunset", "activityId": "kommos-beach", "short": "Simple evening beach ending.", "what": "A short nearby beach outing after an inland or rest-focused day.", "why": "Good if the family wants a sea moment without more sightseeing.", "see": "Open coastline and sunset potential.", "tip": "Go after 17:00.", "full": "A sunset beach stop can finish the day nicely."}]}, "day-14": {"day": 14, "date": "3 Aug", "title": "Family choice / repeat favorite", "theme": "family flexible beach nature food", "summary": "Flexible day to repeat what the family enjoyed most.", "morning": "Repeat the family favourite or recover a missed plan.", "lunch": "Keep lunch simple and protect rest time.", "evening": "Choose a final favourite village or beach outing.", "options": [{"tag": "First choice", "title": "Repeat Matala Village and Beach", "activityId": "matala-evening", "short": "Repeat the most atmospheric nearby village/beach.", "what": "A flexible repeat of Matala if the family enjoyed the beach, caves and village atmosphere.", "why": "Recommended if the kids liked the energy and the family wants a reliable repeat favourite.", "see": "Beach, cave cliffs, restaurants, shops and sunset vibe.", "tip": "Go later if the heat is high.", "full": "This is a strong repeat option because it mixes beach, food and atmosphere."}, {"tag": "Alternative", "title": "Repeat Kommos Beach", "activityId": "kommos-beach", "short": "Quiet natural beach repeat close to base.", "what": "A relaxed repeat of the nearby natural beach.", "why": "Good if the family wants low cost, low driving and a simple beach day.", "see": "Open beach, sea views and natural coastline.", "tip": "Bring shade and check wind.", "full": "This protects energy and keeps the day easy."}, {"tag": "Alternative", "title": "Agiofarago Gorge if missed", "activityId": "agiofarago", "short": "Adventure catch-up if conditions are right.", "what": "A chance to recover the gorge day if it was skipped earlier.", "why": "Good only if everyone wants adventure and the weather/road conditions are suitable.", "see": "Gorge scenery, rugged landscape and wild beach.", "tip": "Start very early and bring water.", "full": "Treat this as optional; do not force it late in the trip."}]}, "day-15": {"day": 15, "date": "4 Aug", "title": "Final beach & sunset", "theme": "beach sunset food family", "summary": "Relaxed final full day with packing buffer and farewell dinner.", "morning": "Use the morning for a relaxed beach or packing buffer.", "lunch": "Simple lunch and apartment rest.", "evening": "Final sunset and farewell dinner.", "options": [{"tag": "First choice", "title": "Kalamaki sunset and farewell dinner", "activityId": "kalamaki-beach", "short": "Easy final sunset close to Kamilari.", "what": "A relaxed final beach/sunset plan with food options nearby.", "why": "Recommended because it gives a memorable last evening without stressful driving.", "see": "Sunset, beach, tavernas and easy return to the apartment.", "tip": "Pack before going out so the evening is relaxed.", "full": "This is the safest final evening plan: low effort, lovely setting, and close to base."}, {"tag": "Alternative", "title": "Kommos Beach final swim", "activityId": "kommos-beach", "short": "Peaceful natural beach for a final swim.", "what": "A quieter final beach choice for swimming or a beach walk.", "why": "Good if the family wants a more natural, less developed final beach moment.", "see": "Open coastline, sea views and wide beach.", "tip": "Bring everything needed because services are limited.", "full": "This is best if the family prefers quiet over restaurants."}, {"tag": "Alternative", "title": "Matala final evening", "activityId": "matala-evening", "short": "Livelier final village evening.", "what": "A more atmospheric final evening with beach, shops, food and caves backdrop.", "why": "Good if the family wants the final night to feel busy and memorable.", "see": "Village lights, restaurants, beach and cave cliffs.", "tip": "Expect more people than Kalamaki or Kommos.", "full": "Choose this if energy is high and packing is already done."}]}, "day-16": {"day": 16, "date": "5 Aug", "title": "Departure preparation", "theme": "departure practical family", "summary": "Practical departure day with airport buffer.", "morning": "Pack, check the apartment and prepare for car return.", "lunch": "Keep food/snacks simple and practical for the airport transfer.", "evening": "Departure travel day; avoid unnecessary sightseeing.", "options": [{"tag": "First choice", "title": "Pack, fuel and airport drive", "activityId": "departure-logistics", "short": "Practical departure plan with buffer.", "what": "A calm departure flow: pack, check the apartment, fuel the car if needed and drive to Heraklion Airport.", "why": "Recommended because departure days punish overplanning; the best result is a calm transfer.", "see": "Apartment checkout, final drive, fuel stop and airport car return.", "tip": "Check passports, chargers, swimwear, medication and car fuel policy before leaving.", "full": "Keep the day boring on purpose: it reduces stress and avoids last-minute mistakes."}, {"tag": "Alternative", "title": "Short Kamilari goodbye walk", "activityId": "kamilari-walk", "short": "Very short local walk if time allows.", "what": "A small local goodbye walk around the village before leaving.", "why": "Good only if packing is finished and there is a clear time buffer.", "see": "Village streets and final local atmosphere.", "tip": "Do not do this if it risks the airport schedule.", "full": "This is a small emotional add-on, not a required activity."}, {"tag": "Alternative", "title": "Moires snack and supply stop", "activityId": "groceries", "short": "Practical final supply stop.", "what": "A short stop for snacks, water or fuel-related practical needs before the airport drive.", "why": "Useful if the family needs food or supplies before travel.", "see": "Local shops and practical supplies.", "tip": "Keep it short and efficient.", "full": "This is only for logistics, not sightseeing."}]}};
+
+      function setText(root, selector, value) {
+        const el = root.querySelector(selector);
+        if (el) el.textContent = value || '';
+      }
+
+      function activityLink(activityId) {
+        return activityId ? 'activities.html?open=details&activity=' + encodeURIComponent(activityId) + '#' + encodeURIComponent(activityId) : 'activities.html';
+      }
+
+      function applyOption(button, option) {
+        button.dataset.tag = option.tag;
+        button.dataset.title = option.title;
+        button.dataset.activityId = option.activityId;
+        button.dataset.short = option.short;
+        button.dataset.what = option.what;
+        button.dataset.why = option.why;
+        button.dataset.see = option.see;
+        button.dataset.tip = option.tip;
+        button.dataset.full = option.full;
+        const tagEl = button.querySelector('.option-tag') || button.querySelector('span');
+        const titleEl = button.querySelector('strong');
+        const shortEl = button.querySelector('small');
+        if (tagEl) tagEl.textContent = option.tag;
+        if (titleEl) titleEl.textContent = option.title;
+        if (shortEl) shortEl.textContent = option.short;
+      }
+
+      function selectedClassFromTag(tag) {
+        const value = String(tag || '').toLowerCase();
+        if (value.includes('alternative')) return 'selected-alternative';
+        if (value.includes('extra')) return 'selected-extra-time';
+        return 'selected-first-choice';
+      }
+
+      function updatePanelFromButton(button) {
+        const dayCard = button.closest('.day-card');
+        if (!dayCard) return;
+        const panel = dayCard.querySelector('.selected-activity-panel');
+        const grid = button.closest('.activity-options-grid');
+        if (!panel) return;
+        if (grid) {
+          grid.classList.add('has-selection');
+          grid.querySelectorAll('.activity-option').forEach(option => option.classList.toggle('active', option === button));
+        }
+        dayCard.classList.remove('selected-first-choice', 'selected-alternative', 'selected-extra-time');
+        dayCard.classList.add(selectedClassFromTag(button.dataset.tag));
+        const mapping = {
+          '.selected-tag': button.dataset.tag,
+          '.selected-title': button.dataset.title,
+          '.selected-short': button.dataset.short,
+          '.selected-what': button.dataset.what,
+          '.selected-why': button.dataset.why,
+          '.selected-see': button.dataset.see,
+          '.selected-tip': button.dataset.tip,
+          '.selected-full': button.dataset.full
+        };
+        Object.keys(mapping).forEach(selector => setText(panel, selector, mapping[selector]));
+        panel.querySelectorAll('.activity-page-link, .activity-page-link-2').forEach(anchor => anchor.href = activityLink(button.dataset.activityId));
+      }
+
+      function syncDayCard(card, plan) {
+        card.dataset.theme = plan.theme || '';
+        setText(card, '.section-label', 'Day ' + plan.day + ' · ' + plan.date);
+        setText(card, 'h2', plan.title);
+        const summary = card.querySelector(':scope > .card-body > p.text-muted, .card-body > p.text-muted');
+        if (summary) summary.textContent = plan.summary || '';
+        const rhythmBoxes = card.querySelectorAll('.rhythm-box p');
+        if (rhythmBoxes[0]) rhythmBoxes[0].textContent = plan.morning || '';
+        if (rhythmBoxes[1]) rhythmBoxes[1].textContent = plan.lunch || '';
+        if (rhythmBoxes[2]) rhythmBoxes[2].textContent = plan.evening || '';
+        const buttons = Array.from(card.querySelectorAll('.activity-option'));
+        buttons.forEach((button, index) => {
+          applyOption(button, plan.options[index] || plan.options[0]);
+          button.classList.toggle('active', index === 0);
+        });
+        if (buttons[0]) updatePanelFromButton(buttons[0]);
+      }
+
+      function syncSelector() {
+        const select = document.getElementById('dayJump');
+        if (!select) return;
+        const current = select.value || localStorage.getItem('crete_itinerary_selected_day_v4') || 'all';
+        select.innerHTML = '<option value="all">All days</option>' + Object.keys(syncedDayPlan).map(id => {
+          const plan = syncedDayPlan[id];
+          return '<option value="' + id + '">Day ' + plan.day + ' – ' + plan.date + ' – ' + plan.title + '</option>';
+        }).join('');
+        if (current === 'all' || syncedDayPlan[current]) select.value = current;
+      }
+
+      function syncAll() {
+        syncSelector();
+        Object.keys(syncedDayPlan).forEach(id => {
+          const card = document.getElementById(id);
+          if (card) syncDayCard(card, syncedDayPlan[id]);
+        });
+      }
+
+      // Run after previous page scripts so this is the final source of truth.
+      setTimeout(syncAll, 250);
+      setTimeout(syncAll, 800);
+
+      document.addEventListener('click', function(event) {
+        const button = event.target.closest('.activity-option');
+        if (!button) return;
+        setTimeout(function() { updatePanelFromButton(button); }, 0);
+      });
+    });
+  </script>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"><div class="container"><a class="navbar-brand fw-bold" href="index.html">🇬🇷 Crete 2026</a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="mainNavbar"><ul class="navbar-nav ms-auto align-items-lg-center"><li class="nav-item"><a class="nav-link" href="index.html">Home</a></li><li class="nav-item"><a class="nav-link" href="itinerary.html">Daily Planner</a></li><li class="nav-item"><a class="nav-link active" href="activities.html">Activities</a></li><li class="nav-item"><a class="nav-link" href="restaurants.html">Restaurants</a></li><li class="nav-item"><a class="nav-link" href="beaches.html">Beaches</a></li><li class="nav-item"><a class="nav-link" href="budget.html">Budget</a></li><li class="nav-item"><a class="nav-link" href="packing.html">Packing</a></li><li class="nav-item"><a class="nav-link" href="maps.html">Maps</a></li><li class="nav-item"><a class="nav-link" href="traveltips.html">Travel Tips</a></li><li class="nav-item"><a class="nav-link" href="about.html">About</a></li><li class="nav-item"><button id="darkModeToggle" class="btn btn-sm btn-outline-light ms-lg-3" type="button">🌙</button></li></ul></div></div></nav>
+<header class="activities-hero text-white py-5"><div class="container py-5"><p class="text-uppercase fw-bold mb-2">Activities Guide</p><h1 class="display-4 fw-bold">Recommended Activities + Details</h1><p class="lead">Open directly from the itinerary and view the full selected activity details.</p></div></header>
+<main><section class="py-5"><div class="container"><div class="row g-3 mb-5"><div class="col-lg-4"><label for="activitySearch" class="form-label fw-bold">Search</label><input id="activitySearch" type="search" class="form-control form-control-lg" placeholder="Search Phaistos, Matala, Kommos..."></div><div class="col-lg-4"><label for="typeFilter" class="form-label fw-bold">Type</label><select id="typeFilter" class="form-select form-select-lg"><option value="all">All types</option></select></div><div class="col-lg-4"><label for="priorityFilter" class="form-label fw-bold">Priority</label><select id="priorityFilter" class="form-select form-select-lg"><option value="all">All</option><option value="recommended">Recommended</option><option value="alternative">Alternatives</option><option value="optional">Optional extras</option></select></div></div><div id="activityCards" class="row g-4"></div></div></section></main>
+<div class="modal fade" id="activityModal" tabindex="-1"><div class="modal-dialog modal-xl modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><div><p class="activity-section-label mb-1">Activity details</p><h2 id="activityModalTitle" class="modal-title fw-bold"></h2></div><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body" id="activityModalBody"></div></div></div></div>
+<footer class="bg-dark text-white py-4"><div class="container"><div class="row"><div class="col-md-6"><h5>Crete Family Holiday 2026</h5><p class="mb-0">Personal travel planner for Kamilari, South Crete.</p></div><div class="col-md-6 text-md-end"><p class="mb-0">Activities guide</p></div></div></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const activities=[{"id": "phaistos-palace", "name": "Phaistos Palace", "area": "Messara / near Kamilari", "type": "Archaeology", "priority": "recommended", "image": "https://images.unsplash.com/photo-1603565816030-6b389eeb23cb?auto=format&fit=crop&w=1200&q=80", "cost": "Approx. €30 for 2 adults; children likely free/reduced", "duration": "1–1.5 hours", "bestTime": "Early morning", "heatFit": "Good only early; exposed site", "familyFit": "Good if kept focused and not too long", "summary": "The key nearby Minoan palace site and the best cultural first-choice activity close to Kamilari.", "whyRecommended": "This is recommended because it gives the family the strongest cultural experience close to the apartment without a long drive. It fits perfectly early in the itinerary: short enough to manage in the morning, important enough to feel meaningful, and easy to combine with apartment rest and Matala later in the day.", "whatToExpect": "Expect open archaeological ruins rather than reconstructed buildings: stone courtyards, terraces, stairways, storage areas and big views over the Messara plain.", "funFact": "The mysterious Phaistos Disc was discovered here, but nobody has fully decoded its symbols yet.", "doNotMiss": ["Central court", "Views over the Messara plain", "Information about the Phaistos Disc", "Old stone stairs and palace layout"], "extraTimeSummary": "If everyone still wants more archaeology, add nearby Agia Triada. Otherwise stop here and save energy for Matala.", "mapUrl": "https://www.google.com/maps/search/?api=1&query=Phaistos+Palace+Crete"}, {"id": "agia-triada", "name": "Agia Triada Archaeological Site", "area": "Messara / near Phaistos", "type": "Archaeology", "priority": "alternative", "image": "https://images.unsplash.com/photo-1603565816030-6b389eeb23cb?auto=format&fit=crop&w=1200&q=80", "cost": "To verify", "duration": "30–45 minutes", "bestTime": "Immediately after Phaistos if still early", "heatFit": "Exposed; avoid midday", "familyFit": "Good only if everyone still wants more history", "summary": "A smaller archaeological add-on near Phaistos, useful if there is extra time and energy.", "whyRecommended": "This is an alternative, not the first choice, because Phaistos already gives the main Minoan story. Agia Triada is worth adding if the family is still curious and the heat is manageable.", "whatToExpect": "Expect a smaller and quieter ancient site with ruins and a compact visit.", "funFact": "Agia Triada is often discussed as an important Minoan villa or settlement connected to the palace landscape around Phaistos.", "doNotMiss": ["Quiet site atmosphere", "Connection with Phaistos", "Short add-on visit"], "extraTimeSummary": "Worth it if Phaistos finishes early. Skip if anyone is hot, tired or ready for lunch.", "mapUrl": "https://www.google.com/maps/search/?api=1&query=Agia+Triada+Archaeological+Site+Crete"}, {"id": "matala-evening", "name": "Matala Village, Beach and Caves View", "area": "Matala", "type": "Village / Beach", "priority": "recommended", "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80", "cost": "Free village/beach; caves fee to verify", "duration": "1.5–3 hours", "bestTime": "Late afternoon / evening", "heatFit": "Best after 17:00", "familyFit": "Very good; can be busy", "summary": "Iconic South Crete village with beach, caves, restaurants and sunset atmosphere.", "whyRecommended": "This is recommended because Matala gives the trip one of its strongest classic South Crete experiences without a long drive from Kamilari.", "whatToExpect": "Expect a lively bay, sandstone cliffs, visible caves, waterfront restaurants, shops and a holiday atmosphere.", "funFact": "Matala became famous for its hippie history, when travellers stayed in the caves above the beach in the 1960s and 1970s.", "doNotMiss": ["Cave cliff view", "Beachfront walk", "Sunset atmosphere", "Dinner or ice cream in village"], "extraTimeSummary": "If Matala is too busy, switch to Kommos sunset or dinner in Pitsidia/Kamilari.", "mapUrl": "https://www.google.com/maps/search/?api=1&query=Matala+Crete"}, {"id": "kommos-beach", "name": "Kommos Beach Snorkeling Morning", "area": "Kommos / Kalamaki", "type": "Beach / Snorkeling", "priority": "recommended", "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80", "cost": "Free beach; food/umbrella extra if used", "duration": "2–3 hours", "bestTime": "Morning or sunset", "heatFit": "Good early; exposed later", "familyFit": "Very good if sea is calm", "summary": "Spacious nearby beach and a strong low-cost snorkeling/swimming option close to Kamilari.", "whyRecommended": "This is recommended because it matches the family preferences: short drive, low cost, natural scenery and snorkeling potential.", "whatToExpect": "Expect a long open beach, wide views, natural dunes/tamarisk areas and sections that can be good for snorkeling when calm.", "funFact": "Kommos was connected to the ancient Minoan world as a harbour area.", "doNotMiss": ["Calm-water snorkeling", "Sunset views", "Respect turtle nesting areas", "Quiet beach walk"], "extraTimeSummary": "If waves are too strong, use Kalamaki for easier facilities or switch to a village/museum day.", "mapUrl": "https://www.google.com/maps/search/?api=1&query=Kommos+Beach+Crete"}, {"id": "kalamaki-beach", "name": "Kalamaki Easy Beach Option", "area": "Kalamaki", "type": "Beach", "priority": "alternative", "image": "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1200&q=80", "cost": "Free beach; tavernas/umbrellas extra", "duration": "1.5–3 hours", "bestTime": "Morning or evening", "heatFit": "Good with facilities nearby", "familyFit": "Very good for easy logistics", "summary": "An easier beach choice with more nearby facilities than Kommos.", "whyRecommended": "This is a good alternative because it keeps the beach day simple.", "whatToExpect": "Expect a more organized village beach feel, with tavernas and easier family logistics nearby.", "funFact": "Kalamaki works well as a practical family beach base because it is close enough to return quickly to Kamilari for rest.", "doNotMiss": ["Simple swim", "Beach lunch", "Sunset walk"], "extraTimeSummary": "Worth choosing when convenience matters more than wild scenery.", "mapUrl": "https://www.google.com/maps/search/?api=1&query=Kalamaki+Beach+Crete"}, {"id": "agiofarago", "name": "Agiofarago Gorge and Wild Beach", "area": "Asterousia / South coast", "type": "Nature / Beach", "priority": "recommended", "image": "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=80", "cost": "Free; possible parking/food costs nearby", "duration": "3–5 hours including drive and walk", "bestTime": "Very early morning", "heatFit": "Only early; bring water and hats", "familyFit": "Good adventure if everyone is prepared", "summary": "Short gorge walk ending at a wild beach; one of the most adventurous planned nature options.", "whyRecommended": "This is recommended because it gives the trip a memorable nature adventure without requiring a full mountain hike.", "whatToExpect": "Expect a rocky path through a gorge, limestone walls, uneven ground and a wild beach with limited/no facilities.", "funFact": "The name Agiofarago means “Gorge of the Saints”, linked to hermits who lived in the area’s caves.", "doNotMiss": ["Gorge walk", "Clear water at the beach", "Early start", "Proper shoes and plenty of water"], "extraTimeSummary": "Worth it if the family wants adventure. Skip in extreme heat.", "mapUrl": "https://www.google.com/maps/search/?api=1&query=Agiofarago+Beach+Crete"}, {"id": "zaros-lake", "name": "Zaros Lake / Votomos Lake Walk", "area": "Zaros", "type": "Nature / Village", "priority": "recommended", "image": "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=80", "cost": "Free; lunch extra", "duration": "1–2 hours plus lunch", "bestTime": "Morning", "heatFit": "Better than coast; still go early", "familyFit": "Very good short nature break", "summary": "Mountain/lake change of scenery with a short walk and strong lunch options nearby.", "whyRecommended": "This is recommended because it gives the family a cooler inland day and a break from beaches.", "whatToExpect": "Expect lake views, mountain village surroundings, a calmer inland atmosphere and lunch options nearby.", "funFact": "Zaros is known for water and mountain scenery.", "doNotMiss": ["Lake walk", "Mountain scenery", "Lunch in Zaros", "Spring-water village atmosphere"], "extraTimeSummary": "Add a longer walk only if the family wants it.", "mapUrl": "https://www.google.com/maps/search/?api=1&query=Zaros+Lake+Votomos+Crete"}, {"id": "gortyna", "name": "Ancient Gortyna", "area": "Messara / Gortyna", "type": "Archaeology", "priority": "recommended", "image": "https://images.unsplash.com/photo-1603565816030-6b389eeb23cb?auto=format&fit=crop&w=1200&q=80", "cost": "Approx. €20 for 2 adults; children likely free/reduced", "duration": "45–90 minutes", "bestTime": "Morning", "heatFit": "Exposed; avoid midday", "familyFit": "Good if kept concise", "summary": "Important ancient city site that adds Roman and law-code history to the trip.", "whyRecommended": "This is recommended because it broadens the cultural story beyond Minoan palaces and is close enough for a morning visit.", "whatToExpect": "Expect outdoor ruins, inscriptions, Roman-era remains and archaeological structures in an open site.", "funFact": "Gortyna is famous for one of the great ancient law-code inscriptions, carved into stone.", "doNotMiss": ["Law code inscriptions", "Roman remains", "Morning visit", "Short focused route"], "extraTimeSummary": "Worth visiting if everyone still enjoys archaeological sites.", "mapUrl": "https://www.google.com/maps/search/?api=1&query=Ancient+Gortyna+Crete"}];
+function getPriorityLabel(a){return a.priority==='recommended'?'Recommended':a.priority==='alternative'?'Good alternative':'Optional extra';}
+function renderFilters(){const types=[...new Set(activities.map(a=>a.type))].sort();document.getElementById('typeFilter').innerHTML='<option value="all">All types</option>'+types.map(t=>`<option value="${t}">${t}</option>`).join('');}
+function renderActivities(){const search=(document.getElementById('activitySearch').value||'').toLowerCase().trim();const type=document.getElementById('typeFilter').value;const priority=document.getElementById('priorityFilter').value;const filtered=activities.filter(a=>(!search||JSON.stringify(a).toLowerCase().includes(search))&&(type==='all'||a.type===type)&&(priority==='all'||a.priority===priority));document.getElementById('activityCards').innerHTML=filtered.map(a=>`<div class="col-lg-6"><article class="card h-100 shadow-sm" id="${a.id}"><div class="activity-image-wrap"><img class="activity-image" src="${a.image}" alt="Representative image for ${a.name}" loading="lazy"><span class="activity-ribbon">⭐ ${getPriorityLabel(a)}</span><span class="activity-image-label">Representative visual</span></div><div class="card-header bg-primary text-white"><strong>${a.name}</strong></div><div class="card-body"><div class="mb-3"><span class="badge text-bg-dark">${a.area}</span> <span class="badge text-bg-secondary">${a.type}</span> <span class="badge text-bg-warning">${a.priority}</span></div><p><strong>Quick summary:</strong> ${a.summary}</p><p><strong>Why this is recommended:</strong> ${a.whyRecommended}</p><div class="row g-3 mt-2"><div class="col-6 col-md-3"><div class="activity-meta-box"><small>Cost</small><strong>${a.cost}</strong></div></div><div class="col-6 col-md-3"><div class="activity-meta-box"><small>Duration</small><strong>${a.duration}</strong></div></div><div class="col-6 col-md-3"><div class="activity-meta-box"><small>Best time</small><strong>${a.bestTime}</strong></div></div><div class="col-6 col-md-3"><div class="activity-meta-box"><small>Heat fit</small><strong>${a.heatFit}</strong></div></div></div></div><div class="card-footer d-flex flex-wrap justify-content-between gap-2"><button class="btn btn-sm btn-warning" type="button" onclick="openActivityDetails('${a.id}')">View details</button><a class="btn btn-sm btn-outline-dark" href="${a.mapUrl}" target="_blank" rel="noopener noreferrer">Map</a></div></article></div>`).join('');}
+window.openActivityDetails=function(id){const a=activities.find(x=>x.id===id);if(!a)return;document.getElementById('activityModalTitle').textContent=a.name;document.getElementById('activityModalBody').innerHTML=`<div class="row g-4"><div class="col-lg-5"><img src="${a.image}" class="modal-activity-image" alt="Representative image for ${a.name}"><p class="text-muted mt-2 mb-0">Image is representative until replaced by final local/official photos.</p></div><div class="col-lg-7"><div class="mb-3"><span class="activity-pill">${a.area}</span><span class="activity-pill">${a.type}</span><span class="activity-pill">${getPriorityLabel(a)}</span></div><div class="summary-box mb-3"><strong>Why this is recommended:</strong><br>${a.whyRecommended}</div><p><strong>What this is:</strong> ${a.summary}</p><p><strong>What we will see / do:</strong> ${a.whatToExpect}</p><p><strong>Fun fact:</strong> ${a.funFact}</p><p><strong>Extra-time summary:</strong> ${a.extraTimeSummary}</p><p><strong>Do not miss:</strong></p><ul>${(a.doNotMiss||[]).map(x=>`<li>${x}</li>`).join('')}</ul><div class="row g-3 mt-2"><div class="col-md-3"><div class="activity-meta-box"><small>Cost</small><strong>${a.cost}</strong></div></div><div class="col-md-3"><div class="activity-meta-box"><small>Duration</small><strong>${a.duration}</strong></div></div><div class="col-md-3"><div class="activity-meta-box"><small>Best time</small><strong>${a.bestTime}</strong></div></div><div class="col-md-3"><div class="activity-meta-box"><small>Family fit</small><strong>${a.familyFit}</strong></div></div></div><hr><div class="d-flex flex-wrap gap-2"><a class="btn btn-warning" href="${a.mapUrl}" target="_blank" rel="noopener noreferrer">Open Google Maps</a><a class="btn btn-outline-secondary" href="itinerary.html">Back to itinerary</a></div></div></div>`;new bootstrap.Modal(document.getElementById('activityModal')).show();};
+function applyDarkMode(mode){const dark=mode==='dark';document.body.classList.toggle('dark-mode',dark);document.getElementById('darkModeToggle').textContent=dark?'☀️':'🌙';localStorage.setItem('crete_dark_mode',dark?'dark':'light');}
+function openFromUrl(){const params=new URLSearchParams(location.search);const raw=params.get('activity')||decodeURIComponent(location.hash.replace('#',''));if(!raw)return;const id=raw.trim().toLowerCase();renderActivities();setTimeout(()=>{const card=document.getElementById(id);if(card){card.scrollIntoView({behavior:'smooth',block:'center'});card.classList.add('activity-linked-highlight');}openActivityDetails(id);},200);}
+document.addEventListener('DOMContentLoaded',function(){renderFilters();renderActivities();['activitySearch','typeFilter','priorityFilter'].forEach(id=>{document.getElementById(id).addEventListener('input',renderActivities);document.getElementById(id).addEventListener('change',renderActivities);});document.getElementById('darkModeToggle').addEventListener('click',()=>applyDarkMode(document.body.classList.contains('dark-mode')?'light':'dark'));applyDarkMode(localStorage.getItem('crete_dark_mode')||'light');openFromUrl();});
+</script></body></html>

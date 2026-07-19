@@ -1,0 +1,168 @@
+/* Guarantee the main day/activity cards have a visible colored side strip, even if Bootstrap border-0 overrides borders */
+    .day-card,
+    #activityCards article.card {
+      position: relative !important;
+      overflow: hidden !important;
+      border-left: 0 !important;
+    }
+
+    .day-card::before,
+    #activityCards article.card::before {
+      content: "" !important;
+      position: absolute !important;
+      left: 0 !important;
+      top: 0 !important;
+      bottom: 0 !important;
+      width: 9px !important;
+      background: #f4b942 !important;
+      z-index: 3 !important;
+      border-top-left-radius: 18px !important;
+      border-bottom-left-radius: 18px !important;
+    }
+
+    .day-card > .card-body,
+    #activityCards article.card > * {
+      position: relative !important;
+      z-index: 4 !important;
+    }
+
+    .day-card[data-theme*="nature"]::before,
+    .day-card[data-theme*="walking"]::before,
+    #activityCards > .col-lg-6:nth-child(4n+2) article.card::before {
+      background: #6b8e23 !important;
+    }
+    .day-card[data-theme*="beach"]::before,
+    .day-card[data-theme*="snorkeling"]::before,
+    #activityCards > .col-lg-6:nth-child(4n+3) article.card::before {
+      background: #0077b6 !important;
+    }
+    .day-card[data-theme*="food"]::before,
+    .day-card[data-theme*="village"]::before,
+    #activityCards > .col-lg-6:nth-child(4n+4) article.card::before {
+      background: #c96f4a !important;
+    }
+    .day-card[data-theme*="departure"]::before,
+    .day-card[data-theme*="practical"]::before {
+      background: #545857 !important;
+    }
+
+    /* Remove grey vertical strips on the detail boxes and replace with colored strips */
+    .rhythm-box,
+    .detail-box,
+    .selected-activity-panel,
+    .full-details {
+      position: relative !important;
+      overflow: hidden !important;
+      border-left: 0 !important;
+      background: #ffffff !important;
+    }
+
+    .rhythm-box::before,
+    .detail-box::before,
+    .selected-activity-panel::before,
+    .full-details::before {
+      content: "" !important;
+      position: absolute !important;
+      left: 0 !important;
+      top: 0 !important;
+      bottom: 0 !important;
+      width: 6px !important;
+      background: #f4b942 !important;
+      z-index: 1 !important;
+    }
+
+    .rhythm-box > *,
+    .detail-box > *,
+    .selected-activity-panel > *,
+    .full-details > * {
+      position: relative !important;
+      z-index: 2 !important;
+    }
+
+    .row.g-3 > .col-md-4:nth-child(1) .rhythm-box::before { background: #f4b942 !important; }
+    .row.g-3 > .col-md-4:nth-child(2) .rhythm-box::before { background: #0077b6 !important; }
+    .row.g-3 > .col-md-4:nth-child(3) .rhythm-box::before { background: #6b8e23 !important; }
+
+    .selected-activity-panel .row.g-3 > .col-md-6:nth-child(1) .detail-box::before { background: #f4b942 !important; }
+    .selected-activity-panel .row.g-3 > .col-md-6:nth-child(2) .detail-box::before { background: #0077b6 !important; }
+    .selected-activity-panel .row.g-3 > .col-md-6:nth-child(3) .detail-box::before { background: #6b8e23 !important; }
+    .selected-activity-panel .row.g-3 > .col-md-6:nth-child(4) .detail-box::before { background: #c96f4a !important; }
+
+    /* Activity option cards: color side strip using pseudo elements to avoid grey border issue */
+    .activity-option {
+      position: relative !important;
+      overflow: hidden !important;
+      border-left: 0 !important;
+      transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease, filter .18s ease, background .18s ease !important;
+    }
+
+    .activity-option::before {
+      content: "" !important;
+      position: absolute !important;
+      left: 0 !important;
+      top: 0 !important;
+      bottom: 0 !important;
+      width: 8px !important;
+      background: #f4b942 !important;
+      z-index: 1 !important;
+    }
+
+    .activity-option > * {
+      position: relative !important;
+      z-index: 2 !important;
+    }
+
+    .activity-options-grid .activity-option:nth-child(1)::before { background: #6b8e23 !important; }
+    .activity-options-grid .activity-option:nth-child(2)::before { background: #0077b6 !important; }
+    .activity-options-grid .activity-option:nth-child(3)::before { background: #f4b942 !important; }
+
+    /* Visual difference when selecting First choice / Alternative / Extra time */
+    .activity-options-grid.has-selection .activity-option:not(.active),
+    .activity-options-grid.has-selection .activity-option.is-dimmed {
+      opacity: .52 !important;
+      filter: grayscale(.25) saturate(.65) !important;
+      transform: scale(.965) !important;
+      box-shadow: 0 .25rem .65rem rgba(0,0,0,.05) !important;
+      background: #f8f8f8 !important;
+    }
+
+    .activity-option.active {
+      opacity: 1 !important;
+      filter: none !important;
+      transform: translateY(-8px) scale(1.035) !important;
+      z-index: 10 !important;
+      background: #ffffff !important;
+      border-color: rgba(0,119,182,.35) !important;
+      box-shadow: 0 1.15rem 2.4rem rgba(0, 64, 110, .22) !important;
+    }
+
+    .activity-option.active::before {
+      width: 12px !important;
+    }
+
+    .activity-option.active .option-tag,
+    .activity-option.active span {
+      box-shadow: 0 .45rem 1rem rgba(0,0,0,.18) !important;
+    }
+
+    .activity-option.active::after {
+      content: "Selected" !important;
+      position: absolute !important;
+      right: 12px !important;
+      top: 12px !important;
+      z-index: 3 !important;
+      background: #023e8a !important;
+      color: #ffffff !important;
+      border-radius: 999px !important;
+      padding: .22rem .55rem !important;
+      font-size: .72rem !important;
+      font-weight: 800 !important;
+    }
+
+    .activity-options-grid .activity-option:nth-child(1).active::after { background: #6b8e23 !important; }
+    .activity-options-grid .activity-option:nth-child(2).active::after { background: #0077b6 !important; }
+    .activity-options-grid .activity-option:nth-child(3).active::after { background: #f4b942 !important; color:#1f2937 !important; }
+
+    .day-card.selected-first-choice .selected-activity-panel::before { background: #6b8e23 !important; }
+    .day-card.selected-alternative .selected-activity-panel::before { background: #0077b6 !important; }
+    .day-card.selected-extra-time .selected-activity-panel::before { background: #f4b942 !important; }

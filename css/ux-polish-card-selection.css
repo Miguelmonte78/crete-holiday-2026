@@ -1,0 +1,189 @@
+/* Senior UI/UX cleanup: remove previous experimental double bars */
+    .day-card::before,
+    #activityCards article.card::before,
+    .rhythm-box::before,
+    .detail-box::before,
+    .selected-activity-panel::before,
+    .full-details::before,
+    .activity-option::before,
+    .activity-option::after {
+      display: none !important;
+      content: none !important;
+    }
+
+    /* Keep the original warm app canvas */
+    html,
+    body,
+    main,
+    section,
+    .bg-light,
+    .planner-filter,
+    body.dark-mode,
+    body.dark-mode main,
+    body.dark-mode section,
+    body.dark-mode .bg-light,
+    body.dark-mode .planner-filter {
+      background: #fff8e9 !important;
+    }
+
+    /* Design tokens for a cleaner, premium, consistent look */
+    :root {
+      --ux-gold: #f4b942;
+      --ux-green: #6b8e23;
+      --ux-blue: #0077b6;
+      --ux-terracotta: #c96f4a;
+      --ux-grey: #545857;
+      --ux-card: #ffffff;
+      --ux-ink: #132238;
+      --ux-muted: #617282;
+      --ux-line: rgba(19, 34, 56, .10);
+      --ux-shadow: 0 .75rem 1.8rem rgba(19, 34, 56, .08);
+      --ux-shadow-strong: 0 1.2rem 2.6rem rgba(19, 34, 56, .16);
+    }
+
+    /* Main day cards: one elegant side accent only, no duplicate stripe */
+    .day-card {
+      --day-accent: var(--ux-gold);
+      border: 1px solid var(--ux-line) !important;
+      border-left: 7px solid var(--day-accent) !important;
+      border-radius: 22px !important;
+      background: var(--ux-card) !important;
+      box-shadow: var(--ux-shadow) !important;
+      overflow: hidden !important;
+    }
+    .day-card[data-theme*="nature"],
+    .day-card[data-theme*="walking"] { --day-accent: var(--ux-green); }
+    .day-card[data-theme*="beach"],
+    .day-card[data-theme*="snorkeling"] { --day-accent: var(--ux-blue); }
+    .day-card[data-theme*="food"],
+    .day-card[data-theme*="village"] { --day-accent: var(--ux-terracotta); }
+    .day-card[data-theme*="departure"],
+    .day-card[data-theme*="practical"] { --day-accent: var(--ux-grey); }
+
+    /* Rhythm and detail cards: uniform clean left accent, not thick/double */
+    .rhythm-box,
+    .detail-box,
+    .full-details {
+      border: 1px solid var(--ux-line) !important;
+      border-left: 5px solid var(--box-accent, var(--ux-gold)) !important;
+      border-radius: 14px !important;
+      background: #ffffff !important;
+      box-shadow: none !important;
+      color: var(--ux-ink) !important;
+    }
+    .row.g-3 > .col-md-4:nth-child(1) .rhythm-box { --box-accent: var(--ux-gold); }
+    .row.g-3 > .col-md-4:nth-child(2) .rhythm-box { --box-accent: var(--ux-blue); }
+    .row.g-3 > .col-md-4:nth-child(3) .rhythm-box { --box-accent: var(--ux-green); }
+    .selected-activity-panel .row.g-3 > .col-md-6:nth-child(1) .detail-box { --box-accent: var(--ux-gold); }
+    .selected-activity-panel .row.g-3 > .col-md-6:nth-child(2) .detail-box { --box-accent: var(--ux-blue); }
+    .selected-activity-panel .row.g-3 > .col-md-6:nth-child(3) .detail-box { --box-accent: var(--ux-green); }
+    .selected-activity-panel .row.g-3 > .col-md-6:nth-child(4) .detail-box { --box-accent: var(--ux-terracotta); }
+
+    /* Proposed option cards: compact accent bar embedded in border, no double bar */
+    .activity-option {
+      --choice-accent: var(--ux-green);
+      position: relative !important;
+      border: 1px solid var(--ux-line) !important;
+      border-left: 5px solid var(--choice-accent) !important;
+      border-radius: 16px !important;
+      background: #ffffff !important;
+      color: var(--ux-ink) !important;
+      box-shadow: 0 .35rem 1rem rgba(19, 34, 56, .06) !important;
+      transform: none !important;
+      opacity: 1 !important;
+      filter: none !important;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease !important;
+    }
+    .activity-options-grid .activity-option:nth-child(1) { --choice-accent: var(--ux-green); }
+    .activity-options-grid .activity-option:nth-child(2) { --choice-accent: var(--ux-blue); }
+    .activity-options-grid .activity-option:nth-child(3) { --choice-accent: var(--ux-gold); }
+
+    .activity-option:hover,
+    .activity-option:focus {
+      transform: translateY(-3px) !important;
+      box-shadow: var(--ux-shadow) !important;
+    }
+
+    /* Premium selected state: selected comes forward, others stay elegant and readable */
+    .activity-options-grid.has-selection .activity-option:not(.active) {
+      opacity: .72 !important;
+      background: #fbfbfb !important;
+      box-shadow: 0 .25rem .7rem rgba(19, 34, 56, .04) !important;
+      transform: none !important;
+      filter: saturate(.88) !important;
+    }
+    .activity-option.active {
+      opacity: 1 !important;
+      transform: translateY(-6px) !important;
+      background: linear-gradient(180deg, #ffffff 0%, #fffdf7 100%) !important;
+      border: 2px solid color-mix(in srgb, var(--choice-accent) 70%, #ffffff) !important;
+      border-left: 7px solid var(--choice-accent) !important;
+      box-shadow: var(--ux-shadow-strong) !important;
+      z-index: 5 !important;
+    }
+
+    .activity-option.active .option-tag,
+    .activity-option.active span:first-child {
+      background: var(--choice-accent) !important;
+      color: #ffffff !important;
+    }
+    .activity-options-grid .activity-option:nth-child(3).active .option-tag,
+    .activity-options-grid .activity-option:nth-child(3).active span:first-child {
+      color: #1f2937 !important;
+    }
+
+    .activity-option strong {
+      color: #003b73 !important;
+    }
+    .activity-option small,
+    .selected-short,
+    .detail-box p,
+    .rhythm-box p {
+      color: var(--ux-muted) !important;
+    }
+
+    /* Selected activity panel changes accent color based on selected option */
+    .selected-activity-panel {
+      --selected-accent: var(--ux-green);
+      border: 1px solid var(--ux-line) !important;
+      border-left: 7px solid var(--selected-accent) !important;
+      border-radius: 18px !important;
+      background: #ffffff !important;
+      box-shadow: 0 .8rem 2rem rgba(19, 34, 56, .07) !important;
+      color: var(--ux-ink) !important;
+    }
+    .day-card.selected-first-choice .selected-activity-panel { --selected-accent: var(--ux-green); }
+    .day-card.selected-alternative .selected-activity-panel { --selected-accent: var(--ux-blue); }
+    .day-card.selected-extra-time .selected-activity-panel { --selected-accent: var(--ux-gold); }
+
+    .selected-tag {
+      background: var(--selected-accent) !important;
+      color: #ffffff !important;
+    }
+    .day-card.selected-extra-time .selected-tag {
+      color: #1f2937 !important;
+    }
+
+    /* Activities page cards keep the same clean single strip */
+    #activityCards article.card {
+      border: 1px solid var(--ux-line) !important;
+      border-left: 7px solid var(--ux-gold) !important;
+      border-radius: 22px !important;
+      background: #ffffff !important;
+      box-shadow: var(--ux-shadow) !important;
+    }
+    #activityCards > .col-lg-6:nth-child(4n+2) article.card { border-left-color: var(--ux-green) !important; }
+    #activityCards > .col-lg-6:nth-child(4n+3) article.card { border-left-color: var(--ux-blue) !important; }
+    #activityCards > .col-lg-6:nth-child(4n+4) article.card { border-left-color: var(--ux-terracotta) !important; }
+
+    /* Keep dark mode readable if toggled, but do not force an all-dark body */
+    body.dark-mode .day-card,
+    body.dark-mode .activity-option,
+    body.dark-mode .selected-activity-panel,
+    body.dark-mode .rhythm-box,
+    body.dark-mode .detail-box,
+    body.dark-mode .full-details,
+    body.dark-mode #activityCards article.card {
+      background: #ffffff !important;
+      color: var(--ux-ink) !important;
+    }
