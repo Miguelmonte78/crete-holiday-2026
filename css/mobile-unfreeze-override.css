@@ -1,0 +1,103 @@
+/* V14 Mobile Unfreeze Override
+   Put this file AFTER all other CSS links on itinerary.html.
+   Purpose: stop the Daily Planner selector/search/theme area from staying fixed/sticky on mobile.
+*/
+
+/* Force the Daily Planner selector area to behave as normal page content */
+.planner-filter,
+#daySelectorPanel,
+.filters,
+section.planner-filter,
+section.filters,
+.sticky-top,
+.position-sticky {
+  position: static !important;
+  top: auto !important;
+  bottom: auto !important;
+  z-index: auto !important;
+  transform: none !important;
+}
+
+/* If the selector card itself was made sticky by inline or previous CSS */
+.planner-filter .card,
+#daySelectorPanel .card,
+.filters .card,
+.filter-card {
+  position: static !important;
+  top: auto !important;
+  z-index: auto !important;
+}
+
+/* On phone and tablet, the navbar should also scroll away to maximize reading space */
+@media (max-width: 991.98px) {
+  .navbar.fixed-top,
+  nav.fixed-top,
+  header.fixed-top,
+  .fixed-top {
+    position: static !important;
+    top: auto !important;
+    z-index: auto !important;
+  }
+
+  body {
+    padding-top: 0 !important;
+  }
+
+  .itinerary-hero,
+  .activities-hero,
+  header[style*="margin-top"],
+  .hero-card {
+    margin-top: 0 !important;
+  }
+}
+
+/* Phone responsive layout */
+@media (max-width: 767.98px) {
+  .planner-filter,
+  #daySelectorPanel,
+  .filters {
+    margin-top: 0 !important;
+    padding-top: .75rem !important;
+    padding-bottom: .75rem !important;
+  }
+
+  .planner-filter .row,
+  .filter-card,
+  .row.g-3.align-items-end {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: .8rem !important;
+  }
+
+  .activity-options-grid,
+  .option-grid,
+  #activityCards {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: .85rem !important;
+  }
+
+  .activity-option,
+  .selected-activity-panel,
+  .day-card,
+  .rhythm-box,
+  .detail-box {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .activity-page-link,
+  .activity-page-link-2,
+  .view-details-btn,
+  .selected-activity-panel .btn,
+  .activity-actions .btn {
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  .day-card h2,
+  .selected-title {
+    font-size: clamp(1.55rem, 7vw, 2.05rem) !important;
+    line-height: 1.12 !important;
+  }
+}
